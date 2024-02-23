@@ -2,7 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\Searchable;
+use Wildside\Userstamps\Userstamps;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property integer $id
@@ -22,6 +27,7 @@ class Cycle extends Model
     /**
      * @var array
      */
+    use Sluggable, SoftDeletes, Searchable, HasFactory, Userstamps;
     protected $fillable = ['nom', 'montant', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
@@ -30,5 +36,19 @@ class Cycle extends Model
     public function classes()
     {
         return $this->hasMany('App\Models\Class');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+        'slug' => [
+            'source' => 'nom'
+        ]
+    ];
     }
 }
