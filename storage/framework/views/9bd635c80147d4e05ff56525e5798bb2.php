@@ -8,11 +8,11 @@
     <div class="border card rounded-0">
 
         <div class="card-body">
-            <form action="<?php echo e(route('ufrs.store')); ?>" method="post">
+            <form action="<?php echo e(route('ufrs.store')); ?>" method="post" enctype="multipart/form-data" >
                 <?php echo csrf_field(); ?>
                 <div class="py-2 row d-flex justify-content-center">
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="basiInput" class="form-label">Code de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['code'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -35,7 +35,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="nomInput" class="form-label">Nom l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['nom'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -62,7 +62,7 @@ unset($__errorArgs, $__bag); ?>
 
                 <div class="py-2 row d-flex justify-content-center">
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="universite" class="form-label">Université de l'ufr</label>
                         <select name="universite_id" id="universite"
                             class="form-control <?php $__errorArgs = ['universite_id'];
@@ -90,7 +90,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
 
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="adresseInput" class="form-label">Adresse l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['adresse'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -118,7 +118,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="py-2 row d-flex justify-content-center">
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="siteInput" class="form-label">Site web de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['siteweb'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -141,7 +141,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="emailInput" class="form-label">Email de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -167,7 +167,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="py-2 row d-flex justify-content-center">
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="directeurInput" class="form-label">Directeur de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['directeur'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -190,7 +190,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="villeInput" class="form-label">Ville de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['ville'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -216,7 +216,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
 
                 <div class="py-2 row d-flex justify-content-center">
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="logoInput" class="form-label">Logo de l'ufr</label>
                         <input type="file" class="form-control <?php $__errorArgs = ['logo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -239,7 +239,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="telInput" class="form-label">Téléphone de l'ufr</label>
                         <input type="tel" class="form-control <?php $__errorArgs = ['telephone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

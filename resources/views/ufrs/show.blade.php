@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="py-2 row d-flex justify-content-center">
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="basiInput" class="form-label">Code de l'ufr</label>
                     <input type="text" class="form-control @error('code') is-invalid @enderror" name="code"
                         value="{{ $ufr->code }}" id="basiInput">
@@ -24,7 +24,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="nomInput" class="form-label">Nom l'ufr</label>
                     <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom"
                         value="{{ $ufr->nom }}" id="nomInput">
@@ -32,7 +32,7 @@
                         <span class="text-danger"> {{ $errors->first('nom') }}</span>
                     @enderror
                 </div>
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="universite" class="form-label">Université de l'ufr</label>
                     <select name="universite_id" id="universite"
                         class="form-control @error('universite_id') is-invalid @enderror">
@@ -44,7 +44,7 @@
                 </div>
 
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="adresseInput" class="form-label">Adresse l'ufr</label>
                     <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse"
                         value="{{ $ufr->adresse}}" id="adresseInput">
@@ -52,7 +52,7 @@
                         <span class="text-danger"> {{ $errors->first('adresse') }}</span>
                     @enderror
                 </div>
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="siteInput" class="form-label">Site web de l'ufr</label>
                     <input type="text" class="form-control @error('siteweb') is-invalid @enderror" name="siteweb"
                         value="{{ $ufr->siteweb }}" id="siteInput">
@@ -61,7 +61,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="emailInput" class="form-label">Email de l'ufr</label>
                     <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
                         value="{{ $ufr->email }}" id="emailInput">
@@ -69,7 +69,7 @@
                         <span class="text-danger"> {{ $errors->first('email') }}</span>
                     @enderror
                 </div>
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="directeurInput" class="form-label">Directeur de l'ufr</label>
                     <input type="text" class="form-control @error('directeur') is-invalid @enderror" name="directeur"
                         value="{{ $ufr->directeur}}" id="directeurInput">
@@ -78,7 +78,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="villeInput" class="form-label">Ville de l'ufr</label>
                     <input type="text" class="form-control @error('ville') is-invalid @enderror" name="ville"
                         value="{{ $ufr->ville }}" id="villeInput">
@@ -86,7 +86,7 @@
                         <span class="text-danger"> {{ $errors->first('ville') }}</span>
                     @enderror
                 </div>
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="logoInput" class="form-label">Logo de l'ufr</label>
                     <input type="file" class="form-control @error('logo') is-invalid @enderror" name="logo"
                         value="{{ $ufr->logo }}" id="logoInput">
@@ -95,7 +95,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-3 col-md-12">
+                <div class="mb-3 col-md-6">
                     <label for="telInput" class="form-label">Téléphone de l'ufr</label>
                     <input type="tel" class="form-control @error('telephone') is-invalid @enderror" name="telephone"
                         value="{{ $ufr->telephone }}" id="telInput">
