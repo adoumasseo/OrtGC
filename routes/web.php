@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\BanqueController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\CycleController;
+use App\Http\Controllers\BanqueController;
 use App\Http\Controllers\ContratController;
 use App\Http\Controllers\EnseignantController;
 
@@ -35,11 +36,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         "banques" => BanqueController::class,
         "contrats" => ContratController::class,
         "enseignants" => EnseignantController::class,
+        "cycles" => CycleController::class,
     ]);
 
 
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
         Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
+        Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
     });
 });
