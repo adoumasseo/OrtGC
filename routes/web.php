@@ -4,7 +4,6 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\DepartementController;
-use App\Models\Departement;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\CycleController;
@@ -52,7 +51,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         "departements" => DepartementController::class,
         "classes" => ClasseController::class,
         "ues" => UeController::class,
-
         "ecues" => EcueController::class,
         "filieres" => FiliereController::class
     ]);
@@ -71,8 +69,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/find-enseignant-byNpi', 'findEnseignantByNpi')->name('find-enseignant-byNpi');
         Route::post('/delete-ecues', 'deleteEcues')->name('delete-ecues');
         Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
-        Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
-        Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
         Route::post('/delete-filieres', 'deleteFilieres')->name('delete-filieres');
         Route::post('/delete-users', 'deleteUsers')->name('delete-users');
     });

@@ -93,13 +93,8 @@
                 </li>-->
                 @if (Auth::user()->hasRole('Administrateur'))
                     <li class="nav-item">
-<<<<<<< HEAD
-                        <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
-                            aria-controls="sidebarDashboards">
-=======
                         <a class="nav-link menu-link" href="{{route('users.index')}}" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
->>>>>>> c5cf52a176c5482f52c91802a431edc83fa036d6
                             <i class="ri-account-circle-line"></i> <span>
                                 Gestion des utilisateurs
                             </span>
