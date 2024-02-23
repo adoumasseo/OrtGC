@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\DepartementController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BanqueController;
@@ -33,6 +35,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
         "banques" => BanqueController::class,
         "contrats" => ContratController::class,
+        "departements" => DepartementController::class,
+        "classes" => ClasseController::class,
     ]);
 
 
