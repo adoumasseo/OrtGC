@@ -35,7 +35,8 @@ class ContratController extends Controller
     {
 
         return view(
-            'contrats.create');
+            'contrats.create'
+        );
     }
 
     /**
@@ -126,7 +127,7 @@ class ContratController extends Controller
         $cell->setHeight(300000);
 
         $textRun = $cell->addTextRun(array('alignment' => 'center'));
-        $textRun->addText('CONTRAT DE PRESTATION D’ENSEIGNEMENT',array('name' => 'Arial', 'size' => 16, 'bold' => true));
+        $textRun->addText('CONTRAT DE PRESTATION D’ENSEIGNEMENT', array('name' => 'Arial', 'size' => 16, 'bold' => true));
 
         // Appliquer les bordures à la cellule
         $cell->getStyle()->setBorderTopSize(6); // Bordure supérieure
@@ -139,13 +140,15 @@ class ContratController extends Controller
         $cell->getStyle()->setBorderRightColor('000000');
 
         //Contenu
-        $section->addText('N°	-…………………/UAC/ENEAM/DA/SGE/SC/SPE/SerP du	……………………………………', 'TextFont');
+        $section->addText('N°…………………-…………………/' . $ufr->universite->nom . '/' . $ufr->nom . '/DA/SGE/SC/SPE/SerP du	……………………………………', 'TextFont');
 
-        $section->addText( $ufr->nom . ' (' . $ufr->code . ')' . ',' . $ufr->adresse .', représentée par le Directeur' . $ufr->directeur .' téléphone : ' . $ufr->telephone . ', E-mail professionnel : ' . $ufr->email . ' ci-après dénommé « ETABLISSEMENT » d’une part, ','TextFont');
+        $section->addText($ufr->nom . ' (' . $ufr->code . ')' . ',' . $ufr->adresse . ', représentée par le Directeur' . $ufr->directeur . ' téléphone : ' . $ufr->telephone . ', E-mail professionnel : ' . $ufr->email . ' ci-après dénommé « ETABLISSEMENT » d’une part, ', 'TextFont');
 
         $section->addText('Et', array('name' => 'Arial', 'size' => 14, 'bold' => true));
 
-        $section->addText('Monsieur : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Monsieur ou Madame/', 'TextFont');
+        $section->addText('Meshach Godwin', array('name' => 'Arial', 'size' => 14, 'bold' => true));
+        $section->addText('........................');
         $section->addText('Nationalité : ' . 'Meshach Godwin' . '........................');
         $section->addText('Profession : ' . 'Meshach Godwin' . '........................');
         $section->addText('Domicilié : ' . 'Meshach Godwin' . '........................');
@@ -173,19 +176,20 @@ class ContratController extends Controller
         return response()->download($tempFilePath, 'example.docx')->deleteFileAfterSend(true);
     }
 
-    public function generateLettreMission(Request $request){
+    public function generateLettreMission(Request $request)
+    {
 
         $enseignant = User::find(1);
 
         $phpWord = new PhpWord();
 
-        
-        $phpWord->addFontStyle('TextFontStype', array('name' => 'Times New Roman', 'size'=>12));
-        $phpWord->addParagraphStyle('ParagraphStype', array('align'=>'both', 'spaceAfter'=>100));
+
+        $phpWord->addFontStyle('TextFontStype', array('name' => 'Times New Roman', 'size' => 12));
+        $phpWord->addParagraphStyle('ParagraphStype', array('align' => 'both', 'spaceAfter' => 100));
 
 
         $section = $phpWord->addSection();
-        $section->addText('     L’Ecole nationale d’Economie appliquée et de Management (ENEAM) est heureuse de votre accord d’enseigner les cours recensés dans le tableau ci-dessous à ses étudiants du cycle 1. Vous avez ainsi à charge de délivrer 110 heures de cours (cours théoriques, travaux dirigés, travaux pratiques, ateliers/sorties pédagogiques/stages, y compris) aux apprenants. Les détails sur les cours et leurs programmations sont joints à cette lettre de mission.','TextFontStype','ParagraphStype');
+        $section->addText('     L’Ecole nationale d’Economie appliquée et de Management (ENEAM) est heureuse de votre accord d’enseigner les cours recensés dans le tableau ci-dessous à ses étudiants du cycle 1. Vous avez ainsi à charge de délivrer 110 heures de cours (cours théoriques, travaux dirigés, travaux pratiques, ateliers/sorties pédagogiques/stages, y compris) aux apprenants. Les détails sur les cours et leurs programmations sont joints à cette lettre de mission.', 'TextFontStype', 'ParagraphStype');
 
         // Enregistrer le document Word dans un fichier temporaire
         $tempFilePath = tempnam(sys_get_temp_dir(), 'word');
@@ -193,8 +197,6 @@ class ContratController extends Controller
         $objWriter->save($tempFilePath);
 
         // Télécharger le fichier Word
-        return response()->download($tempFilePath, 'Lettre'.$enseignant->nom.'.docx')->deleteFileAfterSend(true);
+        return response()->download($tempFilePath, 'Lettre' . $enseignant->nom . '.docx')->deleteFileAfterSend(true);
     }
-
-
 }
