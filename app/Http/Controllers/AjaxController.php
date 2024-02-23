@@ -56,6 +56,7 @@ class AjaxController extends Controller
             return redirect()->back()->with(['status', false]);
         }
 
+    }
     public function deleteEcues(Request $request)
     {
         Ecue::whereIn('id', $request->ecues_ids)->delete();
