@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let cycleSelected = [];
+    let userSelected = [];
 
-    let cyclesTable = new DataTable("#cyclesTable", {
+    let usersTable = new DataTable("#usersTable", {
         // dom: "Bfrtip",
         //buttons: ["copy", "excel", "pdf"],
         scrollX: true,
@@ -27,29 +27,29 @@ document.addEventListener("DOMContentLoaded", function () {
         },
     });
 
-    cyclesTable.on("select", function (e, dt, type, indexes) {
-        let checked = cyclesTable.rows(indexes).data()[0];
+    usersTable.on("select", function (e, dt, type, indexes) {
+        let checked = usersTable.rows(indexes).data()[0];
 
-        let cycleIdChecked = $(checked[0])
+        let userIdChecked = $(checked[0])
             .find(".form-check-input")
             .val();
 
-        cycleSelected.push(cycleIdChecked);
-        console.log(cycleSelected);
+        userSelected.push(userIdChecked);
+        console.log(userSelected);
     });
 
-    cyclesTable.on("deselect", function (e, dt, type, indexes) {
-        let checked = cyclesTable.rows(indexes).data()[0];
+    usersTable.on("deselect", function (e, dt, type, indexes) {
+        let checked = usersTable.rows(indexes).data()[0];
 
-        let cycleIdChecked = $(checked[0])
+        let userIdChecked = $(checked[0])
             .find(".form-check-input")
             .val();
 
-        cycleSelected = cycleSelected.filter(
-            (input) => input !== cycleIdChecked
+        userSelected = userSelected.filter(
+            (input) => input !== userIdChecked
         );
         $("#checkAllHeader").prop("checked", false);
-        console.log(cycleSelected);
+        console.log(userSelected);
     });
 
     // //---------------------------------------
@@ -62,15 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
     //         if (checkAll.checked == true) {
     //             Array.from(checkboxes).forEach(function (checkbox) {
     //                 checkbox.checked = true;
-    //                 cycleSelected.push($(checkbox.val()));
+    //                 userSelected.push($(checkbox.val()));
     //                 // checkbox.closest("tr").classList.add("table-active");
-    //                 cyclesTable.rows().select();
+    //                 usersTable.rows().select();
     //             });
     //         } else {
     //             Array.from(checkboxes).forEach(function (checkbox) {
     //                 checkbox.checked = false;
     //                 // checkbox.closest("tr").classList.remove("table-active");
-    //                 cyclesTable.rows().deselect();
+    //                 usersTable.rows().deselect();
     //             });
     //         }
     //     };
@@ -82,17 +82,17 @@ document.addEventListener("DOMContentLoaded", function () {
             e.preventDefault();
             var id = $(this).attr("id");
             console.log(id);
-            cycleSelected = [];
-            cycleSelected.push(id);
+            userSelected = [];
+            userSelected.push(id);
             $("#delete-record").trigger("click");
         });
     });
 
     $("#delete-record").on("click", function (e) {
         e.preventDefault();
-        if (cycleSelected.length === 0) {
+        if (userSelected.length === 0) {
             Swal.fire({
-                title: "Selectionner au moins un cycle!",
+                title: "Selectionner au moins un utilisateur!",
                 text: "",
                 icon: "warning",
                 confirmButtonText: "Fermer",
@@ -122,9 +122,9 @@ document.addEventListener("DOMContentLoaded", function () {
                                 "content"
                             ),
                         },
-                        url: route("delete-cycles"),
+                        url: route("delete-users"),
                         data: {
-                            cycles_ids: cycleSelected,
+                            cycles_ids: userSelected,
                         },
                         success: function (response) {
                             if (response.success) {

@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\DepartementController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\CycleController;
 use App\Http\Controllers\BanqueController;
@@ -40,11 +41,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
         "banques" => BanqueController::class,
         "contrats" => ContratController::class,
-        "departements" => DepartementController::class,
+        "cycles" => CycleController::class,
+        "users" => UserController::class,
+        "ufrs" => UfrController::class,
+        "enseignants" => EnseignantController::class,
+                "departements" => DepartementController::class,
         "classes" => ClasseController::class,
         "ues" => UeController::class,
-        "enseignants" => EnseignantController::class,
-        "cycles" => CycleController::class,
+
         "ecues" => EcueController::class,
     ]);
 
@@ -78,5 +82,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
                 Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
                 Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
                 Route::post('/delete-departements', 'deleteDepartements')->name('delete-departements');
+                Route::post('/delete-users', 'deleteUsers')->name('delete-users');
         });
 });
