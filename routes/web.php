@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BanqueController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\ContratController;
+use App\Http\Controllers\UfrController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,12 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
         "banques" => BanqueController::class,
         "contrats" => ContratController::class,
+        "ufrs" => UfrController::class,
     ]);
 
 
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
+        Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
     });
 });
