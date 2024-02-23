@@ -81,7 +81,7 @@
                 </li>
 
 
-                
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="" role="button"
@@ -145,6 +145,13 @@
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="{{ route('banques.index') }}" class="nav-link" data-key="t-level-1.1">Banques</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('filieres.index') }}" class="nav-link" data-key="t-level-1.1">Filières</a>
                                 </li>
                             </ul>
                         </div>
