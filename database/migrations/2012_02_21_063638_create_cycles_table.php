@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cycles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code')->nullable();
             $table->string('nom')->nullable();
             $table->string('montant')->nullable();
             $table->string('slug')->nullable();

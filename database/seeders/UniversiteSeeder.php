@@ -15,12 +15,22 @@ class UniversiteSeeder extends Seeder
     {
         $universites = [
             [
-                'code' => '12345',
-                'nom' => 'UAC',
+                'code' => 'UAC',
+                'nom' => "Université d'Abomey-Calavi",
             ],
             [
-                'code' => '123456',
-                'nom' => 'UP',
+                'code' => 'UP',
+                'nom' => 'Université de Parakou',
+            ],
+
+            [
+                'code' => 'UNSTIM',
+                'nom' => "Université Nationale des Sciences, de Techonologies et d'Ingéneurie Mathématique'",
+            ],
+
+            [
+                'code' => 'UNA',
+                'nom' => "Université Nationale d'Agriculture",
             ],
         ];
         foreach ($universites as $universite) {

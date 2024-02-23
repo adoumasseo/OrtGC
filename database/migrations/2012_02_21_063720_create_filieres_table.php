@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('filieres', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code')->nullable();
             $table->string('nom')->nullable();
             $table->unsignedBigInteger('departement_id');
             $table->string('slug')->nullable();

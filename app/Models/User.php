@@ -27,7 +27,8 @@ class User extends Authenticatable
         'prenom',
         'email',
         'password',
-        'avatar',
+        'avatar', 'ufr_id', 'classe_id',
+        'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**

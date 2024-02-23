@@ -31,6 +31,10 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'web',
             ],
             [
+                'name' => 'Assistant Programmation',
+                'guard_name' => 'web',
+            ],
+            [
                 'name' => 'Personnel',
                 'guard_name' => 'web',
             ],

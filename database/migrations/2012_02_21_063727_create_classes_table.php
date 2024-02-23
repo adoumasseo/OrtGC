@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('code')->nullable();
             $table->string('nom');
             $table->string('effectif')->nullable();
+            $table->integer('niveau');
             $table->unsignedBigInteger('filiere_id');
             $table->unsignedBigInteger('cycle_id');
             $table->string('slug')->nullable();
