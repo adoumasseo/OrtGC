@@ -39,10 +39,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         "cycles" => CycleController::class,
     ]);
 
-
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
         Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
+        Route::post('/find-enseignant-byNpi', 'findEnseignantByNpi')->name('find-enseignant-byNpi');
     });
 });
