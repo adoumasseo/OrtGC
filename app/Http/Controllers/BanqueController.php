@@ -16,7 +16,6 @@ class BanqueController extends Controller
      */
     public function index(Request $request): View
     {
-
         $banques = Banque::get();
 
         return view('banques.index', compact('banques'));
