@@ -130,7 +130,7 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link" data-key="t-level-1.1">Cycles</a>
+                                    <a href="<?php echo e(route('cycles.index')); ?>" class="nav-link" data-key="t-level-1.1">Cycles</a>
                                 </li>
                             </ul>
                         </div>

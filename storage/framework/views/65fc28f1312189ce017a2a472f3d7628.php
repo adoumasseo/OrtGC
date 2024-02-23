@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     Liste des ufrs
 <?php $__env->stopSection(); ?>

@@ -14,7 +14,7 @@
             </h2>
         </div>
         <div class="card-body">
-            <form action="<?php echo e(route('departements.update', ['departement' => $departement->id])); ?>" method="post">
+            <form action="<?php echo e(route('departements.update', ['departement' => $departement->slug])); ?>" method="post">
                 <?php echo method_field('put'); ?>
                 <?php echo csrf_field(); ?>
                 <div class="py-2 row d-flex justify-content-center">

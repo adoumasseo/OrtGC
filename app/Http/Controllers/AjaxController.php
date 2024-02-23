@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Banque;
 use App\Models\Universite;
+use App\Models\Departement;
 use App\Models\Ue;
 use App\Models\Ufr;
 use App\Models\Enseignant;
 use App\Models\Cycle;
 use App\Models\Ecue;
+use App\Models\Filiere;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -54,10 +56,36 @@ class AjaxController extends Controller
         return response()->json(['success' => true]);
     }
 
+
+    public function findEnseignantByNpi(Request $request)
+    {
+        $enseignantExist = Enseignant::where('npi', $request->npi)->first();
+
+        if ($enseignantExist) {
+            return redirect()->back()->with(['status' => true, 'enseignant' => $enseignantExist,]);
+        } else {
+            return redirect()->back()->with(['status', false]);
+        }
+    }
+
     public function deleteEcues(Request $request)
     {
         Ecue::whereIn('id', $request->ecues_ids)->delete();
         notyf()->addSuccess('Ecue supprimée avec succès.');
+        return response()->json(['success' => true]);
+    }
+
+
+    public function deleteFilieres(Request $request)
+    {
+        Filiere::whereIn('id', $request->filieres_ids)->delete();
+        notyf()->addSuccess('Filière supprimée avec succès.');
+    }
+
+    public function deleteDepartements(Request $request)
+    {
+        Departement::whereIn('id', $request->departements_ids)->delete();
+        notyf()->addSuccess('Département supprimé avec succès.');
         return response()->json(['success' => true]);
     }
 }

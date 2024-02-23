@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         if (cycleSelected.length === 0) {
             Swal.fire({
-                title: "Selectionner au moins une banque!",
+                title: "Selectionner au moins un cycle!",
                 text: "",
                 icon: "warning",
                 confirmButtonText: "Fermer",

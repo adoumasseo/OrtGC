@@ -73,7 +73,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="ufr_id"
-                            value="<?php echo e($departement->ufrs->nom); ?>" id="basiInput" readonly>
+                            value="<?php echo e($departement->ufr->nom); ?>" id="basiInput" readonly>
                         <?php $__errorArgs = ['ufr_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -96,7 +96,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="chef_departement"
-                            value="<?php echo e($departement->enseignants->nom); ?> <?php echo e($departement->enseignants->prenoms); ?>" id="basiInput" readonly>
+                            value="<?php echo e($departement->enseignant->nom); ?> <?php echo e($departement->enseignant->prenoms); ?>" id="basiInput" readonly>
                         <?php $__errorArgs = ['chef_departement'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -136,11 +136,11 @@ unset($__errorArgs, $__bag); ?>
 
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
-                    <a href="<?php echo e(route('departement.index')); ?>" type="button"
+                    <a href="<?php echo e(route('departements.index')); ?>" type="button"
                         class="btn btn-info rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-arrow-drop-left-line label-icon fs-16 me-2"></i> Annuler </a>
 
-                     <a href="<?php echo e(route('departement.edit', ['departement' => $departement->slug])); ?>">
+                     <a href="<?php echo e(route('departements.edit', ['departement' => $departement->slug])); ?>">
                         <button class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-check-line label-icon fs-16 me-2"></i> Editer</button>
                         </a>
