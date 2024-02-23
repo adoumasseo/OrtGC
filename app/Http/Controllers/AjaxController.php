@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banque;
 use App\Models\Ue;
+use App\Models\Ufr;
 use App\Models\Enseignant;
 use App\Models\Cycle;
 use Illuminate\Http\Request;
@@ -22,6 +23,13 @@ class AjaxController extends Controller
     {
         Ue::whereIn('id', $request->ues_ids)->delete();
         notyf()->addSuccess('Ue supprimée avec succès.');
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteUfrs(Request $request)
+    {
+        Ufr::whereIn('id', $request->ufrs_ids)->delete();
+        notyf()->addSuccess('Ufr supprimée avec succès.');
         return response()->json(['success' => true]);
     }
 
