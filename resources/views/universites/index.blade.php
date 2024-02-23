@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Liste des banques
+    Liste des universites
 @endsection
 @section('css')
     <!--datatable css-->
@@ -20,7 +20,7 @@
                 <div class="card-body">
 
                     <div class="mb-3">
-                        <a href="{{ route('banques.create') }}">
+                        <a href="{{ route('universites.create') }}">
                             <button type="button" class="btn btn-success add-btn">
                                 <i class="align-bottom ri-add-line me-1"></i> Ajouter
                             </button>
@@ -28,7 +28,8 @@
                         <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                     </div>
                     <div class="table-responsive">
-                        <table id="banquesTable" class="table align-middle table-bordered table-striped" style="width:100%">
+                        <table id="universitesTable" class="table align-middle table-bordered table-striped"
+                            style="width:100%">
                             <thead>
                                 <tr>
                                     @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
@@ -36,6 +37,8 @@
                                     @endif
                                     <th>Code</th>
                                     <th>Nom</th>
+                                    <th>Email</th>
+                                    <th>Recteur</th>
                                     @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                         <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                     @else
@@ -44,7 +47,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($banques as $item)
+                                @foreach ($universites as $item)
                                     <tr>
                                         @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                             <th scope="row">
@@ -56,22 +59,24 @@
                                         @endif
                                         <td>{{ $item->code }}</td>
                                         <td>{{ $item->nom }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->recteur }}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('banques.show', ['banque' => $item->slug]) }}"
+                                                <a href="{{ route('universites.show', ['universite' => $item->slug]) }}"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Voir"
                                                     class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                         class="ri-eye-line"></i></a>
                                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                                    <a href="{{ route('banques.edit', ['banque' => $item->slug]) }}"
+                                                    <a href="{{ route('universites.edit', ['universite' => $item->slug]) }}"
                                                         type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Editer"
                                                         class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i
                                                             class="ri-edit-line"></i>
                                                     </a>
 
-                                                    <button type="button" data-banque="{{ $item->slug }}"
+                                                    <button type="button" data-universite="{{ $item->slug }}"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Supprimer" id="{{ $item->id }}"
                                                         class="mb-1 ms-1 btn-delete btn btn-sm btn-danger btn-icon waves-effect waves-light"><i
@@ -110,6 +115,6 @@
     <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
     <script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/pages/customs/banque.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/pages/customs/universite.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection
