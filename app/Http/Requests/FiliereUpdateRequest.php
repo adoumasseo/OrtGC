@@ -20,9 +20,8 @@ class FiliereUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required', 'max:255', 'string'],
             'nom' => ['required', 'max:255', 'string'],
-            'departement_id' => ['required', 'max:255', 'string', "exists:departements,nom"],
+            'departement_id' => ['required',"exists:departements,id"],
         ];
     }
 }

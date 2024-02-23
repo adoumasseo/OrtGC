@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let banqueSelected = [];
+    let filiereSelected = [];
 
-    let banquesTable = new DataTable("#filieresTable", {
+    let filieresTable = new DataTable("#filieresTable", {
         // dom: "Bfrtip",
         //buttons: ["copy", "excel", "pdf"],
         scrollX: true,
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .val();
 
         filiereSelected.push(filiereIdChecked);
-        console.log(banqueSelected);
+        console.log(filiereSelected);
     });
 
     filieresTable.on("deselect", function (e, dt, type, indexes) {
@@ -62,15 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
     //         if (checkAll.checked == true) {
     //             Array.from(checkboxes).forEach(function (checkbox) {
     //                 checkbox.checked = true;
-    //                 banqueSelected.push($(checkbox.val()));
+    //                 filiereSelected.push($(checkbox.val()));
     //                 // checkbox.closest("tr").classList.add("table-active");
-    //                 banquesTable.rows().select();
+    //                 filieresTable.rows().select();
     //             });
     //         } else {
     //             Array.from(checkboxes).forEach(function (checkbox) {
     //                 checkbox.checked = false;
     //                 // checkbox.closest("tr").classList.remove("table-active");
-    //                 banquesTable.rows().deselect();
+    //                 filieresTable.rows().deselect();
     //             });
     //         }
     //     };
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         url: route("delete-filieres"),
                         data: {
-                            filieres_ids: banqueSelected,
+                            filieres_ids: filiereSelected,
                         },
                         success: function (response) {
                             if (response.success) {

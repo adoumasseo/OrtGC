@@ -35,7 +35,6 @@
                                 <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                         <th scope="col" style="width: 10px;"></th>
                                     <?php endif; ?>
-                                <th>Code</th>
                                 <th>Nom</th>
                                 <th>Département</th>
                                 <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
@@ -56,9 +55,9 @@
                                                 </div>
                                             </th>
                                         <?php endif; ?>
-                                    <td><?php echo e($item->code); ?></td>
+
                                     <td><?php echo e($item->nom); ?></td>
-                                    <td><?php echo e($item->$departement->nom); ?></td>
+                                    <td><?php echo e($item->departement->nom); ?></td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="<?php echo e(route('filieres.show', ['filiere' => $item->slug])); ?>"
@@ -74,7 +73,7 @@
                                                         class="ri-edit-line"></i>
                                                 </a>
 
-                                                <button type="button" data-banque="<?php echo e($item->slug); ?>"
+                                                <button type="button" data-filiere="<?php echo e($item->id); ?>"
                                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Supprimer" id="<?php echo e($item->id); ?>"
                                                     class="mb-1 ms-1 btn-delete btn btn-sm btn-danger btn-icon waves-effect waves-light"><i

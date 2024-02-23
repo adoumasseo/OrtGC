@@ -45,7 +45,7 @@ class FiliereController extends Controller
 
         $filiere = Filiere::create($validated);
         notyf()->addSuccess('Filière créée avec success.');
-        return redirect()->route('filieres.create');
+        return redirect()->route('filieres.index');
     }
 
     /**
@@ -53,7 +53,6 @@ class FiliereController extends Controller
      */
     public function show(Request $request, Filiere $filiere): View
     {
-
         return view('filieres.show', compact('filiere'));
     }
 
@@ -62,9 +61,10 @@ class FiliereController extends Controller
      */
     public function edit(Request $request, Filiere $filiere): View
     {
+        $departements = Departement::all();
         return view(
             'filieres.edit',
-            compact('filiere')
+            compact('filiere', 'departements')
         );
     }
 

@@ -73,6 +73,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
                 Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
                 Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
                 Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
-            Route::post('/delete-filieres', 'deleteFilieres')->name('delete-filieres');
+                Route::post('/delete-filieres', 'deleteFilieres')->name('delete-filieres');
     });
 });

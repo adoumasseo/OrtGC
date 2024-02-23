@@ -17,14 +17,14 @@
                 <div class="py-2 row d-flex justify-content-center">
 
 
-                    <div class="mb-3 col-md-12">
+                    {{-- <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Code de la filiere</label>
                         <input type="text" class="form-control @error('code') is-invalid @enderror" name="code"
                             value="{{ $filiere->code }}" id="basiInput" readonly>
                         @error('code')
                             <span class="text-danger"> {{ $errors->first('code') }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom de la filiere</label>
@@ -38,7 +38,7 @@
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom du département</label>
                         <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom"
-                            value="{{ $departement->nom }}" id="basiInput" readonly>
+                            value="{{ $filiere->departement->nom }}" id="basiInput" readonly>
                         @error('nom')
                             <span class="text-danger"> {{ $errors->first('nom') }}</span>
                         @enderror
@@ -46,11 +46,11 @@
 
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
-                    <a href="{{ route('banques.index') }}" type="button"
+                    <a href="{{ route('filieres.index') }}" type="button"
                         class="btn btn-info rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-arrow-drop-left-line label-icon fs-16 me-2"></i> Annuler </a>
 
-                     <a href="{{ route('banques.edit', ['banque' => $banque->slug]) }}">
+                     <a href="{{ route('filieres.edit', ['filiere' => $filiere->slug]) }}">
                         <button class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-check-line label-icon fs-16 me-2"></i> Editer</button>
                         </a>

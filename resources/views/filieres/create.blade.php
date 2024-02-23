@@ -14,14 +14,14 @@
                 @csrf
                 <div class="py-2 row d-flex justify-content-center">
 
-                    <div class="mb-3 col-md-12">
+                    {{-- <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Code de la filière</label>
                         <input type="text" class="form-control @error('code') is-invalid @enderror" name="code"
                             value="{{ old('code') }}" id="basiInput">
                         @error('code')
                             <span class="text-danger"> {{ $errors->first('code') }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom de la filière</label>
@@ -34,18 +34,21 @@
 
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom du département</label>
-                        <select class="form-control" id="departement_id" name="departement_id" required>
+                        <select class="form-control" id="departement_id" name="departement_id">
                             <option value="">Sélectionner le nom du département</option>
                             @foreach ($departements as $departement)
                                 <option value="{{ $departement->id }}">{{ $departement->nom }}</option>
                             @endforeach
                         </select>
+                        @error('departement_id')
+                            <span class="text-danger"> {{ $errors->first('departement_id') }}</span>
+                        @enderror
                     </div>
 
                 </div>
 
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
-                    <a href="{{ route('banques.index') }}" type="button"
+                    <a href="{{ route('filieres.index') }}" type="button"
                         class="btn btn-info rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-arrow-drop-left-line label-icon fs-16 me-2"></i> Annuler </a>
                     <button type="submit" class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i

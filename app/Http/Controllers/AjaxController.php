@@ -8,6 +8,7 @@ use App\Models\Ufr;
 use App\Models\Enseignant;
 use App\Models\Cycle;
 use App\Models\Ecue;
+use App\Models\Filiere;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -46,11 +47,18 @@ class AjaxController extends Controller
         notyf()->addSuccess('Cycle supprimé avec success.');
         return response()->json(['success' => true]);
     }
-    
+
     public function deleteEcues(Request $request)
     {
         Ecue::whereIn('id', $request->ecues_ids)->delete();
         notyf()->addSuccess('Ecue supprimée avec succès.');
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteFilieres(Request $request)
+    {
+        Filiere::whereIn('id', $request->filieres_ids)->delete();
+        notyf()->addSuccess('Filière supprimée avec succès.');
         return response()->json(['success' => true]);
     }
 }
