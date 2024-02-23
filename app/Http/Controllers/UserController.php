@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\Universite;
 use App\Models\User;
 
@@ -24,7 +25,8 @@ class UserController extends Controller
     public function create()
     {
         $universites = Universite::all();
-        return view('users.create', compact('universites'));
+        $roles = Role::all();
+        return view('users.create', compact('universites', 'roles'));
     }
 
     /**
@@ -33,6 +35,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
+        $user->assignRole(Role::whereId($request->role_id)->first());
         notyf()->addSuccess('Utilisateur créé avec success.');
         return redirect()->route('users.create');
     }
@@ -59,6 +62,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
+        $user->assignRole(Role::whereId($request->role_id)->first());
         notyf()->addSuccess('Utilisateur modifié avec succès.');
         return redirect()
             ->route('users.index');

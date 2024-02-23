@@ -29,7 +29,7 @@
                     <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                 </div>
                 <div class="table-responsive">
-                    <table id="banquesTable" class="table align-middle table-bordered table-striped"
+                    <table id="usersTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
                         <thead>
                             <tr>
@@ -37,7 +37,10 @@
                                         <th scope="col" style="width: 10px;"></th>
                                     @endif
                                 <th>Nom</th>
-                                <th>Montant</th>
+                                <th>Prénoms</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Rôle</th>
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                 @else
@@ -57,7 +60,12 @@
                                             </th>
                                         @endif
                                     <td>{{ $item->nom }}</td>
-                                    <td>{{ $item->montant }}</td>
+                                    <td>{{ $item->prenom }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->telephone }}</td>
+
+                                    <td>
+                                        {{ $item->role?->first()->name?? '' }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('users.show', ['user' => $item->slug]) }}"

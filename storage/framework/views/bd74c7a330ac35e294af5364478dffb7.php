@@ -28,7 +28,7 @@
                     <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                 </div>
                 <div class="table-responsive">
-                    <table id="banquesTable" class="table align-middle table-bordered table-striped"
+                    <table id="usersTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
                         <thead>
                             <tr>
@@ -36,7 +36,10 @@
                                         <th scope="col" style="width: 10px;"></th>
                                     <?php endif; ?>
                                 <th>Nom</th>
-                                <th>Montant</th>
+                                <th>Prénoms</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                                <th>Rôle</th>
                                 <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                 <?php else: ?>
@@ -56,7 +59,12 @@
                                             </th>
                                         <?php endif; ?>
                                     <td><?php echo e($item->nom); ?></td>
-                                    <td><?php echo e($item->montant); ?></td>
+                                    <td><?php echo e($item->prenom); ?></td>
+                                    <td><?php echo e($item->email); ?></td>
+                                    <td><?php echo e($item->telephone); ?></td>
+
+                                    <td>
+                                        <?php echo e($item->role?->first()->name?? ''); ?></td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="<?php echo e(route('users.show', ['user' => $item->slug])); ?>"
