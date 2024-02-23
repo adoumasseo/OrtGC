@@ -38,6 +38,7 @@
                                     @endif
                                 <th>Code</th>
                                 <th>Nom</th>
+                                <th>Ue</th>
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                 @else
@@ -58,6 +59,7 @@
                                         @endif
                                     <td>{{ $item->code }}</td>
                                     <td>{{ $item->nom }}</td>
+                                    <td>{{ $item->ue->nom }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('ecues.show', ['ecue' => $item->slug]) }}"

@@ -1,6 +1,6 @@
 
 <?php $__env->startSection('title'); ?>
-   Liste des ecues
+   Liste des ues
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
     <!--datatable css-->
@@ -21,7 +21,7 @@
             <div class="card-body">
 
                 <div class="mb-3">
-                    <a href="<?php echo e(route('ecues.create')); ?>">
+                    <a href="<?php echo e(route('ues.create')); ?>">
                         <button type="button" class="btn btn-success add-btn">
                             <i class="align-bottom ri-add-line me-1"></i> Ajouter
                         </button>
@@ -29,7 +29,7 @@
                     <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                 </div>
                 <div class="table-responsive">
-                    <table id="ecuesTable" class="table align-middle table-bordered table-striped"
+                    <table id="uesTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
                         <thead>
                             <tr>
@@ -38,7 +38,6 @@
                                     <?php endif; ?>
                                 <th>Code</th>
                                 <th>Nom</th>
-                                <th>Ue</th>
                                 <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                 <?php else: ?>
@@ -47,7 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $__currentLoopData = $ecues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $ues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                             <th scope="row">
@@ -59,23 +58,22 @@
                                         <?php endif; ?>
                                     <td><?php echo e($item->code); ?></td>
                                     <td><?php echo e($item->nom); ?></td>
-                                    <td><?php echo e($item->ue->nom); ?></td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="<?php echo e(route('ecues.show', ['ecue' => $item->slug])); ?>"
+                                            <a href="<?php echo e(route('ues.show', ['ue' => $item->slug])); ?>"
                                                 type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 title="Voir"
                                                 class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                     class="ri-eye-line"></i></a>
                                             <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
-                                                <a href="<?php echo e(route('ecues.edit', ['ecue' => $item->slug])); ?>"
+                                                <a href="<?php echo e(route('ues.edit', ['ue' => $item->slug])); ?>"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Editer"
                                                     class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i
                                                         class="ri-edit-line"></i>
                                                 </a>
 
-                                                <button type="button" data-ecue="<?php echo e($item->slug); ?>"
+                                                <button type="button" data-ue="<?php echo e($item->slug); ?>"
                                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Supprimer" id="<?php echo e($item->id); ?>"
                                                     class="mb-1 ms-1 btn-delete btn btn-sm btn-danger btn-icon waves-effect waves-light"><i
@@ -114,8 +112,8 @@
 <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
 <script src="<?php echo e(URL::asset('assets/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('assets/js/pages/customs/ecue.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/js/pages/customs/ue.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('/assets/js/app.min.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\econtrat\resources\views/ecues/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\econtrat\resources\views/ues/index.blade.php ENDPATH**/ ?>

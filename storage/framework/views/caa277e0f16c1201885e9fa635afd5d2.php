@@ -67,6 +67,32 @@ endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
 
+                    <div class="mb-3 col-md-12">
+                        <label for="basiInput" class="form-label">UE</label>
+                        <select name="ue_id" class="form-control <?php $__errorArgs = ['ue_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid  <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="basiInput">
+                            <?php $__currentLoopData = $ues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ue): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option <?php if($ecue->ue->id == $ue->id): ?> selected <?php endif; ?> value="<?php echo e($ue->id); ?>"><?php echo e($ue->nom); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                        <?php $__errorArgs = ['ue_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <span class="text-danger"> <?php echo e($errors->first('ue_id')); ?></span>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </div>
+
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
                     <a href="<?php echo e(route('ecues.index')); ?>" type="button" class="btn btn-info rounded-0 btn-label waves-effect waves-light">
