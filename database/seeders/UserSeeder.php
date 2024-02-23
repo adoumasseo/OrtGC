@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $concepteur = User::create([
+        $administrateur = User::create([
             'nom' => 'COMLAN',
             'prenom' => 'Maurice',
             'email' => 'maurice.comlan@uac.bj',
@@ -26,20 +26,20 @@ class UserSeeder extends Seeder
             'created_at' => now()
         ]);
 
-        $concepteur->assignRole('Concepteur');
+        $administrateur->assignRole('Administrateur');
 
-        $admin = User::create([
+        $manager = User::create([
             'nom' => 'AKODJENOU',
             'prenom' => 'Hervé',
             'email' => 'akodjenouherve13@gmail.com',
-            'ufr_id' => null,
+            'ufr_id' => 1,
             'password' => Hash::make('admin'),
             'email_verified_at'=>'2022-01-02 17:04:58',
             'avatar' => 'avatar-1.jpg',
             'created_at' => now()
         ]);
 
-        $admin->assignRole('Administrateur');
+        $manager->assignRole('Manager');
 
         $personnel = User::create(['nom' => 'Personnel',
         'prenom' => 'UAC',

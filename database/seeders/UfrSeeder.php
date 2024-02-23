@@ -15,13 +15,8 @@ class UfrSeeder extends Seeder
     {
         $ufrs = [
             [
-                'code' => '12345',
-                'nom' => 'FASEG',
-                'universite_id' => 1,
-            ],
-            [
-                'code' => '123456',
-                'nom' => 'ENAM',
+                'code' => 'ENEAM',
+                'nom' => "Ecole Nationale d'Economie Appliquée et de Management",
                 'universite_id' => 1,
             ],
         ];
