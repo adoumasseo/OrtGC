@@ -61,18 +61,18 @@
                                         @endif
                                     <td>{{ $item->code }}</td>
                                     <td>{{ $item->nom }}</td>
-                                    <td>{{ $item->ufrs->nom }}</td>
-                                    <td>{{ $item->enseignants->nom}} {{ $item->enseignants->prenoms}}</td>
+                                    <td>{{ optional($item->ufrs)->nom }}</td>
+                                    <td>{{ optional($item->enseignants)->nom }} {{ optional($item->enseignants)->prenoms }}</td>
                                     <td>{{ $item->logo }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('departements.show', ['departement' => $item->slug]) }}"
+                                            <a href="{{ route('departements.show', ['departement' => $item->id]) }}"
                                                 type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 title="Voir"
                                                 class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                     class="ri-eye-line"></i></a>
                                             @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                                <a href="{{ route('departements.edit', ['departement' => $item->slug]) }}"
+                                                <a href="{{ route('departements.edit', ['departement' => $item->id]) }}"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Editer"
                                                     class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i
