@@ -29,10 +29,12 @@ class EnseignantController extends Controller
     public function create(Request $request): View
     {
         $banques = Banque::get();
-        return view(
-            'enseignants.create',
-            compact('banques')
-        );
+        return view('enseignants.recherche-enseignant.search');
+
+        // return view(
+        //     'enseignants.create',
+        //     compact('banques')
+        // );
     }
 
     /**
@@ -64,6 +66,7 @@ class EnseignantController extends Controller
     public function edit(Request $request, Enseignant $enseignant): View
     {
         $banques = Banque::get();
+
         return view(
             'enseignants.edit',
             compact('enseignant', 'banques')
