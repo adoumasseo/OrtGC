@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
@@ -35,11 +36,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         "banques" => BanqueController::class,
         "contrats" => ContratController::class,
         "cycles" => CycleController::class,
+        "users" => UserController::class,
     ]);
 
 
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
+        Route::post('/delete-users', 'deleteUsers')->name('delete-users');
     });
 });

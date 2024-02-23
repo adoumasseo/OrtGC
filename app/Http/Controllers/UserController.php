@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Universite;
 use App\Models\User;
 
 class UserController extends Controller
@@ -22,7 +23,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $universites = Universite::all();
+        return view('users.create', compact('universites'));
     }
 
     /**
@@ -40,7 +42,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user' ));
     }
 
     /**
@@ -48,7 +50,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user' ));
     }
 
     /**
@@ -56,7 +58,10 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+        notyf()->addSuccess('Utilisateur modifié avec succès.');
+        return redirect()
+            ->route('users.index');
     }
 
     /**
@@ -64,6 +69,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        notyf()->addSuccess('Utilisateur supprimé avec succès.');
+        return redirect()
+            ->route('users.index');
     }
 }
