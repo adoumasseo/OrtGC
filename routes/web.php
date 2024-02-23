@@ -9,6 +9,7 @@ use App\Http\Controllers\ContratController;
 use App\Http\Controllers\UeController;
 use App\Http\Controllers\UfrController;
 use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\EcueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         "ues" => UeController::class,
         "enseignants" => EnseignantController::class,
         "cycles" => CycleController::class,
+        "ecues" => EcueController::class,
     ]);
 
 
@@ -48,6 +50,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/delete-ues', 'deleteUes')->name('delete-ues');
         Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
+        Route::post('/delete-ecues', 'deleteEcues')->name('delete-ecues');
     });
         Route::resources([
                 "banques" => BanqueController::class,
