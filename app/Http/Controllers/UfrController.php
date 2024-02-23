@@ -75,6 +75,7 @@ class UfrController extends Controller
      */
     public function edit(Request $request, Ufr $ufr): View
     {
+        
         return view(
             'ufrs.edit',
             compact('ufr')
