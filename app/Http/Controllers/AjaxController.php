@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banque;
 use App\Models\Ufr;
+use App\Models\Cycle;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -19,8 +20,14 @@ class AjaxController extends Controller
     public function deleteUfrs(Request $request)
     {
         Ufr::whereIn('id', $request->ufrs_ids)->delete();
-        notyf()->addSuccess('Ufs supprimée avec succès.');
+        notyf()->addSuccess('Ufr supprimée avec succès.');
         return response()->json(['success' => true]);
     }
-    
+public function deleteCycles(Request $request)
+{
+    Cycle::whereIn('id', $request->cycles_ids)->delete();
+    notyf()->addSuccess('Cycle supprimé avec success.');
+    return response()->json(['success' => true]);
+}
+
 }
