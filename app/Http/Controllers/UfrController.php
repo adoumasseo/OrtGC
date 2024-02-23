@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UfrStoreRequest;
 use App\Http\Requests\UfrUpdateRequest;
 use App\Models\Universite;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 
 class UfrController extends Controller
@@ -18,7 +19,7 @@ class UfrController extends Controller
      */
     public function index(Request $request): View
     {
-        $ufrs = Ufr::get(); 
+        $ufrs = Ufr::get();
         return view('ufrs.index', compact('ufrs'));
     }
 
@@ -30,7 +31,9 @@ class UfrController extends Controller
         $universites = Universite::get();
 
         return view(
-            'ufrs.create',compact('universites'));
+            'ufrs.create',
+            compact('universites')
+        );
     }
 
     /**
@@ -39,7 +42,20 @@ class UfrController extends Controller
     public function store(UfrStoreRequest $request): RedirectResponse
     {
         // $this->authorize('create', Ufr::class);
+
+        // $this->authorize('create', Universite::class);
+
         $validated = $request->validated();
+
+        /**
+         * @var UploadedFile | null $miniature
+         */
+        $logo = $validated['logo'] ?? null;
+
+        if ($logo === null || $logo->getError()) {
+            return $validated;
+        }
+        $validated['logo'] = $logo->store('images/ufrs', 'public');
         $ufr = Ufr::create($validated);
         notyf()->addSuccess('Ufr créée avec success.');
         return redirect()->route('ufrs.create');
@@ -50,7 +66,7 @@ class UfrController extends Controller
      */
     public function show(Request $request, Ufr $ufr): View
     {
-    
+
         return view('ufrs.show', compact('ufr'));
     }
 
@@ -72,8 +88,18 @@ class UfrController extends Controller
         UfrUpdateRequest $request,
         Ufr $ufr
     ): RedirectResponse {
-        // $this->authorize('update', $ufr);
         $validated = $request->validated();
+        // $this->authorize('update', $ufr);
+        /**
+         * @var UploadedFile | null $miniature
+         */
+        $logo = $validated['logo'] ?? null;
+
+        if ($logo === null || $logo->getError()) {
+            return $validated;
+        }
+        $validated['logo'] = $logo->store('images/ufrs', 'public');
+        
         $ufr->update($validated);
         notyf()->addSuccess('Ufr modifiée avec success.');
         return redirect()
