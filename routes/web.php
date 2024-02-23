@@ -7,6 +7,8 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\CycleController;
 use App\Http\Controllers\BanqueController;
 use App\Http\Controllers\ContratController;
+use App\Http\Controllers\UfrController;
+use App\Http\Controllers\EnseignantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +39,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         "contrats" => ContratController::class,
         "cycles" => CycleController::class,
         "users" => UserController::class,
+        "ufrs" => UfrController::class,
+        "enseignants" => EnseignantController::class,
     ]);
 
 
@@ -44,5 +48,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
         Route::post('/delete-users', 'deleteUsers')->name('delete-users');
+        Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
+        Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
     });
 });
