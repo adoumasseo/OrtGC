@@ -28,7 +28,7 @@
                     <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                 </div>
                 <div class="table-responsive">
-                    <table id="banquesTable" class="table align-middle table-bordered table-striped"
+                    <table id="cyclesTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
                         <thead>
                             <tr>
@@ -72,7 +72,7 @@
                                                         class="ri-edit-line"></i>
                                                 </a>
 
-                                                <button type="button" data-banque="<?php echo e($item->slug); ?>"
+                                                <button type="button" data-cycle="<?php echo e($item->slug); ?>"
                                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Supprimer" id="<?php echo e($item->id); ?>"
                                                     class="mb-1 ms-1 btn-delete btn btn-sm btn-danger btn-icon waves-effect waves-light"><i
@@ -111,7 +111,7 @@
 <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
 <script src="<?php echo e(URL::asset('assets/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('assets/js/pages/customs/banque.js')); ?>"></script>
+<script src="<?php echo e(URL::asset('assets/js/pages/customs/cycle.js')); ?>"></script>
 <script src="<?php echo e(URL::asset('/assets/js/app.min.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 

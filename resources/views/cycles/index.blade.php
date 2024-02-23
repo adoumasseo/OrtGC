@@ -73,7 +73,7 @@
                                                         class="ri-edit-line"></i>
                                                 </a>
 
-                                                <button type="button" data-banque="{{ $item->slug }}"
+                                                <button type="button" data-cycle="{{ $item->slug }}"
                                                     data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Supprimer" id="{{ $item->id }}"
                                                     class="mb-1 ms-1 btn-delete btn btn-sm btn-danger btn-icon waves-effect waves-light"><i
@@ -112,6 +112,6 @@
 <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
 <script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/pages/customs/banque.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/customs/cycle.js') }}"></script>
 <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection
