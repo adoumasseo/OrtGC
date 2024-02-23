@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\BanqueController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\CycleController;
+use App\Http\Controllers\BanqueController;
 use App\Http\Controllers\ContratController;
 
 /*
@@ -33,6 +34,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::resources([
         "banques" => BanqueController::class,
         "contrats" => ContratController::class,
+        "cycles" => CycleController::class,
     ]);
 
 
