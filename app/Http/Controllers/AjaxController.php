@@ -47,7 +47,21 @@ class AjaxController extends Controller
         notyf()->addSuccess('Cycle supprimé avec success.');
         return response()->json(['success' => true]);
     }
+<<<<<<< HEAD
 
+=======
+    public function findEnseignantByNpi(Request $request)
+    {
+        $enseignantExist = Enseignant::where('npi', $request->npi)->first();
+
+        if($enseignantExist) {
+            return redirect()->back()->with(['status' => true, 'enseignant' => $enseignantExist,]);
+        } else {
+            return redirect()->back()->with(['status', false]);
+        }
+
+    }
+>>>>>>> dc15a6159dcc7f03ea075b9637525b607de7a163
     public function deleteEcues(Request $request)
     {
         Ecue::whereIn('id', $request->ecues_ids)->delete();

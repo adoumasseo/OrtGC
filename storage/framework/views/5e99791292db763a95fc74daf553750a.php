@@ -5,7 +5,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-
     <div class="card rounded-0 ">
         <div class="card-header">
             <h2 class="card-title">
@@ -40,7 +39,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="nomInput" class="form-label">Nom l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['nom'];
@@ -51,7 +50,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="nom"
-                            value="<?php echo e(old('nom',$ufr->nom)); ?>" id="nomInput">
+                            value="<?php echo e(old('nom', $ufr->nom)); ?>" id="nomInput">
                         <?php $__errorArgs = ['nom'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -74,7 +73,11 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>">
-                                <option value="<?php echo e($ufr->universite->id); ?>"><?php echo e($ufr->universite->nom); ?></option>
+                            <?php $__currentLoopData = $universites; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $universite): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($universite->id); ?>" 
+                                    <?php if($universite->id === $ufr->universite_id): ?> selected <?php endif; ?>>
+                                    <?php echo e($universite->nom); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                         <?php $__errorArgs = ['universite_id'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -87,8 +90,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-    
-    
+
+
                     <div class="mb-3 col-md-6">
                         <label for="adresseInput" class="form-label">Adresse l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['adresse'];
@@ -99,7 +102,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="adresse"
-                            value="<?php echo e(old('adresse',$ufr->adresse)); ?>" id="adresseInput">
+                            value="<?php echo e(old('adresse', $ufr->adresse)); ?>" id="adresseInput">
                         <?php $__errorArgs = ['adresse'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -121,7 +124,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="siteweb"
-                            value="<?php echo e(old('siteweb',$ufr->siteweb)); ?>" id="siteInput">
+                            value="<?php echo e(old('siteweb', $ufr->siteweb)); ?>" id="siteInput">
                         <?php $__errorArgs = ['siteweb'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -133,7 +136,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="emailInput" class="form-label">Email de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['email'];
@@ -144,7 +147,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="email"
-                            value="<?php echo e(old('email',$ufr->email)); ?>" id="emailInput">
+                            value="<?php echo e(old('email', $ufr->email)); ?>" id="emailInput">
                         <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -166,7 +169,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="directeur"
-                            value="<?php echo e(old('directeur',$ufr->directeur)); ?>" id="directeurInput">
+                            value="<?php echo e(old('directeur', $ufr->directeur)); ?>" id="directeurInput">
                         <?php $__errorArgs = ['directeur'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -178,7 +181,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="villeInput" class="form-label">Ville de l'ufr</label>
                         <input type="text" class="form-control <?php $__errorArgs = ['ville'];
@@ -189,7 +192,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="ville"
-                            value="<?php echo e(old('ville',$ufr->ville)); ?>" id="villeInput">
+                            value="<?php echo e(old('ville', $ufr->ville)); ?>" id="villeInput">
                         <?php $__errorArgs = ['ville'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -211,7 +214,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="logo"
-                            value="<?php echo e(old('logo',$ufr->logo)); ?>" id="logoInput">
+                            value="<?php echo e(old('logo', $ufr->logo)); ?>" id="logoInput">
                         <?php $__errorArgs = ['logo'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -223,7 +226,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="telInput" class="form-label">Téléphone de l'ufr</label>
                         <input type="tel" class="form-control <?php $__errorArgs = ['telephone'];
@@ -233,8 +236,8 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" name="telephone"
-                            value="<?php echo e(old('telephone',$ufr->telephone)); ?>" id="telInput">
+unset($__errorArgs, $__bag); ?>"
+                            name="telephone" value="<?php echo e(old('telephone', $ufr->telephone)); ?>" id="telInput">
                         <?php $__errorArgs = ['telephone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -246,7 +249,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-    
+
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
                     <a href="<?php echo e(route('ufrs.index')); ?>" type="button"

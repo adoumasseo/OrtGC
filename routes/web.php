@@ -58,6 +58,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/delete-ues', 'deleteUes')->name('delete-ues');
         Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
+        Route::post('/find-enseignant-byNpi', 'findEnseignantByNpi')->name('find-enseignant-byNpi');
         Route::post('/delete-ecues', 'deleteEcues')->name('delete-ecues');
     });
         Route::resources([

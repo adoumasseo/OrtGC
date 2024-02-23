@@ -75,9 +75,10 @@ class UfrController extends Controller
      */
     public function edit(Request $request, Ufr $ufr): View
     {
+        $universites = Universite::get();
         return view(
             'ufrs.edit',
-            compact('ufr')
+            compact('ufr','universites')
         );
     }
 
