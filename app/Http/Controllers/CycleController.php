@@ -32,7 +32,7 @@ class CycleController extends Controller
     public function store(StoreCycleRequest $request)
     {
         $cycle = Cycle::create($request->validated());
-        notyf()->addSuccess('Cycle créée avec success.');
+        notyf()->addSuccess('Cycle créé avec success.');
         return redirect()->route('cycles.create');
     }
 
@@ -61,7 +61,7 @@ class CycleController extends Controller
     public function update(UpdateCycleRequest $request, Cycle $cycle)
     {
         $cycle->update($request->validated());
-        notyf()->addSuccess('Cycle modifiée avec success.');
+        notyf()->addSuccess('Cycle modifié avec success.');
         return redirect()
             ->route('cycles.index');
     }
@@ -72,8 +72,8 @@ class CycleController extends Controller
     public function destroy(Cycle $cycle)
     {
         $cycle->delete();
-        notyf()->addSuccess('Banque supprimée avec success.');
+        notyf()->addSuccess('Cycle supprimé avec success.');
         return redirect()
-            ->route('banques.index');
+            ->route('cycles.index');
     }
 }

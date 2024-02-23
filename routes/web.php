@@ -40,5 +40,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
+        Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
     });
 });

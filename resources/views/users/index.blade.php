@@ -29,7 +29,7 @@
                     <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                 </div>
                 <div class="table-responsive">
-                    <table id="cyclesTable" class="table align-middle table-bordered table-striped"
+                    <table id="banquesTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
                         <thead>
                             <tr>
