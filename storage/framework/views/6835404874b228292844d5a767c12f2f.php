@@ -81,7 +81,7 @@
                 </li>
 
 
-                
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="" role="button"
@@ -93,7 +93,7 @@
                 </li>-->
                 <?php if(Auth::user()->hasRole('Administrateur')): ?>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="" role="button"
+                        <a class="nav-link menu-link" href="<?php echo e(route('users.index')); ?>" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
                             <i class="ri-account-circle-line"></i> <span>
                                 Gestion des utilisateurs
@@ -116,14 +116,14 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link" data-key="t-level-1.1">UFR</a>
+                                    <a href="<?php echo e(route('ufrs.index')); ?>" class="nav-link" data-key="t-level-1.1">UFR</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link" data-key="t-level-1.1">Enseignants</a>
+                                    <a href="<?php echo e(route('enseignants.index')); ?>" class="nav-link" data-key="t-level-1.1">Enseignants</a>
                                 </li>
                             </ul>
                         </div>

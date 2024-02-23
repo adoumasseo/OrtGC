@@ -45,8 +45,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                        aria-controls="sidebarDashboards">
                         <i class="bx bx-task"></i> <span>
                             Mon UFR
                         </span>
@@ -54,8 +54,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                        aria-controls="sidebarDashboards">
                         <i class="bx bx-task"></i> <span>
                             Contrats
                         </span>
@@ -63,8 +63,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
+                    <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                        aria-controls="sidebarDashboards">
                         <i class="bx bx-task"></i> <span>
                             Année académique
                         </span>
@@ -93,8 +93,13 @@
                 </li>-->
                 @if (Auth::user()->hasRole('Administrateur'))
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="" role="button"
+<<<<<<< HEAD
+                        <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                            aria-controls="sidebarDashboards">
+=======
+                        <a class="nav-link menu-link" href="{{route('users.index')}}" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
+>>>>>>> c5cf52a176c5482f52c91802a431edc83fa036d6
                             <i class="ri-account-circle-line"></i> <span>
                                 Gestion des utilisateurs
                             </span>
@@ -109,7 +114,8 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link" data-key="t-level-1.1">Universités</a>
+                                    <a href="{{ route('universites.index') }}" class="nav-link"
+                                        data-key="t-level-1.1">Universités</a>
                                 </li>
                             </ul>
                         </div>
@@ -154,14 +160,23 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{ route('banques.index') }}" class="nav-link" data-key="t-level-1.1">Banques</a>
+                                    <a href="{{ route('banques.index') }}" class="nav-link"
+                                        data-key="t-level-1.1">Banques</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="{{ route('banques.index') }}" class="nav-link" data-key="t-level-1.1">Banques</a>
+                                    <a href="{{ route('banques.index') }}" class="nav-link"
+                                        data-key="t-level-1.1">Banques</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('filieres.index') }}" class="nav-link" data-key="t-level-1.1">Filières</a>
                                 </li>
                             </ul>
                         </div>

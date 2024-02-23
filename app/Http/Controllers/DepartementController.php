@@ -54,6 +54,7 @@ class DepartementController extends Controller
      */
     public function show(Request $request, Departement $departement): View
     {
+        $departements = Departement::get();
         return view('departements.show', compact('departement'));
     }
 

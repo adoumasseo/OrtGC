@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\BanqueStoreRequest;
 use App\Http\Requests\BanqueUpdateRequest;
-use Illuminate\Support\Facades\Auth;
 
 class BanqueController extends Controller
 {
@@ -30,7 +29,8 @@ class BanqueController extends Controller
     {
 
         return view(
-            'banques.create');
+            'banques.create'
+        );
     }
 
     /**
@@ -52,7 +52,7 @@ class BanqueController extends Controller
      */
     public function show(Request $request, Banque $banque): View
     {
-    
+
         return view('banques.show', compact('banque'));
     }
 

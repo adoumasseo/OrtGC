@@ -100,7 +100,7 @@ class UfrController extends Controller
             return $validated;
         }
         $validated['logo'] = $logo->store('images/ufrs', 'public');
-        
+
         $ufr->update($validated);
         notyf()->addSuccess('Ufr modifiée avec success.');
         return redirect()
