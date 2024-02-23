@@ -7,7 +7,6 @@
 @endsection
 @section('content')
     <div class="border card rounded-0">
-
         <div class="card-body">
             <form action="{{ route('ufrs.store') }}" method="post" enctype="multipart/form-data" >
                 @csrf

@@ -6,7 +6,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-
     <div class="card rounded-0 ">
         <div class="card-header">
             <h2 class="card-title">
@@ -26,11 +25,11 @@
                             <span class="text-danger"> {{ $errors->first('code') }}</span>
                         @enderror
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="nomInput" class="form-label">Nom l'ufr</label>
                         <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom"
-                            value="{{ old('nom',$ufr->nom) }}" id="nomInput">
+                            value="{{ old('nom', $ufr->nom) }}" id="nomInput">
                         @error('nom')
                             <span class="text-danger"> {{ $errors->first('nom') }}</span>
                         @enderror
@@ -39,18 +38,22 @@
                         <label for="universite" class="form-label">Université de l'ufr</label>
                         <select name="universite_id" id="universite"
                             class="form-control @error('universite_id') is-invalid @enderror">
-                                <option value="{{$ufr->universite->id}}">{{$ufr->universite->nom}}</option>
+                            @foreach ($universites as $universite)
+                                <option value="{{ $universite->id }}" 
+                                    @if ($universite->id === $ufr->universite_id) selected @endif>
+                                    {{ $universite->nom }}</option>
+                            @endforeach
                         </select>
                         @error('universite_id')
                             <span class="text-danger"> {{ $errors->first('universite_id') }}</span>
                         @enderror
                     </div>
-    
-    
+
+
                     <div class="mb-3 col-md-6">
                         <label for="adresseInput" class="form-label">Adresse l'ufr</label>
                         <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse"
-                            value="{{ old('adresse',$ufr->adresse)}}" id="adresseInput">
+                            value="{{ old('adresse', $ufr->adresse) }}" id="adresseInput">
                         @error('adresse')
                             <span class="text-danger"> {{ $errors->first('adresse') }}</span>
                         @enderror
@@ -58,16 +61,16 @@
                     <div class="mb-3 col-md-6">
                         <label for="siteInput" class="form-label">Site web de l'ufr</label>
                         <input type="text" class="form-control @error('siteweb') is-invalid @enderror" name="siteweb"
-                            value="{{ old('siteweb',$ufr->siteweb) }}" id="siteInput">
+                            value="{{ old('siteweb', $ufr->siteweb) }}" id="siteInput">
                         @error('siteweb')
                             <span class="text-danger"> {{ $errors->first('siteweb') }}</span>
                         @enderror
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="emailInput" class="form-label">Email de l'ufr</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
-                            value="{{ old('email',$ufr->email) }}" id="emailInput">
+                            value="{{ old('email', $ufr->email) }}" id="emailInput">
                         @error('email')
                             <span class="text-danger"> {{ $errors->first('email') }}</span>
                         @enderror
@@ -75,16 +78,16 @@
                     <div class="mb-3 col-md-6">
                         <label for="directeurInput" class="form-label">Directeur de l'ufr</label>
                         <input type="text" class="form-control @error('directeur') is-invalid @enderror" name="directeur"
-                            value="{{ old('directeur',$ufr->directeur)}}" id="directeurInput">
+                            value="{{ old('directeur', $ufr->directeur) }}" id="directeurInput">
                         @error('directeur')
                             <span class="text-danger"> {{ $errors->first('directeur') }}</span>
                         @enderror
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="villeInput" class="form-label">Ville de l'ufr</label>
                         <input type="text" class="form-control @error('ville') is-invalid @enderror" name="ville"
-                            value="{{ old('ville',$ufr->ville)}}" id="villeInput">
+                            value="{{ old('ville', $ufr->ville) }}" id="villeInput">
                         @error('ville')
                             <span class="text-danger"> {{ $errors->first('ville') }}</span>
                         @enderror
@@ -92,21 +95,21 @@
                     <div class="mb-3 col-md-6">
                         <label for="logoInput" class="form-label">Logo de l'ufr</label>
                         <input type="file" class="form-control @error('logo') is-invalid @enderror" name="logo"
-                            value="{{ old('logo',$ufr->logo) }}" id="logoInput">
+                            value="{{ old('logo', $ufr->logo) }}" id="logoInput">
                         @error('logo')
                             <span class="text-danger"> {{ $errors->first('logo') }}</span>
                         @enderror
                     </div>
-    
+
                     <div class="mb-3 col-md-6">
                         <label for="telInput" class="form-label">Téléphone de l'ufr</label>
-                        <input type="tel" class="form-control @error('telephone') is-invalid @enderror" name="telephone"
-                            value="{{ old('telephone',$ufr->telephone) }}" id="telInput">
+                        <input type="tel" class="form-control @error('telephone') is-invalid @enderror"
+                            name="telephone" value="{{ old('telephone', $ufr->telephone) }}" id="telInput">
                         @error('telephone')
                             <span class="text-danger"> {{ $errors->first('telephone') }}</span>
                         @enderror
                     </div>
-    
+
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
                     <a href="{{ route('ufrs.index') }}" type="button"

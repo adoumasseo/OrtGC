@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
+use App\Models\Universite;
 use App\Models\User;
 
 class UserController extends Controller
@@ -22,7 +24,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $universites = Universite::all();
+        $roles = Role::all();
+        return view('users.create', compact('universites', 'roles'));
     }
 
     /**
@@ -31,6 +35,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
+        $user->assignRole(Role::whereId($request->role_id)->first());
         notyf()->addSuccess('Utilisateur créé avec success.');
         return redirect()->route('users.create');
     }
@@ -40,7 +45,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users.show', compact('user' ));
     }
 
     /**
@@ -48,7 +53,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user' ));
     }
 
     /**
@@ -56,7 +61,11 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+        $user->assignRole(Role::whereId($request->role_id)->first());
+        notyf()->addSuccess('Utilisateur modifié avec succès.');
+        return redirect()
+            ->route('users.index');
     }
 
     /**
@@ -64,6 +73,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        notyf()->addSuccess('Utilisateur supprimé avec succès.');
+        return redirect()
+            ->route('users.index');
     }
 }
