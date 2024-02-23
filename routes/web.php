@@ -49,6 +49,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     ]);
 
 
+    Route::get('/generateWord', [ContratController::class, 'generateWord'])->name('generateWord');
+
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
         Route::post('/delete-ues', 'deleteUes')->name('delete-ues');
