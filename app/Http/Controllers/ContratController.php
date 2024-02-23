@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\contratstoreRequest;
 use App\Http\Requests\ContratUpdateRequest;
+use App\Models\User;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
 use Illuminate\Support\Facades\Auth;
@@ -147,6 +148,29 @@ class ContratController extends Controller
 
         // Télécharger le fichier Word
         return response()->download($tempFilePath, 'example.docx')->deleteFileAfterSend(true);
+    }
+
+    public function generateLettreMission(Request $request){
+
+        $enseignant = User::find(1);
+
+        $phpWord = new PhpWord();
+
+        
+        $phpWord->addFontStyle('TextFontStype', array('name' => 'Times New Roman', 'size'=>12));
+        $phpWord->addParagraphStyle('ParagraphStype', array('align'=>'both', 'spaceAfter'=>100));
+
+
+        $section = $phpWord->addSection();
+        $section->addText('     L’Ecole nationale d’Economie appliquée et de Management (ENEAM) est heureuse de votre accord d’enseigner les cours recensés dans le tableau ci-dessous à ses étudiants du cycle 1. Vous avez ainsi à charge de délivrer 110 heures de cours (cours théoriques, travaux dirigés, travaux pratiques, ateliers/sorties pédagogiques/stages, y compris) aux apprenants. Les détails sur les cours et leurs programmations sont joints à cette lettre de mission.','TextFontStype','ParagraphStype');
+
+        // Enregistrer le document Word dans un fichier temporaire
+        $tempFilePath = tempnam(sys_get_temp_dir(), 'word');
+        $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save($tempFilePath);
+
+        // Télécharger le fichier Word
+        return response()->download($tempFilePath, 'Lettre'.$enseignant->nom.'.docx')->deleteFileAfterSend(true);
     }
 
 
