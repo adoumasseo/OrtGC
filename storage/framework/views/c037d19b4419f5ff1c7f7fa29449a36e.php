@@ -60,18 +60,18 @@
                                         <?php endif; ?>
                                     <td><?php echo e($item->code); ?></td>
                                     <td><?php echo e($item->nom); ?></td>
-                                    <td><?php echo e($item->ufrs->nom); ?></td>
-                                    <td><?php echo e($item->enseignants->nom); ?> <?php echo e($item->enseignants->prenoms); ?></td>
+                                    <td><?php echo e(optional($item->ufrs)->nom); ?></td>
+                                    <td><?php echo e(optional($item->enseignants)->nom); ?> <?php echo e(optional($item->enseignants)->prenoms); ?></td>
                                     <td><?php echo e($item->logo); ?></td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="<?php echo e(route('departements.show', ['departement' => $item->slug])); ?>"
+                                            <a href="<?php echo e(route('departements.show', ['departement' => $item->id])); ?>"
                                                 type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 title="Voir"
                                                 class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                     class="ri-eye-line"></i></a>
                                             <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
-                                                <a href="<?php echo e(route('departements.edit', ['departement' => $item->slug])); ?>"
+                                                <a href="<?php echo e(route('departements.edit', ['departement' => $item->id])); ?>"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Editer"
                                                     class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i

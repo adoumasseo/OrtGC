@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
+        Route::post('/delete-departement', 'deleteDepartements')->name('delete-departements');
+        Route::post('/delete-classes', 'deleteClasses')->name('delete-classes');
         Route::post('/delete-ues', 'deleteUes')->name('delete-ues');
         Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
@@ -61,6 +63,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::resources([
                 "banques" => BanqueController::class,
                 "contrats" => ContratController::class,
+                "departements" => DepartementController::class,
+                "classes" => ClasseController::class,
                 "ufrs" => UfrController::class,
                 "enseignants" => EnseignantController::class,
                 "cycles" => CycleController::class,

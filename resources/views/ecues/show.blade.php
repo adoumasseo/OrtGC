@@ -35,6 +35,15 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3 col-md-12">
+                        <label for="basiInput" class="form-label">UE</label>
+                        <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom"
+                            value="{{ $ecue->ue->nom }}" id="basiInput" readonly>
+                        @error('ue_id')
+                            <span class="text-danger"> {{ $errors->first('ue_id') }}</span>
+                        @enderror
+                    </div>
+
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
                     <a href="{{ route('ecues.index') }}" type="button"
