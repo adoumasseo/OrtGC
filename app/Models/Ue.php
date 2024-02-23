@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,8 +19,24 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Ue extends Model
 {
+    use Sluggable;
     /**
      * @var array
      */
-    protected $fillable = ['code', 'nom', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+     protected $fillable = ['code', 'nom', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+
+     public function sluggable(): array
+     {
+         return [
+             'slug' => [
+                 'source' => 'nom'
+             ]
+         ];
+     }
+
+     public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
 }
