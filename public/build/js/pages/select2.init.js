@@ -64,12 +64,12 @@ function formatState (state) {
 
   var baseUrl = "build/images/flags/select2";
   var $state = $(
-    '<span><img class="img-flag rounded" height="18" /> <span></span></span>'
+    '<span> <span></span></span>'
   );
 
   // Use .text() instead of HTML string concatenation to avoid script injection issues
   $state.find("span").text(state.text);
-  $state.find("img").attr("src", baseUrl + "/" + state.element.value.toLowerCase() + ".png");
+  //$state.find("img").attr("src", baseUrl + "/" + state.element.value.toLowerCase() + ".png");
 
   return $state;
 };

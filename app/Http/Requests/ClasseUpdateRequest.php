@@ -22,8 +22,8 @@ class ClasseUpdateRequest extends FormRequest
         return [
             'nom' => ['required', 'max:255', 'string'],
             'effectif' => ['required', 'max:255', 'string'],
-            'filiere_id' => ['exists:filieres', 'max:255', 'string'],
-            'cycle_id' => ['exists:cycles', 'max:255', 'string'],
+            'filiere_id' => ['exists:filieres,id', 'max:255', 'string'],
+            'cycle_id' => ['exists:cycles,id', 'max:255', 'string'],
         ];
     }
 }

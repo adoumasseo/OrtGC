@@ -7,6 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Wildside\Userstamps\Userstamps;
 
 /**
@@ -92,5 +93,9 @@ class Ufr extends Model
     public function users()
     {
         return $this->hasMany('App\Models\User');
+    }
+    public function imageUrl(): string
+    {
+        return Storage::disk('public')->url($this->logo);
     }
 }

@@ -22,8 +22,8 @@ class DepartementUpdateRequest extends FormRequest
         return [
             'code' => ['required', 'max:255', 'string'],
             'nom' => ['required', 'max:255', 'string'],
-            'ufr_id' => ['exists:ufrs', 'max:255', 'string'],
-            'chef_departement' => ['exists:enseignants', 'max:255', 'string'],
+            'ufr_id' => ['required','exists:ufrs,id', 'max:255', 'string'],
+            'chef_departement' => ['required','exists:enseignants,id', 'max:255', 'string'],
         ];
     }
 }

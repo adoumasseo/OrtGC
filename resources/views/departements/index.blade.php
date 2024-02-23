@@ -61,8 +61,8 @@
                                         @endif
                                     <td>{{ $item->code }}</td>
                                     <td>{{ $item->nom }}</td>
-                                    <td>{{ $item->ufrs->nom }}</td>
-                                    <td>{{ $item->enseignants->nom}} {{ $item->enseignants->prenoms}}</td>
+                                    <td>{{ $item->ufr->nom }}</td>
+                                    <td>{{ $item->enseignant->nom }} {{$item->enseignant->prenoms }}</td>
                                     <td>{{ $item->logo }}</td>
                                     <td>
                                         <div class="d-flex">

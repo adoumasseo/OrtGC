@@ -24,6 +24,7 @@ class EcueUpdateRequest extends FormRequest
         return [
             'code' => ['required', 'max:255', 'string'],
             'nom' => ['required', 'max:255', 'string'],
+            'ue_id' => ['required', 'exists:ues,id'],
         ];
     }
 }

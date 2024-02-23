@@ -60,8 +60,8 @@
                                         <?php endif; ?>
                                     <td><?php echo e($item->code); ?></td>
                                     <td><?php echo e($item->nom); ?></td>
-                                    <td><?php echo e($item->ufrs->nom); ?></td>
-                                    <td><?php echo e($item->enseignants->nom); ?> <?php echo e($item->enseignants->prenoms); ?></td>
+                                    <td><?php echo e($item->ufr->nom); ?></td>
+                                    <td><?php echo e($item->enseignant->nom); ?> <?php echo e($item->enseignant->prenoms); ?></td>
                                     <td><?php echo e($item->logo); ?></td>
                                     <td>
                                         <div class="d-flex">

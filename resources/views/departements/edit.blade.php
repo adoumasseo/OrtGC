@@ -64,12 +64,13 @@
 
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Logo</label>
-                        <input type="text" class="form-control @error('logo') is-invalid @enderror" name="logo"
+                        <input type="file" class="form-control @error('logo') is-invalid @enderror" name="logo"
                             value="{{ $departement->logo }}" id="basiInput">
                         @error('logo')
                             <span class="text-danger"> {{ $errors->first('logo') }}</span>
                         @enderror
                     </div>
+
 
                     {{-- <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Slug</label>
