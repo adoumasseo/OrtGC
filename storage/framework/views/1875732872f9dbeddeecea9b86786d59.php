@@ -43,6 +43,16 @@
                         </span>
                     </a>
                 </li>
+                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')): ?>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                            aria-controls="sidebarDashboards">
+                            <i class="bx bx-task"></i> <span>
+                                Année académique
+                            </span>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
@@ -53,6 +63,17 @@
                     </a>
                 </li>
 
+                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')||Auth::user()->hasRole('Personnel')): ?>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="<?php echo e(route('enseignants.index')); ?>" role="button" aria-expanded="false"
+                            aria-controls="sidebarDashboards">
+                            <i class="bx bx-task"></i> <span>
+                                Enseignants
+                            </span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
                         aria-controls="sidebarDashboards">
@@ -62,14 +83,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
-                        aria-controls="sidebarDashboards">
-                        <i class="bx bx-task"></i> <span>
-                            Année académique
-                        </span>
-                    </a>
-                </li>
+                
                 <!--
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="" role="button"
@@ -91,7 +105,7 @@
                         </span>
                     </a>
                 </li>-->
-                <?php if(Auth::user()->hasRole('Administrateur')): ?>
+                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')): ?>
                     <li class="nav-item">
                         <a class="nav-link menu-link" href="<?php echo e(route('users.index')); ?>" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
@@ -149,14 +163,6 @@
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="<?php echo e(route('cycles.index')); ?>" class="nav-link" data-key="t-level-1.1">Cycles</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('banques.index')); ?>" class="nav-link"
-                                        data-key="t-level-1.1">Banques</a>
                                 </li>
                             </ul>
                         </div>
