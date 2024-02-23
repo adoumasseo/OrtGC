@@ -62,9 +62,12 @@ class DepartementController extends Controller
      */
     public function edit(Request $request, Departement $departement): View
     {
+        $ufrs = Ufr::all();
+        $enseignants = Enseignant::all();
+        $departements = Departement::get();
         return view(
             'departements.edit',
-            compact('departements')
+            compact('departement', 'ufrs', 'enseignants')
         );
     }
 

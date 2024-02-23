@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('departements', function (Blueprint $table) {
             $table->foreign('chef_departement')
                 ->references('id')
-                ->on('users')
+                ->on('enseignants')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
         });

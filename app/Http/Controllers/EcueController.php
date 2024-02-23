@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EcueStoreRequest;
 use App\Http\Requests\EcueUpdateRequest;
 use App\Models\Ecue;
+use App\Models\Ue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -27,9 +28,8 @@ class EcueController extends Controller
      */
     public function create(Request $request): View
     {
-
-        return view(
-            'ecues.create');
+        $ues = Ue::get();
+        return view('ecues.create', compact('ues'));
     }
 
     /**
@@ -60,9 +60,10 @@ class EcueController extends Controller
      */
     public function edit(Request $request, Ecue $ecue): View
     {
+        $ues = Ue::get();
         return view(
             'ecues.edit',
-            compact('ecue')
+            compact('ecue', 'ues')
         );
     }
 

@@ -38,6 +38,7 @@
                                     <?php endif; ?>
                                 <th>Code</th>
                                 <th>Nom</th>
+                                <th>Ue</th>
                                 <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                 <?php else: ?>
@@ -58,6 +59,7 @@
                                         <?php endif; ?>
                                     <td><?php echo e($item->code); ?></td>
                                     <td><?php echo e($item->nom); ?></td>
+                                    <td><?php echo e($item->ue->nom); ?></td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="<?php echo e(route('ecues.show', ['ecue' => $item->slug])); ?>"

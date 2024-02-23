@@ -38,6 +38,18 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3 col-md-12">
+                        <label for="basiInput" class="form-label">UE</label>
+                        <select name="ue_id" class="form-control @error('ue_id') is-invalid  @enderror" id="basiInput">
+                            @foreach ($ues as $ue)
+                                <option @if ($ecue->ue->id == $ue->id) selected @endif value="{{ $ue->id }}">{{ $ue->nom }}</option>
+                            @endforeach
+                        </select>
+                        @error('ue_id')
+                            <span class="text-danger"> {{ $errors->first('ue_id') }}</span>
+                        @enderror
+                    </div>
+
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
                     <a href="{{ route('ecues.index') }}" type="button" class="btn btn-info rounded-0 btn-label waves-effect waves-light">

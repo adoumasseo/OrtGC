@@ -32,6 +32,18 @@
                         @enderror
                     </div>
 
+                    <div class="mb-3 col-md-12">
+                        <label for="basiInput" class="form-label">UE</label>
+                        <select name="ue_id" class="form-control @error('ue_id') is-invalid  @enderror" value="{{ old('ue_id') }}" id="basiInput">
+                            @foreach ($ues as $ue)
+                                <option value="{{ $ue->id }}">{{ $ue->nom }}</option>
+                            @endforeach
+                        </select>
+                        @error('ue_id')
+                            <span class="text-danger"> {{ $errors->first('ue_id') }}</span>
+                        @enderror
+                    </div>
+
                 </div>
 
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">

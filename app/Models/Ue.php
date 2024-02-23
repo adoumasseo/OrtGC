@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
+ * @property Ecue[] $ecues
  */
 class Ue extends Model
 {
@@ -23,9 +24,17 @@ class Ue extends Model
     /**
      * @var array
      */
-     protected $fillable = ['code', 'nom', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['code', 'nom', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
-     public function sluggable(): array
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function ecues()
+    {
+        return $this->hasMany('App\Models\Ecue');
+    }
+
+    public function sluggable(): array
      {
          return [
              'slug' => [
@@ -38,5 +47,4 @@ class Ue extends Model
     {
         return 'slug';
     }
-
 }
