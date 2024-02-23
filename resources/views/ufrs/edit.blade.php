@@ -14,11 +14,10 @@
             </h2>
         </div>
         <div class="card-body">
-            <form action="{{ route('ufrs.update', ['ufr' => $ufr->slug]) }}" method="post">
+            <form action="{{ route('ufrs.update', ['ufr' => $ufr->slug]) }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="py-2 row d-flex justify-content-center">
-
                     <div class="mb-3 col-md-6">
                         <label for="basiInput" class="form-label">Code de l'ufr</label>
                         <input type="text" class="form-control @error('code') is-invalid @enderror" name="code"

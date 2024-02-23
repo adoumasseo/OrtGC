@@ -9,11 +9,11 @@
     <div class="border card rounded-0">
 
         <div class="card-body">
-            <form action="{{ route('ufrs.store') }}" method="post">
+            <form action="{{ route('ufrs.store') }}" method="post" enctype="multipart/form-data" >
                 @csrf
                 <div class="py-2 row d-flex justify-content-center">
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="basiInput" class="form-label">Code de l'ufr</label>
                         <input type="text" class="form-control @error('code') is-invalid @enderror" name="code"
                             value="{{ old('code') }}" id="basiInput">
@@ -22,7 +22,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="nomInput" class="form-label">Nom l'ufr</label>
                         <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom"
                             value="{{ old('nom') }}" id="nomInput">
@@ -35,7 +35,7 @@
 
                 <div class="py-2 row d-flex justify-content-center">
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="universite" class="form-label">Université de l'ufr</label>
                         <select name="universite_id" id="universite"
                             class="form-control @error('universite_id') is-invalid @enderror">
@@ -49,7 +49,7 @@
                     </div>
 
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="adresseInput" class="form-label">Adresse l'ufr</label>
                         <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse"
                             value="{{ old('adresse') }}" id="adresseInput">
@@ -63,7 +63,7 @@
                 </div>
 
                 <div class="py-2 row d-flex justify-content-center">
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="siteInput" class="form-label">Site web de l'ufr</label>
                         <input type="text" class="form-control @error('siteweb') is-invalid @enderror" name="siteweb"
                             value="{{ old('siteweb') }}" id="siteInput">
@@ -72,7 +72,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="emailInput" class="form-label">Email de l'ufr</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
                             value="{{ old('email') }}" id="emailInput">
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="py-2 row d-flex justify-content-center">
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="directeurInput" class="form-label">Directeur de l'ufr</label>
                         <input type="text" class="form-control @error('directeur') is-invalid @enderror" name="directeur"
                             value="{{ old('directeur') }}" id="directeurInput">
@@ -93,7 +93,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="villeInput" class="form-label">Ville de l'ufr</label>
                         <input type="text" class="form-control @error('ville') is-invalid @enderror" name="ville"
                             value="{{ old('ville') }}" id="villeInput">
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="py-2 row d-flex justify-content-center">
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="logoInput" class="form-label">Logo de l'ufr</label>
                         <input type="file" class="form-control @error('logo') is-invalid @enderror" name="logo"
                             value="{{ old('logo') }}" id="logoInput">
@@ -114,7 +114,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    <div class="mb-3 col-md-6">
                         <label for="telInput" class="form-label">Téléphone de l'ufr</label>
                         <input type="tel" class="form-control @error('telephone') is-invalid @enderror" name="telephone"
                             value="{{ old('telephone') }}" id="telInput">
