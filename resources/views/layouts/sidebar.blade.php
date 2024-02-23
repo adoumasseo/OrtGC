@@ -116,10 +116,27 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="" class="nav-link" data-key="t-level-1.1">UFR</a>
+                                    <a href="{{ route('ufrs.index') }}" class="nav-link" data-key="t-level-1.1">UFR</a>
                                 </li>
                             </ul>
                         </div>
+
+                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('departements.index') }}" class="nav-link" data-key="t-level-1.1">Départements</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="{{ route('classes.index') }}" class="nav-link" data-key="t-level-1.1">Classes</a>
+                                </li>
+                            </ul>
+                        </div>
+
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
