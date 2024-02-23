@@ -38,7 +38,7 @@
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom de l'ufr</label>
                         <input type="text" class="form-control @error('ufr_id') is-invalid @enderror" name="ufr_id"
-                            value="{{ $departement->ufrs->nom }}" id="basiInput" readonly>
+                            value="{{ $departement->ufr->nom }}" id="basiInput" readonly>
                         @error('ufr_id')
                             <span class="text-danger"> {{ $errors->first('ufr_id') }}</span>
                         @enderror
@@ -47,7 +47,7 @@
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom du chef département</label>
                         <input type="text" class="form-control @error('chef_departement') is-invalid @enderror" name="chef_departement"
-                            value="{{ $departement->enseignants->nom }} {{ $departement->enseignants->prenoms }}" id="basiInput" readonly>
+                            value="{{ $departement->enseignant->nom }} {{ $departement->enseignant->prenoms }}" id="basiInput" readonly>
                         @error('chef_departement')
                             <span class="text-danger"> {{ $errors->first('chef_departement') }}</span>
                         @enderror
@@ -66,11 +66,11 @@
 
                 </div>
                 <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
-                    <a href="{{ route('departement.index') }}" type="button"
+                    <a href="{{ route('departements.index') }}" type="button"
                         class="btn btn-info rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-arrow-drop-left-line label-icon fs-16 me-2"></i> Annuler </a>
 
-                     <a href="{{ route('departement.edit', ['departement' => $departement->slug]) }}">
+                     <a href="{{ route('departements.edit', ['departement' => $departement->slug]) }}">
                         <button class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i
                             class="align-middle ri-check-line label-icon fs-16 me-2"></i> Editer</button>
                         </a>

@@ -14,7 +14,7 @@
             </h2>
         </div>
         <div class="card-body">
-            <form action="{{ route('departements.update', ['departement' => $departement->id]) }}" method="post">
+            <form action="{{ route('departements.update', ['departement' => $departement->slug]) }}" method="post">
                 @method('put')
                 @csrf
                 <div class="py-2 row d-flex justify-content-center">

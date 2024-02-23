@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banque;
+use App\Models\Departement;
 use App\Models\Ue;
 use App\Models\Ufr;
 use App\Models\Enseignant;
@@ -46,11 +47,18 @@ class AjaxController extends Controller
         notyf()->addSuccess('Cycle supprimé avec success.');
         return response()->json(['success' => true]);
     }
-    
+
     public function deleteEcues(Request $request)
     {
         Ecue::whereIn('id', $request->ecues_ids)->delete();
         notyf()->addSuccess('Ecue supprimée avec succès.');
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteDepartements(Request $request)
+    {
+        Departement::whereIn('id', $request->departements_ids)->delete();
+        notyf()->addSuccess('Département supprimé avec succès.');
         return response()->json(['success' => true]);
     }
 }
