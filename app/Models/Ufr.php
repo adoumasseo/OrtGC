@@ -2,7 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\Searchable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
+use Wildside\Userstamps\Userstamps;
 
 /**
  * @property integer $id
@@ -31,11 +37,24 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Ufr extends Model
 {
+    use HasFactory, Searchable, SoftDeletes, Sluggable, Userstamps;
     /**
      * @var array
      */
     protected $fillable = ['universite_id', 'code', 'nom', 'adresse', 'telephone', 'siteweb', 'email', 'directeur', 'ville', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nom'
+            ]
+        ];
+    }
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -74,5 +93,9 @@ class Ufr extends Model
     public function users()
     {
         return $this->hasMany('App\Models\User');
+    }
+    public function imageUrl(): string
+    {
+        return Storage::disk('public')->url($this->logo);
     }
 }

@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\contratstoreRequest;
 use App\Http\Requests\ContratUpdateRequest;
+use App\Models\Ufr;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpWord\Style\Paper;
 
 class ContratController extends Controller
 {
@@ -54,7 +56,7 @@ class ContratController extends Controller
      */
     public function show(Request $request, Contrat $contrat): View
     {
-    
+
         return view('contrats.show', compact('Contrat'));
     }
 
@@ -103,46 +105,62 @@ class ContratController extends Controller
 
     public function generateWord()
     {
+        $ufr = Ufr::find(1);
+        $paper = new Paper();
+        $paper->setSize('A4');
         // Créer une nouvelle instance de PhpWord
         $phpWord = new PhpWord();
 
-        // Définir la police par défaut pour le document
-        $defaultFontStyle = array('name' => 'Arial', 'size' => 12);
-        $phpWord->setDefaultFont($defaultFontStyle);
-
-        // Ajouter du contenu au document Word
-        $section = $phpWord->addSection();
-        $section->addText('Bonjour Monde!');
-
-
-        // Ajouter un titre
-        $titleStyle = array('size' => 16, 'bold' => true); // Style pour le titre
-        $phpWord->addTitleStyle(1, $titleStyle); // Définition du style de titre
-
-        $section = $phpWord->addSection(); // Ajout d'une section au document
-        $section->addTitle('Titre 1', 1); // Ajout du titre à la section
-
-
-
-        // Ajouter un tableau
-        $section = $phpWord->addSection();
-
-        // Définir les données du tableau
-        $tableData = array(
-            array('Nom', 'Âge', 'Ville'),
-            array('Jean', 25, 'Paris'),
-            array('Marie', 30, 'Lyon'),
-            array('Pierre', 28, 'Marseille')
+        $textFontStyle = array(
+            'name' => 'Arial',
+            'size' => 14,
         );
 
-        // Ajouter le tableau à la section
-        $table = $section->addTable();
-        foreach ($tableData as $rowData) {
-            $table->addRow();
-            foreach ($rowData as $cellData) {
-                $table->addCell()->addText($cellData);
-            }
-        }
+        // Titre encadré contrat
+        $phpWord->addFontStyle('TextFont', $textFontStyle);
+        $section = $phpWord->addSection();
+        $table = $section->addTable(array('align' => 'center'));
+        $table->addRow();
+        $cell = $table->addCell($paper->getWidth());
+        $cell->setHeight(300000);
+
+        $textRun = $cell->addTextRun(array('alignment' => 'center'));
+        $textRun->addText('CONTRAT DE PRESTATION D’ENSEIGNEMENT',array('name' => 'Arial', 'size' => 16, 'bold' => true));
+
+        // Appliquer les bordures à la cellule
+        $cell->getStyle()->setBorderTopSize(6); // Bordure supérieure
+        $cell->getStyle()->setBorderTopColor('000000');
+        $cell->getStyle()->setBorderBottomSize(6); // Bordure inférieure
+        $cell->getStyle()->setBorderBottomColor('000000');
+        $cell->getStyle()->setBorderLeftSize(6); // Bordure gauche
+        $cell->getStyle()->setBorderLeftColor('000000');
+        $cell->getStyle()->setBorderRightSize(6); // Bordure droite
+        $cell->getStyle()->setBorderRightColor('000000');
+
+        //Contenu
+        $section->addText('N°	-…………………/UAC/ENEAM/DA/SGE/SC/SPE/SerP du	……………………………………', 'TextFont');
+
+        $section->addText( $ufr->nom . ' (' . $ufr->code . ')' . ',' . $ufr->adresse .', représentée par le Directeur' . $ufr->directeur .' téléphone : ' . $ufr->telephone . ', E-mail professionnel : ' . $ufr->email . ' ci-après dénommé « ETABLISSEMENT » d’une part, ','TextFont');
+
+        $section->addText('Et', array('name' => 'Arial', 'size' => 14, 'bold' => true));
+
+        $section->addText('Monsieur : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Nationalité : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Profession : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Domicilié : ' . 'Meshach Godwin' . '........................');
+        $section->addText('IFU : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Compte bancaire : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Banque : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Email : ' . 'Meshach Godwin' . '........................');
+        $section->addText('Numéro de téléphone : ' . 'Meshach Godwin' . '........................');
+
+        $section->addText("ci-après dénommé « L’ENSEIGNANT PRESTATAIRE » d’autre part");
+
+        $section->addText("qui déclare être disponible pour fournir les prestations objet du présent contrat, ci-après dénommé
+        « PRESTATIONS D’ENSEIGNEMENT»,
+        ");
+
+        $section->addText("Considérant que l’ENEAM est disposée à faciliter à l’enseignant prestataire l’exécution de ses prestations, conformément aux clauses et conditions du présent contrat ;");
 
 
         // Enregistrer le document Word dans un fichier temporaire

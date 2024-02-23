@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Ecue extends Model
 {
+    use Sluggable;
     /**
      * @var array
      */
@@ -30,5 +32,19 @@ class Ecue extends Model
     public function cours()
     {
         return $this->hasMany('App\Models\Cour');
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nom'
+            ]
+        ];
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }
