@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Scopes\Searchable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\Permission\Traits\HasRoles;
@@ -13,6 +14,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Wildside\Userstamps\Userstamps;
 
+/**
+ * @property Ufr $ufr
+ */
 class User extends Authenticatable
 {
     use HasRoles, Notifiable, HasFactory, Searchable, SoftDeletes, Sluggable, Userstamps;
@@ -67,5 +71,13 @@ class User extends Authenticatable
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ufr()
+    {
+        return $this->belongsTo('App\Models\Ufr');
     }
 }

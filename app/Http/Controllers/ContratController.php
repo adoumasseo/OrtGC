@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\contratstoreRequest;
 use App\Http\Requests\ContratUpdateRequest;
+use App\Models\Enseignant;
 use App\Models\User;
 use App\Models\Ufr;
+use Carbon\Carbon;
 use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\PhpWord;
 use Illuminate\Support\Facades\Auth;
+use NumberFormatter;
 use PhpOffice\PhpWord\Style\Paper;
 
 class ContratController extends Controller
@@ -105,9 +108,30 @@ class ContratController extends Controller
             ->route('contrats.index');
     }
 
+    public  function formaterDate($date)
+    {
+        return Carbon::createFromFormat('Y-m-d', $date)->locale('fr-FR')->isoFormat('DD MMMM YYYY');
+    }
+
     public function generateWord()
     {
-        $ufr = Ufr::find(1);
+
+        //Récuperer l'UFR de l'utilisateur connecté
+        //Seulement si l'utilisateur a le role Personnel
+        //Il faudra donc protéger la route
+        $ufr = Auth::user()->ufr;
+
+        //Trouver l'enseignant par son id
+        //Ici on considère l'enseignant avec l'id 1
+        $enseignant = Enseignant::find(1);
+
+        //Calcul des heures à effectuer
+        $heure_theorique = $enseignant->cours->sum('heure_theorique');
+
+        //Toutes les informations concernant les cours de l'enseignant
+        $all_data_enseignants_cours = $enseignant->cours()->with('ecue', 'class')->get();
+
+
         $paper = new Paper();
         $paper->setSize('A4');
         // Créer une nouvelle instance de PhpWord
@@ -158,80 +182,83 @@ class ContratController extends Controller
 
         $section->addText('Et', array('bold' => true));
 
-        $section->addText('Monsieur/' . 'JOHN DOE' . '........................');
-        $section->addText('Nationalité : ' . 'Béninoise' . '........................');
-        $section->addText('Profession : ' . 'Enseignant Chercheur en Génie informatique et Télécommunication' . '........................');
-        $section->addText('Domicilié : ' . 'Calavi' . '........................');
-        $section->addText('IFU : ' . '345678907654' . '........................');
-        $section->addText('Compte bancaire N° : ' . 'BJ 456789008765' . '......................../Banque : ' . 'UBA' . '........................');
-        $section->addText('Email : ' . 'john.doe@gmail.com' . '........................');
-        $section->addText('Numéro de téléphone : ' . '68654356' . '........................');
+        $section->addText('Monsieur/' . $enseignant->nom . ' ' . $enseignant->prenoms . '........................');
+        $section->addText('Nationalité : ' . $enseignant->nationalite . '........................');
+        $section->addText('Profession : ' . $enseignant->profession . '........................');
+        $section->addText('Domicilié : ' .  $enseignant->adresse . '........................');
+        $section->addText('IFU : ' .  $enseignant->ifu . '........................');
+        $section->addText('Compte bancaire N° : ' .  $enseignant->compte . '......................../Banque : ' .  $enseignant->banque->nom . '........................');
+        $section->addText('Email : ' .  $enseignant->email . '........................');
+        $section->addText('Numéro de téléphone : ' .  $enseignant->telephone . '........................');
         $section->addText("ci-après dénommé « L’ENSEIGNANT PRESTATAIRE » d’autre part");
         $section->addText("qui déclare être disponible pour fournir les prestations objet du présent contrat, ci-après dénommé « PRESTATIONS D’ENSEIGNEMENT »,");
 
         $section->addText('');
-        $section->addText("Considérant que l’ENEAM est disposée à faciliter à l’enseignant prestataire l’exécution de ses prestations, conformément aux clauses et conditions du présent contrat ;");
+        $section->addText("Considérant que " .  $ufr->nom . " est disposée à faciliter à l’enseignant prestataire l’exécution de ses prestations, conformément aux clauses et conditions du présent contrat ;");
 
         $section->addText('');
         $section->addText("Les parties au présent contrat ont convenu de ce qui suit :");
         $section->addText('');
         $section->addText('         1-   Objet du contrat', array('bold' => true));
-        $section->addText("Le présent contrat a pour objet la fourniture de prestations d’enseignement à l’ENEAM dans les conditions de délai, normes académiques et de qualité conformément aux clauses et conditions ci-après énoncées.");
+        $section->addText("Le présent contrat a pour objet la fourniture de prestations d’enseignement à " .  $ufr->nom . " dans les conditions de délai, normes académiques et de qualité conformément aux clauses et conditions ci-après énoncées.");
 
         $section->addText("");
         $section->addText('         2-   Nature des prestations', array('bold' => true));
-        $section->addText("L’Entité retient par la présente les prestations de l’enseignant pour l’exécution de trente (..30..) heures d’enseignement des cours de : ");
-        $section->addListItem("Lorem Ipsum", null, null, 'multilevel', array('alignment' => 'center'));
-        $section->addListItem("Lorem Ipsum", null, null, 'multilevel', array('alignment' => 'center'));
-        $section->addListItem("Lorem Ipsum", null, null, 'multilevel', array('alignment' => 'center'));
+        $section->addText("L’Entité retient par la présente les prestations de l’enseignant pour l’exécution de " . $heure_theorique . " heures d’enseignement des cours de : ");
 
+        foreach ($all_data_enseignants_cours as $item) {
+            $section->addListItem($item->ecue->nom . "              " . $item->heure_theorique . "H" . "             " . $item->class->cycle->nom . " / " . $item->class->nom, null, null, 'multilevel', array('alignment' => 'center'));
+        }
         $section->addText('Conformément aux exigences énumérées dans le cahier de charges joint au présent contrat.', array('italic' => true));
 
+        $section->addText('');
         $section->addText('         3-   Date de démarrage et calendrier', array('bold' => true));
         $section->addText('La durée de la prestation est de..............jours ouvrables à partir de :');
         $section->addText('');
         $tableStyle = array(
-            'borderSize' => 6, // Définir la taille des bordures
-            'borderColor' => '000000', // Définir la couleur des bordures
-            'cellMargin' => 50, // Définir la marge intérieure des cellules
-            'alignment' => \PhpOffice\PhpWord\SimpleType\JcTable::CENTER // Aligner le contenu des cellules au centre
+            'borderSize' => 6,
+            'borderColor' => '000000',
+            'cellMargin' => 50,
+            'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER,
         );
         $table = $section->addTable($tableStyle);
         $table->addRow();
         $table->addCell()->addText('Département', array('bold' => true));
-        $table->addCell()->addText('Année', array('bold' => true));
-        $table->addCell()->addText('ECUE¹', array('bold' => true));
-        $table->addCell()->addText('Nombre', array('bold' => true));
-        $table->addCell()->addText('Date de', array('bold' => true));
+        $table->addCell()->addText('Année d\'étude', array('bold' => true));
+        $table->addCell()->addText('            ECUE            ', array('bold' => true));
+        $table->addCell()->addText('Nombre d\'heures', array('bold' => true));
+        $table->addCell()->addText('Date de démarrage', array('bold' => true));
         $table->addCell()->addText('Date de fin', array('bold' => true));
 
-        $table->addRow();
-        $table->addCell()->addText('IG');
-        $table->addCell()->addText('Master IG');
-        $table->addCell()->addText('Virtualisation et Cloud computing');
-        $table->addCell()->addText('30H');
-        $table->addCell()->addText('23 Novembre');
-        $table->addCell()->addText('05 Décembre');
+        foreach ($all_data_enseignants_cours as $item) {
+            $table->addRow();
+            $table->addCell()->addText($item->class->filiere->departement->nom);
+            $table->addCell()->addText($item->class->cycle->nom . " " . $item->class->niveau);
+            $table->addCell()->addText($item->ecue->nom);
+            $table->addCell()->addText($item->heure_theorique . 'H');
+            $table->addCell()->addText($this->formaterDate($item->date_debut));
+            $table->addCell()->addText($this->formaterDate($item->date_fin));
+        }
 
 
         $section->addText('');
         $section->addText('         4-   Temps de présence', array('bold' => true));
-        $section->addText("Dans l’exécution du présent contrat, « L’ENSEIGNANT PRESTATAIRE » ….AGOSSOU Mawutin Martien Carlos............assurera également un volume horaire hebdomadaire de	20H……………de travaux dirigés et de travaux pratiques s’il y en a lieu. En outre, il surveillera les travaux de recherche des apprenants dans les conditions prévues par les textes de l’ENEAM.");
+        $section->addText("Dans l’exécution du présent contrat, « L’ENSEIGNANT PRESTATAIRE » " .  $enseignant->nom . " " . $enseignant->prenoms . " assurera également un volume horaire hebdomadaire de……………………de travaux dirigés et de travaux pratiques s’il y en a lieu. En outre, il surveillera les travaux de recherche des apprenants dans les conditions prévues par les textes de " . $ufr->nom . '.');
 
         $section->addText("");
         $section->addText('         5-   Termes de paiement et prélèvements', array('bold' => true));
-        $section->addText("Les honoraires pour les prestations d’enseignement sont de	FCFA brut par heure exécutée conformément aux exigences de l’ENEAM.");
+        $section->addText("Les honoraires pour les prestations d’enseignement sont de……………………FCFA brut par heure exécutée conformément aux exigences de " . $ufr->nom . '.');
         $section->addText("Les paiements sont effectués en Francs CFA à la fin des prestations (dépôt de sujets, corrigés types et copies corrigées) dûment constatées par une attestation de service fait, par virement bancaire après le prélèvement de l’AIB.");
 
         $section->addText("");
         $section->addText('         6-   Normes de Performance', array('bold' => true));
-        $section->addText("L’enseignant prestataire s’engage à fournir les prestations conformément aux normes professionnelles, d’éthique et déontologiques, de compétence et d’intégrité les plus exigeantes. Il est systématiquement mis fin au présent contrat en cas de défaillance du prestataire constatée et motivée par écrit de l’ENEAM");
+        $section->addText("L’enseignant prestataire s’engage à fournir les prestations conformément aux normes professionnelles, d’éthique et déontologiques, de compétence et d’intégrité les plus exigeantes. Il est systématiquement mis fin au présent contrat en cas de défaillance du prestataire constatée et motivée par écrit de " . $ufr->nom . '.');
 
         $section->addText("");
         $section->addText('         7-   Droit de propriété, de devoir de réserve et de non-concurrence', array('bold' => true));
-        $section->addText("Pendant la durée d’exécution du présent contrat et les cinq années suivant son expiration, l’enseignant prestataire ne divulguera aucune information exclusive ou confidentielle concernant la prestation, le présent contrat, les affaires ou les documents de l’ENEAM sans avoir obtenu au préalable l’autorisation écrite de l’Unité de formation et de recherche concernée.");
+        $section->addText("Pendant la durée d’exécution du présent contrat et les cinq années suivant son expiration, l’enseignant prestataire ne divulguera aucune information exclusive ou confidentielle concernant la prestation, le présent contrat, les affaires ou les documents de " . $ufr->nom . " sans avoir obtenu au préalable l’autorisation écrite de l’Unité de formation et de recherche concernée.");
         $section->addText("");
-        $section->addText("Tous les rapports ou autres documents, que l’enseignant prestataire préparera pour le compte l’ENEAM dans le cadre du présent contrat deviendront et demeureront la propriété de l’ENEAM");
+        $section->addText("Tous les rapports ou autres documents, que l’enseignant prestataire préparera pour le compte " . $ufr->nom . " dans le cadre du présent contrat deviendront et demeureront la propriété de " . $ufr->nom . '.');
         $section->addText("");
         $section->addText("Ne sont pas pris en compte les cours et autres documents préparés par l’enseignant pour l’exécution de ses prestations.");
 
@@ -245,7 +272,7 @@ class ContratController extends Controller
 
         $section->addText("");
         $section->addText("");
-        $section->addText('Pour l\'ENEAM', 'TextFont', array('alignment' => 'end'));
+        $section->addText('Pour ' . $ufr->nom, 'TextFont', array('alignment' => 'end'));
         $section->addText('L\'enseignant prestataire,                                                                                                 Le Directeur,', array('bold' => true));
 
         $section->addText("");

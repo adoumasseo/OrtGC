@@ -79,7 +79,7 @@ class Cours extends Model
      */
     public function class()
     {
-        return $this->belongsTo('App\Models\Class', 'classe_id');
+        return $this->belongsTo('App\Models\Classe', 'classe_id');
     }
 
     /**

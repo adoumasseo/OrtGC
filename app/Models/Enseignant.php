@@ -32,7 +32,7 @@ use Wildside\Userstamps\Userstamps;
  * @property string $updated_at
  * @property string $deleted_at
  * @property Contrat[] $contrats
- * @property Cour[] $cours
+ * @property Cours[] $cours
  * @property Banque $banque
  * @property Exercer[] $exercers
  */
@@ -57,7 +57,7 @@ class Enseignant extends Model
      */
     public function cours()
     {
-        return $this->hasMany('App\Models\Cour');
+        return $this->hasMany('App\Models\Cours');
     }
 
     /**
