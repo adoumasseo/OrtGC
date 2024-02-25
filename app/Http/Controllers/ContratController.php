@@ -118,7 +118,6 @@ class ContratController extends Controller
 
         //Récuperer l'UFR de l'utilisateur connecté
         //Seulement si l'utilisateur a le role Personnel
-        //Il faudra donc protéger la route
         $ufr = Auth::user()->ufr;
 
         //Trouver l'enseignant par son id
@@ -128,6 +127,7 @@ class ContratController extends Controller
         //Calcul des heures à effectuer
         $heure_theorique = $enseignant->cours->sum('heure_theorique');
 
+        dd($ufr);
         //Toutes les informations concernant les cours de l'enseignant
         $all_data_enseignants_cours = $enseignant->cours()->with('ecue', 'class')->get();
 
