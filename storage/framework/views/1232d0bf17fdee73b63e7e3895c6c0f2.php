@@ -7,9 +7,7 @@
     <link href="<?php echo e(URL::asset('build/libs/dropzone/dropzone.css')); ?>" rel="stylesheet">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-
     <div class="border card rounded-0">
-
         <div class="card-body">
             <form action="<?php echo e(route('users.store')); ?>" method="post">
                 <?php echo csrf_field(); ?>
