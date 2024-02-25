@@ -35,7 +35,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
-        $user->assignRole(Role::whereId($request->role_id)->first());
+        $user->assignRole(\Spatie\Permission\Models\Role::whereId($request->role_id)->first());
         notyf()->addSuccess('Utilisateur créé avec success.');
         return redirect()->route('users.create');
     }
