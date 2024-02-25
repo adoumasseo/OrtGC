@@ -37,7 +37,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link active" href="<?php echo e(route('dashboard')); ?>" role="button"
+                    <a class="nav-link menu-link <?php echo e(request()->is('/') ? 'active' : ''); ?>" href="<?php echo e(route('dashboard')); ?>" role="button"
                         aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="mdi mdi-speedometer"></i> <span><?php echo app('translator')->get('translation.dashboards'); ?>
                         </span>
@@ -45,7 +45,7 @@
                 </li>
                 <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')): ?>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                        <a class="nav-link menu-link <?php echo e(request()->is('annees-academique*') ? 'active' : ''); ?>" href="" role="button" aria-expanded="false"
                             aria-controls="sidebarDashboards">
                             <i class="bx bx-task"></i> <span>
                                 Année académique
@@ -65,7 +65,7 @@
 
                 <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')||Auth::user()->hasRole('Personnel')): ?>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="<?php echo e(route('enseignants.index')); ?>" role="button" aria-expanded="false"
+                        <a class="nav-link menu-link <?php echo e(request()->is('admin/enseignants*') ? 'active' : ''); ?>" href="<?php echo e(route('enseignants.index')); ?>" role="button" aria-expanded="false"
                             aria-controls="sidebarDashboards">
                             <i class="bx bx-task"></i> <span>
                                 Enseignants
@@ -83,7 +83,7 @@
                     </a>
                 </li>
 
-                
+
                 <!--
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="" role="button"
@@ -107,7 +107,7 @@
                 </li>-->
                 <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')): ?>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" href="<?php echo e(route('users.index')); ?>" role="button"
+                        <a class="nav-link menu-link <?php echo e(request()->is('admin/users') ? 'active' : ''); ?>" href="<?php echo e(route('users.index')); ?>" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
                             <i class="ri-account-circle-line"></i> <span>
                                 Gestion des utilisateurs
