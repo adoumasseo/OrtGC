@@ -36,6 +36,7 @@
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                         <th scope="col" style="width: 10px;"></th>
                                     @endif
+                                <th>Avatar</th>
                                 <th>Nom</th>
                                 <th>Prénoms</th>
                                 <th>Email</th>
@@ -59,13 +60,19 @@
                                                 </div>
                                             </th>
                                         @endif
+                                    <td>
+                                        <img class="rounded-circle header-profile-user" src="{{$item->avatar}}" alt="Header Avatar">
+                                    </td>
                                     <td>{{ $item->nom }}</td>
                                     <td>{{ $item->prenom }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->telephone }}</td>
 
                                     <td>
-                                        {{ $item->role?->first()->name?? '' }}</td>
+                                        @foreach($item->getRoleNames() as $roleName)
+                                            {{ $roleName }}
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('users.show', ['user' => $item->slug]) }}"

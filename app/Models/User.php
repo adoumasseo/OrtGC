@@ -31,7 +31,7 @@ class User extends Authenticatable
         'prenom',
         'email',
         'password',
-        'avatar', 'ufr_id', 'classe_id',
+        'avatar', 'ufr_id', 'classe_id', 'telephone', 'sexe',
         'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'
     ];
 

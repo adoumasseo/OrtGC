@@ -35,6 +35,7 @@
                                 <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                         <th scope="col" style="width: 10px;"></th>
                                     <?php endif; ?>
+                                <th>Avatar</th>
                                 <th>Nom</th>
                                 <th>Prénoms</th>
                                 <th>Email</th>
@@ -58,13 +59,20 @@
                                                 </div>
                                             </th>
                                         <?php endif; ?>
+                                    <td>
+                                        <img class="rounded-circle header-profile-user" src="<?php echo e($item->avatar); ?>" alt="Header Avatar">
+                                    </td>
                                     <td><?php echo e($item->nom); ?></td>
                                     <td><?php echo e($item->prenom); ?></td>
                                     <td><?php echo e($item->email); ?></td>
                                     <td><?php echo e($item->telephone); ?></td>
 
                                     <td>
-                                        <?php echo e($item->role?->first()->name?? ''); ?></td>
+                                        <?php $__currentLoopData = $item->getRoleNames(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $roleName): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php echo e($roleName); ?>
+
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="<?php echo e(route('users.show', ['user' => $item->slug])); ?>"
