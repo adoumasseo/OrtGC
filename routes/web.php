@@ -16,6 +16,7 @@ use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\EcueController;
 use App\Http\Controllers\FiliereController;
 use App\Http\Controllers\ProgrammationController;
+use App\Http\Controllers\CoursController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/programmation/{classe}/edit', 'edit')->name('programmation.edit');
         Route::get('/programmation/create', 'create')->name('programmation.create');
         Route::post('/programmation/store', 'store')->name('programmation.store');
+    });
+
+    Route::controller(CoursController::class)->group(function () {
+        Route::get('/cours', 'index')->name('cours.index');
+        Route::get('/cours/{classe}/show', 'show')->name('cours.show');
+        Route::get('/cours/{classe}/edit', 'edit')->name('cours.edit');
+        Route::get('/cours/create', 'create')->name('cours.create');
+        Route::post('/cours/store', 'store')->name('cours.store');
     });
 
     Route::resources([

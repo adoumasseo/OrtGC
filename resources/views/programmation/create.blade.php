@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div data-repeater-list="programmation">
+    <div data-repeater-list="programmation">
         <div data-repeater-item>
             <div class="border card rounded-0">
                 <div class="card-header">
@@ -131,8 +131,8 @@
                 </div>
             </div>
         </div>
-        </div>
-        <input data-repeater-create type="button" class="btn btn-primary" value="Ajouter une UE" id="repeater-button"/>
+    </div>
+    <input data-repeater-create type="button" class="btn btn-primary" value="Ajouter une UE" id="repeater-button"/>
 
         <div class="px-2 py-3 mt-3 bg-light d-flex justify-content-between">
             <a href="{{ route('banques.index') }}" type="button"

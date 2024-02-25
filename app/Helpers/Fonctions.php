@@ -4,6 +4,9 @@ use App\Models\Ufr;
 use App\Models\Classe;
 use App\Models\Annee;
 use App\Models\Cours;
+use App\Models\Ue;
+use App\Models\Ecue;
+use App\Models\Enseignant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +46,7 @@ function getSemestre($niveau){
     return array($debut,$debut+1);
 }
 
-function getUeBySemestre($classe_id,$semestre){
+function getCoursByClasseBySemestre($classe_id,$semestre){
     $params = ['classe_id' => $classe_id, 'semestre' => $semestre];
     return Cours::where($params)->get();
 }
@@ -54,4 +57,32 @@ function getEnseignantsByUfr($ufr_id){
                    ->where('exercer.ufr_id','=',$ufr_id)
                    ->get();
     return $enseignants; 
+}
+
+function rechercherUe($val){
+    $ue=Ue::find($val);
+    if($ue){
+        return $ue;
+    }else{
+        $ue=Ue::create([
+            'nom' => $val
+        ]);
+        return $ue;
+    }
+}
+
+function rechercherEcue($val){
+    $ecue=Ecue::find($val);
+    if($ecue){
+        return $ecue;
+    }else{
+        $ecue=Ecue::create([
+            'nom' => $val
+        ]);
+        return $ecue;
+    }
+}
+
+function rechercherEnseignant($val){
+    return Enseignant::find($val);
 }

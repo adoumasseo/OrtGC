@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
- * @property Ecue[] $ecues
  */
 class Ue extends Model
 {
@@ -26,13 +25,6 @@ class Ue extends Model
      */
     protected $fillable = ['code', 'nom', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function ecues()
-    {
-        return $this->hasMany('App\Models\Ecue');
-    }
 
     public function sluggable(): array
      {

@@ -15,24 +15,32 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('contrat_id')->nullable();
             $table->unsignedBigInteger('annee_id');
-            $table->unsignedBigInteger('enseignant_id');
+            $table->integer('semestre')->nullable();
             $table->unsignedBigInteger('ue_id');
+            $table->integer('credit')->nullable();
+            $table->string('montant')->nullable();
 
             $table->unsignedBigInteger('ecue1');
             $table->unsignedBigInteger('enseignant1');
+            $table->integer('heure_theorique1')->nullable();
+            $table->integer('heure_execute1')->nullable();
+            $table->integer('etat1')->nullable();
+            $table->time('plage_debut1')->nullable();
+            $table->time('plage_fin1')->nullable();
+            $table->date('date_debut1')->nullable();
+            $table->date('date_fin1')->nullable();
+            $table->datetime('date_composition1')->nullable();
+
             $table->unsignedBigInteger('ecue2')->nullable();
             $table->unsignedBigInteger('enseignant2')->nullable();
-
-            $table->integer('semestre')->nullable();
-            $table->integer('heure_theorique');
-            $table->integer('heure_execute')->nullable();
-            $table->time('plage_debut')->nullable();
-            $table->time('plage_fin')->nullable();
-            $table->date('date_debut')->nullable();
-            $table->date('date_fin')->nullable();
-            $table->integer('etat')->nullable();
-            $table->string('montant')->nullable();
-            $table->datetime('date_composition')->nullable();
+            $table->integer('heure_theorique2')->nullable();
+            $table->integer('heure_execute2')->nullable();
+            $table->integer('etat2')->nullable();
+            $table->time('plage_debut2')->nullable();
+            $table->time('plage_fin2')->nullable();
+            $table->date('date_debut2')->nullable();
+            $table->date('date_fin2')->nullable();
+            $table->datetime('date_composition2')->nullable();
             
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
@@ -44,12 +52,6 @@ return new class extends Migration
             $table->foreign('annee_id')
                 ->references('id')
                 ->on('annees')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
-
-                $table->foreign('enseignant_id')
-                ->references('id')
-                ->on('enseignants')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
 

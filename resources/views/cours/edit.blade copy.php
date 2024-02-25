@@ -14,18 +14,18 @@
         @foreach ( getSemestre($classe->niveau) as $semestre)  
             <div class="accordion-item">
                 <h2 class="accordion-header" id="accordionlefticonExample{{ $semestre }}">
-                    <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#accor_lefticonExamplecollapse{{ $semestre }}" aria-expanded="true" aria-controls="accor_lefticonExamplecollapse{{ $semestre }}">
+                    <button class="accordion-button fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accor_lefticonExamplecollapse{{ $semestre }}" aria-expanded="false" aria-controls="accor_lefticonExamplecollapse{{ $semestre }}">
                         Semestre {{ $semestre }}
                     </button>
                 </h2>
-                <div id="accor_lefticonExamplecollapse{{ $semestre }}" class="accordion-collapse collapse show" aria-labelledby="accordionlefticonExample{{ $semestre }}" data-bs-parent="#accordionlefticon" style="">
+                <div id="accor_lefticonExamplecollapse{{ $semestre }}" class="accordion-collapse collapse" aria-labelledby="accordionlefticonExample{{ $semestre }}" data-bs-parent="#accordionlefticon" style="">
                     <div class="accordion-body">
                                 <div class="accordion-flush" id="accordionFlushExample">
                                     <div class='repeater'>
                                         <div data-repeater-list="programmation{{ $semestre }}">
-                                            @if(getCoursByClasseBySemestre($classe->id,$semestre))
-                                                @foreach ( getCoursByClasseBySemestre($classe->id,$semestre) as $cours)
-                                                    <div data-repeater-item>
+                                            <div data-repeater-item>
+                                                @if(getCoursByClasseBySemestre($classe->id,$semestre))
+                                                    @foreach ( getCoursByClasseBySemestre($classe->id,$semestre) as $cours)
                                                         <div class="border card rounded-0">
                                                             <div class="card-body">
                                                                 <div class="py-2 row">
@@ -88,7 +88,7 @@
                                                                     </div>
                                                                     <div class="mb-3 col-md-4">
                                                                         <label for="" class="form-label">Masse horaire</label>
-                                                                        <input type="text" class="form-control" name="masse2" value="{{ $cours->heure_theorique2}}">
+                                                                        <input type="text" class="form-control" name="masse2" value="{{ $cours->heure_theorique2 }}">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -96,10 +96,8 @@
                                                                 <input data-repeater-delete type="button"  class="btn btn-danger" value="Supprimer l'UE"/>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                @endforeach
-                                            @else
-                                                <div data-repeater-item>
+                                                    @endforeach
+                                                @else
                                                     <div class="border card rounded-0">
                                                         <div class="card-body">
                                                             <div class="py-2 row">
@@ -170,9 +168,8 @@
                                                             <input data-repeater-delete type="button"  class="btn btn-danger" value="Supprimer l'UE"/>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                            @endif
+                                                @endif
+                                            </div>
                                         </div>
                                         <input data-repeater-create type="button" class="btn btn-primary" value="Ajouter une UE" id="repeater-button"/> 
                                     </div>

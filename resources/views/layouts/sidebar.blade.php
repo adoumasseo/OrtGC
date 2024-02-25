@@ -5,19 +5,19 @@
         <!-- Dark Logo-->
         <a href="index" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="{{ URL::asset('assets/images/lsogo-sm.png') }}" alt="" height="22">
+                <img src="{{ URL::asset('images/logo.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ URL::asset('images/logoblanc.png') }}" alt="" height="50">
+                <img src="{{ URL::asset('images/logo.png') }}" alt="" height="50">
             </span>
         </a>
         <!-- Light Logo-->
         <a href="index" class="logo logo-light">
             <span class="logo-sm">
-                <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                <img src="{{ URL::asset('images/logo.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ URL::asset('assets/images/logo-light.png') }}" alt="" height="17">
+                <img src="{{ URL::asset('images/logo.png') }}" alt="" height="17">
             </span>
         </a>
         <button type="button" class="p-0 btn btn-sm fs-20 header-item float-end btn-vertical-sm-hover"
@@ -84,6 +84,41 @@
                         </a>
                     </li>
                 @endif
+
+                @if (Auth::user()->hasRole('Chef de Département'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('cours*') ? 'active' : '' }}" href="{{ route('cours.index') }}" role="button" aria-expanded="false"
+                        aria-controls="sidebarDashboards">
+                        <i class="bx bx-task"></i> <span>
+                            Tables de spécification
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarMultilevel" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
+                        <i class="ri-stack-line"></i> <span data-key="t-multi-level">Mon département</span>
+                    </a>
+
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('filieres.index') }}" class="nav-link" data-key="t-level-1.1">Filières</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('classes.index') }}" class="nav-link" data-key="t-level-1.1">Classes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @endif
+
+
 
                 @if (Auth::user()->hasRole('Ufr'))
                 <li class="nav-item">

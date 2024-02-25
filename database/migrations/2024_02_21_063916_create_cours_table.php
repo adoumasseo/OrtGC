@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('cours', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('classe_id');
+            $table->integer('semestre');
             $table->unsignedBigInteger('ue_id');
+            $table->integer('credit');
 
-            $table->unsignedBigInteger('ecue1');
-            $table->unsignedBigInteger('enseignant1');
+            $table->unsignedBigInteger('ecue1')->nullable();
+            $table->unsignedBigInteger('enseignant1')->nullable();
+            $table->integer('heure_theorique1')->nullable();
             $table->unsignedBigInteger('ecue2')->nullable();
             $table->unsignedBigInteger('enseignant2')->nullable();
-
-            $table->integer('semestre');
-            $table->integer('credit');
-            $table->integer('heure_theorique');
+            $table->integer('heure_theorique2')->nullable();
 
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();

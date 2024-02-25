@@ -17,22 +17,18 @@ class EcueSeeder extends Seeder
             [
                 'code' => '1MTH100',
                 'nom' => "Algèbre",
-                'ue_id' => 1,
             ],
             [
                 'code' => '2MTH100',
                 'nom' => "Analyse",
-                'ue_id' => 1,
             ],
             [
                 'code' => '1INF101',
                 'nom' => "Théorie des bases de données",
-                'ue_id' => 2,
             ],
             [
                 'code' => '1INF101',
                 'nom' => "SGBD",
-                'ue_id' => 2,
             ],
         ];
         foreach ($ecues as $ecue) {
@@ -40,7 +36,6 @@ class EcueSeeder extends Seeder
             Ecue::create([
                 'code' => $ecue['code'],
                 'nom' => $ecue['nom'],
-                'ue_id' => $ecue['ue_id'],
             ]);
         }
     }
