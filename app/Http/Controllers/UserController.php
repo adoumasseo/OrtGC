@@ -45,7 +45,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user' ));
+        $universites = Universite::all();
+        $roles = Role::all();
+        return view('users.show', compact('user', 'universites', 'roles' ));
     }
 
     /**
@@ -53,7 +55,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user' ));
+        $universites = Universite::all();
+        $roles = Role::all();
+        return view('users.edit', compact('user' , 'universites', 'roles'));
     }
 
     /**
