@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cahiers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('enseigner_id');
+            $table->unsignedBigInteger('programmation_id');
             $table->date('date')->nullable();
             $table->time('heure_debut')->nullable();
             $table->time('heure_fin')->nullable();
@@ -25,9 +25,9 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('enseigner_id')
+            $table->foreign('programmation_id')
                 ->references('id')
-                ->on('cours')
+                ->on('programmations')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
         });

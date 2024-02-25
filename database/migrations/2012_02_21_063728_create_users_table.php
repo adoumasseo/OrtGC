@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('sexe')->nullable();
             $table->string('email')->unique();
             $table->unsignedBigInteger('ufr_id')->nullable();
+            $table->unsignedBigInteger('departement_id')->nullable();
             $table->unsignedBigInteger('classe_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -38,6 +39,12 @@ class CreateUsersTable extends Migration
             $table->foreign('ufr_id')
                 ->references('id')
                 ->on('ufrs')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
+            
+            $table->foreign('departement_id')
+                ->references('id')
+                ->on('departements')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
 

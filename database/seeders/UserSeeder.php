@@ -40,6 +40,22 @@ class UserSeeder extends Seeder
         ]);
 
         $manager->assignRole('Manager');
+        $manager->assignRole('Ufr');
+
+        $cd = User::create([
+            'nom' => 'SENOU',
+            'prenom' => 'Barthélémy',
+            'email' => 'senou@uac.bj',
+            'ufr_id' => 1,
+            'departement_id' => 1,
+            'password' => Hash::make('admin'),
+            'email_verified_at'=>'2022-01-02 17:04:58',
+            'avatar' => 'avatar-1.jpg',
+            'created_at' => now()
+        ]);
+
+        $cd->assignRole('Chef de Département');
+        $cd->assignRole('Ufr');
 
         $personnel = User::create(['nom' => 'Personnel',
         'prenom' => 'UAC',
@@ -50,6 +66,7 @@ class UserSeeder extends Seeder
         'avatar' => 'avatar-1.jpg','created_at' => now(),]);
 
         $personnel->assignRole('Personnel');
+        $personnel->assignRole('Ufr');
 
         $programmation = User::create(['nom' => 'Programmation',
         'prenom' => 'ENEAM',
@@ -60,6 +77,7 @@ class UserSeeder extends Seeder
         'avatar' => 'avatar-1.jpg','created_at' => now(),]);
 
         $programmation->assignRole('Programmation');
+        $programmation->assignRole('Ufr');
 
         $assistant = User::create(['nom' => 'Programmation',
         'prenom' => 'Assistant',
@@ -70,6 +88,7 @@ class UserSeeder extends Seeder
         'avatar' => 'avatar-1.jpg','created_at' => now(),]);
 
         $assistant->assignRole('Assistant Programmation');
+        $assistant->assignRole('Ufr');
 
 
         $responsable = User::create(['nom' => 'Responsable',

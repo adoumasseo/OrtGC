@@ -15,6 +15,7 @@ use App\Http\Controllers\UfrController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\EcueController;
 use App\Http\Controllers\FiliereController;
+use App\Http\Controllers\ProgrammationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,14 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
         Route::post('/delete-filieres', 'deleteFilieres')->name('delete-filieres');
         Route::post('/delete-users', 'deleteUsers')->name('delete-users');
+    });
+
+    Route::controller(ProgrammationController::class)->group(function () {
+        Route::get('/programmations', 'index')->name('programmations.index');
+        Route::get('/programmation/{classe}/show', 'show')->name('programmation.show');
+        Route::get('/programmation/{classe}/edit', 'edit')->name('programmation.edit');
+        Route::get('/programmation/create', 'create')->name('programmation.create');
+        Route::post('/programmation/store', 'store')->name('programmation.store');
     });
 
     Route::resources([

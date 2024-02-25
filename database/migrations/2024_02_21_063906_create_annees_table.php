@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('annees', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('nom');
+            $table->date('debut')->nullable();
+            $table->date('fin')->nullable();
+            $table->string('slug');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

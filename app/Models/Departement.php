@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Models;
-
 use App\Models\Scopes\Searchable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +11,6 @@ use Wildside\Userstamps\Userstamps;
 /**
  * @property integer $id
  * @property integer $ufr_id
- * @property integer $chef_departement
  * @property string $code
  * @property string $nom
  * @property string $logo
@@ -25,8 +22,8 @@ use Wildside\Userstamps\Userstamps;
  * @property string $updated_at
  * @property string $deleted_at
  * @property Ufr $ufr
- * @property Enseignant $enseignant
  * @property Filiere[] $filieres
+ * @property User[] $users
  */
 class Departement extends Model
 {
@@ -34,8 +31,31 @@ class Departement extends Model
     /**
      * @var array
      */
-    protected $fillable = ['ufr_id', 'chef_departement', 'code', 'nom', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['ufr_id', 'code', 'nom', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ufr()
+    {
+        return $this->belongsTo('App\Models\Ufr');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function filieres()
+    {
+        return $this->hasMany('App\Models\Filiere');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 
     public function sluggable(): array
     {
@@ -49,33 +69,5 @@ class Departement extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
-    }
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function ufr()
-    {
-        return $this->belongsTo('App\Models\Ufr');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function enseignant()
-    {
-        return $this->belongsTo('App\Models\Enseignant', 'chef_departement');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function filieres()
-    {
-        return $this->hasMany('App\Models\Filiere');
-    }
-
-    public function imageUrl(): string
-    {
-        return Storage::disk('public')->url($this->logo);
     }
 }

@@ -19,7 +19,15 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'web',
             ],
             [
+                'name' => 'Ufr',
+                'guard_name' => 'web',
+            ],
+            [
                 'name' => 'Manager',
+                'guard_name' => 'web',
+            ],
+            [
+                'name' => 'Chef de Département',
                 'guard_name' => 'web',
             ],
             [

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('nom')->nullable();
             $table->unsignedBigInteger('ufr_id');
-            $table->unsignedBigInteger('chef_departement')->nullable();
             $table->string('logo')->nullable();
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();

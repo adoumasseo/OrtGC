@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Liste des universites
+    Programmation des cours
 @endsection
 @section('css')
     <!--datatable css-->
@@ -20,7 +20,7 @@
                 <div class="card-body">
 
                     <div class="mb-3">
-                        <a href="{{ route('universites.create') }}">
+                        <a href="{{ route('banques.create') }}">
                             <button type="button" class="btn btn-success add-btn">
                                 <i class="align-bottom ri-add-line me-1"></i> Ajouter
                             </button>
@@ -28,59 +28,51 @@
                         <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
                     </div>
                     <div class="table-responsive">
-                        <table id="universitesTable" class="table align-middle table-bordered table-striped"
-                            style="width:100%">
+                        <table id="banquesTable" class="table align-middle table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                        <th scope="col" style="width: 10px;" sort="false"></th>
+                                    @if(Auth::user()->hasRole('Administrateur'))
+                                        <th>Université</th>
+                                        <th>Ufr</th>
                                     @endif
-                                    <th>Code</th>
-                                    <th>Nom</th>
-                                    <th>Email</th>
-                                    <th>Recteur</th>
-                                    @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                        <th class="" data-sort="action" style="width: 40px;">Actions</th>
+                                    <th>Département</th>
+                                    <th>Filière</th>
+                                    <th>Classe</th>
+                                    <th>Semestre impaire</th>
+                                    <th>Semestre paire</th>
+                                    @if (Auth::user()->hasRole('Programmation'))
+                                        <th class="" data-sort="action" style="width: 30px;">Actions</th>
                                     @else
-                                        <th class="" data-sort="action" style="width: 20px;">Actions</th>
+                                        <th class="" data-sort="action" style="width: 15px;">Actions</th>
                                     @endif
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($universites as $item)
+                                @foreach ($classes as $classe)
                                     <tr>
-                                        @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                            <th scope="row">
-                                                <div class="form-check">
-                                                    <input class="form-check-input fs-15" type="checkbox" name="check"
-                                                        value="{{ $item->id }}">
-                                                </div>
-                                            </th>
+                                        @if(Auth::user()->hasRole('Administrateur'))
+                                            <td>{{ $classe->filiere->departement->ufr->universite->code }}</td>
+                                            <td>{{ $classe->filiere->departement->ufr->code }}</td>
                                         @endif
-                                        <td>{{ $item->code }}</td>
-                                        <td>{{ $item->nom }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->recteur }}</td>
+                                        <td>{{ $classe->filiere->departement->nom }}</td>
+                                        <td>{{ $classe->filiere->nom }}</td>
+                                        <td>{{ $classe->nom }}</td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('universites.show', ['universite' => $item->slug]) }}"
+                                                <a href="{{ route('programmation.show', ['classe' => $classe->slug]) }}"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="Voir"
+                                                    title="Voir la programmation"
                                                     class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                         class="ri-eye-line"></i></a>
-                                                @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                                    <a href="{{ route('universites.edit', ['universite' => $item->slug]) }}"
+                                                @if (Auth::user()->hasRole('Programmation'))
+                                                    <a href="{{ route('programmation.edit', ['classe' => $classe->slug]) }}"
                                                         type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Editer"
+                                                        title="Programmer"
                                                         class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i
                                                             class="ri-edit-line"></i>
                                                     </a>
-
-                                                    <button type="button" data-universite="{{ $item->slug }}"
-                                                        data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Supprimer" id="{{ $item->id }}"
-                                                        class="mb-1 ms-1 btn-delete btn btn-sm btn-danger btn-icon waves-effect waves-light"><i
-                                                            class="ri-close-line"></i></button>
                                                 @endif
 
 
@@ -115,6 +107,6 @@
     <script src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
     <script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/pages/customs/universite.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/pages/customs/banque.js') }}"></script>
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection

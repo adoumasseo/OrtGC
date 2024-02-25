@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cours', function (Blueprint $table) {
+        Schema::create('programmations', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('classe_id');
+            $table->unsignedBigInteger('contrat_id')->nullable();
+            $table->unsignedBigInteger('annee_id');
+            $table->unsignedBigInteger('enseignant_id');
             $table->unsignedBigInteger('ue_id');
 
             $table->unsignedBigInteger('ecue1');
@@ -21,10 +23,17 @@ return new class extends Migration
             $table->unsignedBigInteger('ecue2')->nullable();
             $table->unsignedBigInteger('enseignat2')->nullable();
 
-            $table->integer('semestre');
-            $table->integer('credit');
+            $table->integer('semestre')->nullable();
             $table->integer('heure_theorique');
-
+            $table->integer('heure_execute')->nullable();
+            $table->time('plage_debut')->nullable();
+            $table->time('plage_fin')->nullable();
+            $table->date('date_debut')->nullable();
+            $table->date('date_fin')->nullable();
+            $table->integer('etat')->nullable();
+            $table->string('montant')->nullable();
+            $table->datetime('date_composition')->nullable();
+            
             $table->string('slug')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -32,19 +41,37 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('classe_id')
+            $table->foreign('annee_id')
                 ->references('id')
-                ->on('classes')
+                ->on('annees')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
-            
+
+                $table->foreign('enseignant_id')
+                ->references('id')
+                ->on('enseignants')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
+
             $table->foreign('ue_id')
                 ->references('id')
                 ->on('ues')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
 
-            $table->foreign('ecue1')
+            $table->foreign('ecue_id')
+                ->references('id')
+                ->on('ecues')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
+            
+            $table->foreign('contrat_id')
+                ->references('id')
+                ->on('contrats')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
+
+                $table->foreign('ecue1')
                 ->references('id')
                 ->on('ecues')
                 ->onUpdate('restrict')
@@ -67,8 +94,6 @@ return new class extends Migration
                 ->on('enseignants')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
-
-            
         });
     }
 
@@ -77,6 +102,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('enseigner');
+        Schema::dropIfExists('programmations');
     }
 };

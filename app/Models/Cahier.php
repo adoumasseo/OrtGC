@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property integer $id
- * @property integer $enseigner_id
+ * @property integer $programmation_id
  * @property string $date
  * @property string $heure_debut
  * @property string $heure_fin
@@ -18,20 +18,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
- * @property Cour $cour
+ * @property Programmation $programmation
  */
 class Cahier extends Model
 {
     /**
      * @var array
      */
-    protected $fillable = ['enseigner_id', 'date', 'heure_debut', 'heure_fin', 'libelles', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['programmation_id', 'date', 'heure_debut', 'heure_fin', 'libelles', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function cour()
+    public function programmation()
     {
-        return $this->belongsTo('App\Models\Cour', 'enseigner_id');
+        return $this->belongsTo('App\Models\Programmation');
     }
 }

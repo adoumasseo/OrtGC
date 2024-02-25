@@ -68,4 +68,25 @@ class User extends Authenticatable
     {
         return 'slug';
     }
+
+    public function hasRole($roleName)
+    {
+        $roles = $this->getRoleNames()->toArray();
+
+        // Check if the user has the specific role
+        if (in_array($roleName, $roles)) {
+            return true;
+        }
+
+        // Check if the user has a parent role with hierarchy
+        foreach ($roles as $role) {
+            $roleModel = Role::where('name', $role)->first();  //dd($roleModel->parent);
+
+            if ($roleModel && $roleModel->parent && $roleModel->parent->name == $roleName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

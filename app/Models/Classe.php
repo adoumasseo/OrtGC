@@ -2,7 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\Searchable;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Wildside\Userstamps\Userstamps;
 
 /**
  * @property integer $id
@@ -24,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Classe extends Model
 {
+    use HasFactory, Searchable, SoftDeletes, Sluggable, Userstamps;
     /**
      * @var array
      */
@@ -59,5 +65,19 @@ class Classe extends Model
     public function users()
     {
         return $this->hasMany('App\Models\User', 'classe_id');
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nom'
+            ]
+        ];
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

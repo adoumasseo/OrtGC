@@ -3,7 +3,9 @@
 use App\Models\Ufr;
 use App\Models\Classe;
 use App\Models\Annee;
+use App\Models\Cours;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 function getUfr(){
     $user = Auth::user();
@@ -34,4 +36,22 @@ function getAnnee()
         session()->put('ANNEE_ID', $annee ? $annee->id : null);
     }
     return $annee;
+}
+
+function getSemestre($niveau){
+    $debut=2 * ($niveau - 1);
+    return array($debut,$debut+1);
+}
+
+function getUeBySemestre($classe_id,$semestre){
+    $params = ['classe_id' => $classe_id, 'semestre' => $semestre];
+    return Cours::where($params)->get();
+}
+
+function getEnseignantsByUfr($ufr_id){
+    $enseignants=DB::table('enseignants')
+                   ->join('exercer', 'enseignants.id','=','exercer.enseignant_id')
+                   ->where('exercer.ufr_id','=',$ufr_id)
+                   ->get();
+    return $enseignants; 
 }
