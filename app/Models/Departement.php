@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 use App\Models\Scopes\Searchable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;

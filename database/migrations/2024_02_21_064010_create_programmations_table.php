@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ecue1');
             $table->unsignedBigInteger('enseignant1');
             $table->unsignedBigInteger('ecue2')->nullable();
-            $table->unsignedBigInteger('enseignat2')->nullable();
+            $table->unsignedBigInteger('enseignant2')->nullable();
 
             $table->integer('semestre')->nullable();
             $table->integer('heure_theorique');
@@ -56,12 +56,6 @@ return new class extends Migration
             $table->foreign('ue_id')
                 ->references('id')
                 ->on('ues')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
-
-            $table->foreign('ecue_id')
-                ->references('id')
-                ->on('ecues')
                 ->onUpdate('restrict')
                 ->onDelete('restrict');
             

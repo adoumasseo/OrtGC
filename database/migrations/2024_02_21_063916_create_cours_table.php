@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ecue1');
             $table->unsignedBigInteger('enseignant1');
             $table->unsignedBigInteger('ecue2')->nullable();
-            $table->unsignedBigInteger('enseignat2')->nullable();
+            $table->unsignedBigInteger('enseignant2')->nullable();
 
             $table->integer('semestre');
             $table->integer('credit');
