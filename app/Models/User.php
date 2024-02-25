@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Scopes\Searchable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\Permission\Traits\HasRoles;
@@ -13,6 +14,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Wildside\Userstamps\Userstamps;
 
+/**
+ * @property Ufr $ufr
+ */
 class User extends Authenticatable
 {
     use HasRoles, Notifiable, HasFactory, Searchable, SoftDeletes, Sluggable, Userstamps;
@@ -27,7 +31,7 @@ class User extends Authenticatable
         'prenom',
         'email',
         'password',
-        'avatar', 'ufr_id', 'classe_id',
+        'avatar', 'ufr_id', 'departement_id','classe_id', 'telephone', 'sexe',
         'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'
     ];
 
@@ -69,24 +73,21 @@ class User extends Authenticatable
         return 'slug';
     }
 
-    public function hasRole($roleName)
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ufr()
     {
-        $roles = $this->getRoleNames()->toArray();
+        return $this->belongsTo('App\Models\Ufr');
+    }
 
-        // Check if the user has the specific role
-        if (in_array($roleName, $roles)) {
-            return true;
-        }
+    public function classe()
+    {
+        return $this->belongsTo('App\Models\Classe');
+    }
 
-        // Check if the user has a parent role with hierarchy
-        foreach ($roles as $role) {
-            $roleModel = Role::where('name', $role)->first();  //dd($roleModel->parent);
-
-            if ($roleModel && $roleModel->parent && $roleModel->parent->name == $roleName) {
-                return true;
-            }
-        }
-
-        return false;
+    public function departement()
+    {
+        return $this->belongsTo('App\Models\Departement');
     }
 }

@@ -35,7 +35,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
-        $user->assignRole(Role::whereId($request->role_id)->first());
+        $user->assignRole(\Spatie\Permission\Models\Role::whereId($request->role_id)->first());
         notyf()->addSuccess('Utilisateur créé avec success.');
         return redirect()->route('users.create');
     }
@@ -45,7 +45,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', compact('user' ));
+        $universites = Universite::all();
+        $roles = Role::all();
+        return view('users.show', compact('user', 'universites', 'roles' ));
     }
 
     /**
@@ -53,7 +55,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', compact('user' ));
+        $universites = Universite::all();
+        $roles = Role::all();
+        return view('users.edit', compact('user' , 'universites', 'roles'));
     }
 
     /**

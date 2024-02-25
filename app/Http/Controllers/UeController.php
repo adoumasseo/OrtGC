@@ -16,9 +16,7 @@ class UeController extends Controller
      */
     public function index(Request $request): View
     {
-
         $ues = Ue::get();
-
         return view('ues.index', compact('ues'));
     }
 

@@ -52,10 +52,10 @@ class UfrController extends Controller
          */
         $logo = $validated['logo'] ?? null;
 
-        if ($logo === null || $logo->getError()) {
-            return $validated;
+        if ($logo != null) {
+            $validated['logo'] = $logo->store('images/ufrs', 'public');
         }
-        $validated['logo'] = $logo->store('images/ufrs', 'public');
+
         $ufr = Ufr::create($validated);
         notyf()->addSuccess('Ufr créée avec success.');
         return redirect()->route('ufrs.create');
@@ -78,7 +78,7 @@ class UfrController extends Controller
         $universites = Universite::get();
         return view(
             'ufrs.edit',
-            compact('ufr','universites')
+            compact('ufr', 'universites')
         );
     }
 
@@ -96,10 +96,9 @@ class UfrController extends Controller
          */
         $logo = $validated['logo'] ?? null;
 
-        if ($logo === null || $logo->getError()) {
-            return $validated;
+        if ($logo != null) {
+            $validated['logo'] = $logo->store('images/ufrs', 'public');
         }
-        $validated['logo'] = $logo->store('images/ufrs', 'public');
 
         $ufr->update($validated);
         notyf()->addSuccess('Ufr modifiée avec success.');
