@@ -26,7 +26,7 @@ class StoreEnseignantRequest extends FormRequest
             'prenoms' => ['required', 'max:191', 'string'],
             'adresse' => ['required', 'max:191', 'string'],
             'telephone' => ['required', 'max:191', 'string'],
-            'npi' => ['required', 'max:191', 'string', 'unique:users,npi'],
+            'npi' => ['required', 'max:191', 'string', 'unique:enseignants,npi'],
             'banque_id' => ['required', 'max:10', 'integer'],
             'compte' => ['required', 'max:191', 'string'],
             'ifu' => ['required', 'max:191', 'string'],

@@ -128,7 +128,7 @@
                             <div class="dropzone">
                                 <div class="dz-message needsclick">
                                     <div class="mb-3 ">
-                                        <img data-dz-thumbnail class="img-fluid rounded d-block" src="{{old('avatar', $user->avatar)}}"
+                                        <img data-dz-thumbnail class="img-fluid rounded d-block" src="{{old('avatar', "storage/{$user->avatar}")}}"
                                              alt=""/>
                                     </div>
 

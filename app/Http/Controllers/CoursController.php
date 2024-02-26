@@ -121,8 +121,6 @@ class CoursController extends Controller
     {
         $user = Auth::user();
         $departement = $user->departement;
-
-        dd(isTransmis($departement->id));
         
         $classes = Classe::with('filiere')->whereHas('filiere', function ($query) use ($departement) {
                 $query->where('departement_id', $departement->id);

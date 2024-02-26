@@ -28,8 +28,7 @@ class EcueController extends Controller
      */
     public function create(Request $request): View
     {
-        $ues = Ue::get();
-        return view('ecues.create', compact('ues'));
+        return view('ecues.create');
     }
 
     /**
@@ -60,10 +59,9 @@ class EcueController extends Controller
      */
     public function edit(Request $request, Ecue $ecue): View
     {
-        $ues = Ue::get();
         return view(
             'ecues.edit',
-            compact('ecue', 'ues')
+            compact('ecue')
         );
     }
 

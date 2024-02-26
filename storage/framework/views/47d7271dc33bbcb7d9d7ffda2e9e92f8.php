@@ -13,6 +13,28 @@
     <link href="<?php echo e(URL::asset('assets/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+
+<?php if(isTransmis($departement->id)): ?>
+    <div class="alert alert-danger alert-dismissible alert-additional fade show mb-xl-0" role="alert">
+        <div class="alert-body">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                    <i class="ri-alert-line fs-16 align-middle"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h5 class="alert-heading">Something is very wrong!</h5>
+                    <p class="mb-0">Change a few things up and try submitting again.</p>
+                </div>
+            </div>
+        </div>
+        <div class="alert-content">
+            <p class="mb-0">Whenever you need to, be sure to use margin
+                utilities to keep things nice and tidy.</p>
+        </div>
+    </div>
+<?php endif; ?>
+
     <div class="row mb-3">
         <div class="col-lg-12">
             <a href="<?php echo e(route('cours.post_transmettre')); ?>">

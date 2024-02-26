@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
             'ufr_id' => null,
             'password' => Hash::make('admin'),
             'email_verified_at'=>'2022-01-02 17:04:58',
-            'avatar' => 'avatar-1.jpg',
+            //'avatar' => 'avatar-1.jpg',
             'created_at' => now()
         ]);
 
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'ufr_id' => 1,
             'password' => Hash::make('admin'),
             'email_verified_at'=>'2022-01-02 17:04:58',
-            'avatar' => 'avatar-1.jpg',
+            //'avatar' => 'avatar-1.jpg',
             'created_at' => now()
         ]);
 
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             'departement_id' => 1,
             'password' => Hash::make('admin'),
             'email_verified_at'=>'2022-01-02 17:04:58',
-            'avatar' => 'avatar-1.jpg',
+            //'avatar' => 'avatar-1.jpg',
             'created_at' => now()
         ]);
 
@@ -63,7 +63,8 @@ class UserSeeder extends Seeder
         'ufr_id' => 1,
         'password' => Hash::make('admin'),
         'email_verified_at'=>'2022-01-02 17:04:58',
-        'avatar' => 'avatar-1.jpg','created_at' => now(),]);
+        //'avatar' => 'avatar-1.jpg',
+        'created_at' => now(),]);
 
         $personnel->assignRole('Personnel');
         $personnel->assignRole('Ufr');
@@ -74,7 +75,8 @@ class UserSeeder extends Seeder
         'ufr_id' => 1,
         'password' => Hash::make('admin'),
         'email_verified_at'=>'2022-01-02 17:04:58',
-        'avatar' => 'avatar-1.jpg','created_at' => now(),]);
+        //'avatar' => 'avatar-1.jpg',
+        'created_at' => now(),]);
 
         $programmation->assignRole('Programmation');
         $programmation->assignRole('Ufr');
@@ -85,7 +87,8 @@ class UserSeeder extends Seeder
         'ufr_id' => 1,
         'password' => Hash::make('admin'),
         'email_verified_at'=>'2022-01-02 17:04:58',
-        'avatar' => 'avatar-1.jpg','created_at' => now(),]);
+        //'avatar' => 'avatar-1.jpg',
+        'created_at' => now(),]);
 
         $assistant->assignRole('Assistant Programmation');
         $assistant->assignRole('Ufr');
@@ -97,7 +100,8 @@ class UserSeeder extends Seeder
         'classe_id' => 1,
         'password' => Hash::make('admin'),
         'email_verified_at'=>'2022-01-02 17:04:58',
-        'avatar' => 'avatar-1.jpg','created_at' => now(),]);
+        //'avatar' => 'avatar-1.jpg',
+        'created_at' => now(),]);
 
         $responsable->assignRole('Responsable');
 
