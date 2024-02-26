@@ -19,6 +19,24 @@ class DepartementSeeder extends Seeder
                 'nom' => "Informatique de Gestion",
                 'ufr_id' => 1,
             ],
+
+            [
+                'code' => 'STAT',
+                'nom' => "Statistiques",
+                'ufr_id' => 1,
+            ],
+
+            [
+                'code' => 'PLAN',
+                'nom' => "Planification du Développement",
+                'ufr_id' => 1,
+            ],
+
+            [
+                'code' => 'MO',
+                'nom' => "Management des Organisations",
+                'ufr_id' => 1,
+            ],
         ];
         foreach ($departements as $departement) {
 
