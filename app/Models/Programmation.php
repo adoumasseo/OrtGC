@@ -53,7 +53,7 @@ class Programmation extends Model
     /**
      * @var array
      */
-    protected $fillable = ['contrat_id', 'annee_id', 'ue_id', 'ecue1', 'enseignant1', 'ecue2', 'enseignant2', 'semestre', 'heure_theorique1','heure_theorique2', 'heure_execute', 'plage_debut', 'plage_fin', 'date_debut', 'date_fin', 'etat', 'montant', 'date_composition', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['contrat_id', 'annee_id', 'classe_id', 'ue_id', 'ecue1', 'enseignant1', 'ecue2', 'enseignant2', 'semestre', 'heure_theorique1','heure_theorique2', 'heure_execute', 'plage_debut', 'plage_fin', 'date_debut', 'date_fin', 'etat', 'montant', 'date_composition', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -69,6 +69,14 @@ class Programmation extends Model
     public function annee()
     {
         return $this->belongsTo('App\Models\Annee');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function class()
+    {
+        return $this->belongsTo('App\Models\Class', 'classe_id');
     }
 
     /**

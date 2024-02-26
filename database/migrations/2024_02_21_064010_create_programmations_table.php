@@ -15,13 +15,14 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('contrat_id')->nullable();
             $table->unsignedBigInteger('annee_id');
+            $table->unsignedBigInteger('classe_id');
             $table->integer('semestre')->nullable();
             $table->unsignedBigInteger('ue_id');
             $table->integer('credit')->nullable();
             $table->string('montant')->nullable();
 
-            $table->unsignedBigInteger('ecue1');
-            $table->unsignedBigInteger('enseignant1');
+            $table->unsignedBigInteger('ecue1')->nullable();
+            $table->unsignedBigInteger('enseignant1')->nullable();
             $table->integer('heure_theorique1')->nullable();
             $table->integer('heure_execute1')->nullable();
             $table->integer('etat1')->nullable();
@@ -48,6 +49,12 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('classe_id')
+                ->references('id')
+                ->on('classes')
+                ->onUpdate('restrict')
+                ->onDelete('restrict');
 
             $table->foreign('annee_id')
                 ->references('id')

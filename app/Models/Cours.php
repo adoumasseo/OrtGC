@@ -46,9 +46,9 @@ class Cours extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function class()
+    public function classe()
     {
-        return $this->belongsTo('App\Models\Class', 'classe_id');
+        return $this->belongsTo('App\Models\Classe', 'classe_id');
     }
 
     /**

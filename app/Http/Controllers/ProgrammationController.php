@@ -41,11 +41,9 @@ class ProgrammationController extends Controller
         return view('programmation.show', compact('classe'));
     }
 
-    public function create(Classe $classe): View
-    { dd(getSemestre($classe->niveau));
-        $ues = Ue::get();
-        $ecues=Ecue::get();
-        return view('programmation.create', compact('ues','ecues','classe'));
+    public function create(Classe $classe, Ue $ue): View
+    { 
+        return view('programmation.create', compact('ue','classe'));
     }
 
     public function store(/*ProgrammationStoreRequest*/ Request $request): RedirectResponse

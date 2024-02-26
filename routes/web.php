@@ -80,8 +80,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/programmations', 'index')->name('programmations.index');
         Route::get('/programmation/{classe}/show', 'show')->name('programmation.show');
         Route::get('/programmation/{classe}/edit', 'edit')->name('programmation.edit');
-        Route::get('/programmation/create', 'create')->name('programmation.create');
+        Route::get('/programmation/create/{classe}/{ue}', 'create')->name('programmation.create');
         Route::post('/programmation/store', 'store')->name('programmation.store');
+        Route::post('/programmation/update', 'update')->name('programmation.update');
     });
 
     Route::controller(CoursController::class)->group(function () {
@@ -90,6 +91,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::get('/cours/{classe}/edit', 'edit')->name('cours.edit');
         Route::get('/cours/create', 'create')->name('cours.create');
         Route::post('/cours/store', 'store')->name('cours.store');
+        Route::post('/cours/copier', 'copier')->name('cours.copier');
+        Route::get('/cours/transmettre', 'transmettre')->name('cours.transmettre');
+        Route::get('/cours/post_transmettre', 'post_transmettre')->name('cours.post_transmettre');
     });
 
     Route::resources([

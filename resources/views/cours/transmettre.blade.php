@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    Programmation des cours
+    Transmission des TS - {{ $departement->nom }}
 @endsection
 @section('css')
     <!--datatable css-->
@@ -13,6 +13,14 @@
     <link href="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <a href="{{ route('cours.post_transmettre')}}">
+                <button type="button" class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i
+                class="align-middle ri-check-line label-icon fs-16 me-2"></i> Transmettre les TS au service de programmation</button>
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -22,51 +30,27 @@
                         <table id="banquesTable" class="table align-middle table-bordered table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    @if(Auth::user()->hasRole('Administrateur'))
-                                        <th>Université</th>
-                                        <th>Ufr</th>
-                                    @endif
-                                    <th>Département</th>
                                     <th>Filière</th>
                                     <th>Classe</th>
                                     <th>Semestre impaire</th>
                                     <th>Semestre paire</th>
-                                    @if (Auth::user()->hasRole('Programmation'))
-                                        <th class="" data-sort="action" style="width: 30px;">Actions</th>
-                                    @else
-                                        <th class="" data-sort="action" style="width: 15px;">Actions</th>
-                                    @endif
+                                    <th class="" data-sort="action" style="width: 15px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($classes as $classe)
                                     <tr>
-                                        @if(Auth::user()->hasRole('Administrateur'))
-                                            <td>{{ $classe->filiere->departement->ufr->universite->code }}</td>
-                                            <td>{{ $classe->filiere->departement->ufr->code }}</td>
-                                        @endif
-                                        <td>{{ $classe->filiere->departement->nom }}</td>
                                         <td>{{ $classe->filiere->nom }}</td>
                                         <td>{{ $classe->nom }}</td>
                                         <td></td>
                                         <td></td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('programmation.show', ['classe' => $classe->slug]) }}"
+                                                <a href="{{ route('cours.show', ['classe' => $classe->slug]) }}"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                    title="Voir la programmation"
+                                                    title="Voir le TS"
                                                     class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                         class="ri-eye-line"></i></a>
-                                                @if (Auth::user()->hasRole('Programmation'))
-                                                    <a href="{{ route('programmation.edit', ['classe' => $classe->slug]) }}"
-                                                        type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                                                        title="Programmer"
-                                                        class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i
-                                                            class="ri-edit-line"></i>
-                                                    </a>
-                                                @endif
-
-
                                             </div>
                                         </td>
                                     </tr>

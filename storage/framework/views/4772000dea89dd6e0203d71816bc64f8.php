@@ -7,6 +7,37 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
+<form action="<?php echo e(route('cours.copier')); ?>" method="post">
+    <?php echo csrf_field(); ?>
+    <input type="hidden" name="classe" value="<?php echo e($classe->id); ?>"/>
+    <div class="border card rounded-0">
+        <div class="card-body">
+            <div class="row">
+                <label for="" class="form-label">Copier les TS à partir d'une autre classe</label>
+                <div class="col-12">
+                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                        <div class="flex-grow-1">
+                            <select class="select2-classe" name="source_classe" required>
+                                <option value="">Selectionner une classe</option>
+                                    <?php $__currentLoopData = $classes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($c->id != $classe->id): ?>
+                                            <option value="<?php echo e($c->id); ?>"><?php echo e($c->nom); ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </select>
+                        </div>
+                        <div class="mt-3 mt-lg-0" style="margin-left: 10px;">
+                            <button type="submit" class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i
+                                class="align-middle ri-check-line label-icon fs-16 me-2"></i> Copier</button>
+                        </div>
+                    </div><!-- end card header -->
+                </div>
+                <!--end col-->
+            </div>
+        </div>
+    </div>
+</form>
+
 <form action="<?php echo e(route('cours.store')); ?>" method="post">
     <?php echo csrf_field(); ?>
     <input type="hidden" name="classe" value="<?php echo e($classe->id); ?>"/>
@@ -24,7 +55,7 @@
                                 <div class="accordion-flush" id="accordionFlushExample">
                                     <div class='repeater'>
                                         <div data-repeater-list="programmation<?php echo e($semestre); ?>">
-                                            <?php if(getCoursByClasseBySemestre($classe->id,$semestre)): ?>
+                                            <?php if(count(getCoursByClasseBySemestre($classe->id,$semestre))>0): ?>
                                                 <?php $__currentLoopData = getCoursByClasseBySemestre($classe->id,$semestre); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cours): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div data-repeater-item>
                                                         <div class="border card rounded-0">
@@ -172,7 +203,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             <?php endif; ?>
                                         </div>
                                         <input data-repeater-create type="button" class="btn btn-primary" value="Ajouter une UE" id="repeater-button"/> 
@@ -215,6 +245,11 @@
     $('.select2-enseignant').select2({
         tags: false,
         placeholder: "Sélectionner un ensignant",
+    });
+
+    $('.select2-classe').select2({
+        tags: false,
+        placeholder: "Sélectionner une classe",
     });
     </script>
     <script src="<?php echo e(URL::asset('build/js/pages/jquery.repeater.min.js')); ?>"></script>
@@ -260,6 +295,10 @@
         });
         $('.select2-enseignant').select2({
             placeholder: "Sélectionner un enseignant",
+            allowClear: true
+        });
+        $('.select2-classe').select2({
+            placeholder: "Sélectionner une classe",
             allowClear: true
         });
         $('.select2-container').css('width','100%');

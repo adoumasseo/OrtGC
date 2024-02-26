@@ -7,6 +7,37 @@
 @endsection
 @section('content')
 
+<form action="{{ route('cours.copier') }}" method="post">
+    @csrf
+    <input type="hidden" name="classe" value="{{ $classe->id }}"/>
+    <div class="border card rounded-0">
+        <div class="card-body">
+            <div class="row">
+                <label for="" class="form-label">Copier les TS à partir d'une autre classe</label>
+                <div class="col-12">
+                    <div class="d-flex align-items-lg-center flex-lg-row flex-column">
+                        <div class="flex-grow-1">
+                            <select class="select2-classe" name="source_classe" required>
+                                <option value="">Selectionner une classe</option>
+                                    @foreach ($classes as $c)
+                                        @if($c->id != $classe->id)
+                                            <option value="{{ $c->id }}">{{ $c->nom }}</option>
+                                        @endif
+                                    @endforeach
+                            </select>
+                        </div>
+                        <div class="mt-3 mt-lg-0" style="margin-left: 10px;">
+                            <button type="submit" class="btn btn-success rounded-0 btn-label waves-effect waves-light"><i
+                                class="align-middle ri-check-line label-icon fs-16 me-2"></i> Copier</button>
+                        </div>
+                    </div><!-- end card header -->
+                </div>
+                <!--end col-->
+            </div>
+        </div>
+    </div>
+</form>
+
 <form action="{{ route('cours.store') }}" method="post">
     @csrf
     <input type="hidden" name="classe" value="{{ $classe->id }}"/>
@@ -23,7 +54,7 @@
                                 <div class="accordion-flush" id="accordionFlushExample">
                                     <div class='repeater'>
                                         <div data-repeater-list="programmation{{ $semestre }}">
-                                            @if(getCoursByClasseBySemestre($classe->id,$semestre))
+                                            @if(count(getCoursByClasseBySemestre($classe->id,$semestre))>0)
                                                 @foreach ( getCoursByClasseBySemestre($classe->id,$semestre) as $cours)
                                                     <div data-repeater-item>
                                                         <div class="border card rounded-0">
@@ -171,7 +202,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             @endif
                                         </div>
                                         <input data-repeater-create type="button" class="btn btn-primary" value="Ajouter une UE" id="repeater-button"/> 
@@ -214,6 +244,11 @@
     $('.select2-enseignant').select2({
         tags: false,
         placeholder: "Sélectionner un ensignant",
+    });
+
+    $('.select2-classe').select2({
+        tags: false,
+        placeholder: "Sélectionner une classe",
     });
     </script>
     <script src="{{ URL::asset('build/js/pages/jquery.repeater.min.js') }}"></script>
@@ -259,6 +294,10 @@
         });
         $('.select2-enseignant').select2({
             placeholder: "Sélectionner un enseignant",
+            allowClear: true
+        });
+        $('.select2-classe').select2({
+            placeholder: "Sélectionner une classe",
             allowClear: true
         });
         $('.select2-container').css('width','100%');
