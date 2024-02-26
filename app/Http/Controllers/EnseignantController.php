@@ -43,7 +43,6 @@ class EnseignantController extends Controller
     {
         // $this->authorize('create', Enseignant::class);
         // dd($request->input());
-        dd('ok');
         $validated = $request->validated();
 
         $enseignant = Enseignant::create($validated);
