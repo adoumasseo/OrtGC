@@ -74,6 +74,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
         Route::post('/delete-filieres', 'deleteFilieres')->name('delete-filieres');
         Route::post('/delete-users', 'deleteUsers')->name('delete-users');
+        Route::post('/selectAction', 'selectAction')->name('select');
     });
 
     Route::controller(ProgrammationController::class)->group(function () {

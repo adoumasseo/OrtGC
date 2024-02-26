@@ -88,4 +88,7 @@ class AjaxController extends Controller
         notyf()->addSuccess('Département supprimé avec succès.');
         return response()->json(['success' => true]);
     }
+    public function selectCours(Request $request){
+        
+    }
 }
