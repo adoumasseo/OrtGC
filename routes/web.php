@@ -61,6 +61,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/generateWord', [ContratController::class, 'generateWord'])->name('generateWord');
     Route::get('/generate-lettre-mission', [ContratController::class, 'generateLettreMission'])->name('generateLettreMission');
 
+    Route::get('search-enseignant-by-npi', [EnseignantController::class, 'searchByNpi'])->name('enseignants.search');
+    Route::post('find-enseignant-by-npi', [EnseignantController::class, 'findByNpi'])->name('find-by-npi');
     Route::controller(AjaxController::class)->group(function () {
         Route::post('/delete-banques', 'deleteBanques')->name('delete-banques');
         Route::post('/delete-universites', 'deleteUniversites')->name('delete-universites');
@@ -69,7 +71,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         Route::post('/delete-ues', 'deleteUes')->name('delete-ues');
         Route::post('/delete-enseignants', 'deleteEnseignants')->name('delete-enseignants');
         Route::post('/delete-cycles', 'deleteCycles')->name('delete-cycles');
-        Route::post('/find-enseignant-byNpi', 'findEnseignantByNpi')->name('find-enseignant-byNpi');
         Route::post('/delete-ecues', 'deleteEcues')->name('delete-ecues');
         Route::post('/delete-ufrs', 'deleteUfrs')->name('delete-ufrs');
         Route::post('/delete-filieres', 'deleteFilieres')->name('delete-filieres');

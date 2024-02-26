@@ -20,14 +20,17 @@
 
             <div class="card-body">
 
-                <div class="mb-3">
-                    <a href="{{ route('ues.create') }}">
-                        <button type="button" class="btn btn-success add-btn">
-                            <i class="align-bottom ri-add-line me-1"></i> Ajouter
-                        </button>
-                    </a>
-                    <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
-                </div>
+                @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
+                    <div class="mb-3">
+                        <a href="{{ route('ues.create') }}">
+                            <button type="button" class="btn btn-success add-btn">
+                                <i class="align-bottom ri-add-line me-1"></i> Ajouter
+                            </button>
+                        </a>
+                        <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
+                    </div>
+                @endif
+                
                 <div class="table-responsive">
                     <table id="uesTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
