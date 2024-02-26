@@ -36,9 +36,12 @@
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                         <th scope="col" style="width: 10px;"></th>
                                     @endif
+                                {{-- <th>Code de la classe</th> --}}
+                                <th>Nom du département</th>
+                                <th>Filière</th>
                                 <th>Nom de la classe</th>
                                 <th>Effectif de la classe</th>
-                                <th>Filière</th>
+                                <th>Niveau</th>
                                 <th>Cycle</th>
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
@@ -48,7 +51,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($classes as $item)
+                            @foreach ($class as $item)
                                 <tr>
                                     @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                             <th scope="row">
@@ -58,19 +61,22 @@
                                                 </div>
                                             </th>
                                         @endif
+                                    {{-- <td>{{ $item->code }}</td> --}}
+                                    <td>{{ $item->filiere->departement->nom }}</td>
+                                    <td>{{ $item->filiere->nom }}</td>
                                     <td>{{ $item->nom }}</td>
                                     <td>{{ $item->effectif }}</td>
-                                    <td>{{ $item->filieres->nom }}</td>
-                                    <td>{{ $item->cycles->nom}} {{ $item->enseignants->prenoms}}</td>
+                                    <td>{{ $item->niveau }}</td>
+                                    <td>{{ $item->cycle->nom}}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('classes.show', ['classe' => $item->slug]) }}"
+                                            <a href="{{ route('classes.show', ['class' => $item->slug]) }}"
                                                 type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                 title="Voir"
                                                 class="mb-1 ms-1 btn btn-sm btn-info btn-icon waves-effect waves-light"><i
                                                     class="ri-eye-line"></i></a>
                                             @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                                <a href="{{ route('classes.edit', ['classe' => $item->slug]) }}"
+                                                <a href="{{ route('classes.edit', ['class' => $item->slug]) }}"
                                                     type="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                     title="Editer"
                                                     class="mb-1 ms-1 btn btn-sm btn-warning btn-icon waves-effect waves-light"><i

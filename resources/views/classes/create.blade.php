@@ -14,6 +14,16 @@
                 @csrf
                 <div class="py-2 row d-flex justify-content-center">
 
+                    <div class="py-2 row d-flex justify-content-center">
+                        <div class="mb-3 col-md-12">
+                            <label for="basiInput" class="form-label">Code de la classe</label>
+                            <input type="text" class="form-control @error('code') is-invalid @enderror" name="code"
+                                value="{{ old('code') }}" id="basiInput">
+                            @error('code')
+                                <span class="text-danger"> {{ $errors->first('code') }}</span>
+                            @enderror
+                    </div>
+
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom de la classe</label>
                         <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom"
@@ -31,6 +41,20 @@
                             <span class="text-danger"> {{ $errors->first('effectif') }}</span>
                         @enderror
                     </div>
+
+                    <div class="mb-3 col-md-12">
+                        <label for="niveau" class="form-label">Niveau</label>
+                        <select class="form-select @error('niveau') is-invalid @enderror" name="niveau" id="niveau">
+                            <option value="">Sélectionnez un niveau</option>
+                            @for ($i = 1; $i <= 8; $i++)
+                                <option value="{{ $i }}" {{ old('niveau') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                            @endfor
+                        </select>
+                        @error('niveau')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
 
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom de la filière</label>
@@ -53,14 +77,6 @@
                         </select>
                         @error('cycle_id')
                             <span class="text-danger"> {{ $errors->first('cycle_id') }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3 col-md-12">
-                        <label for="slug" class="form-label">Slug</label>
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" id="slug">
-                        @error('slug')
-                        <span class="text-danger"> {{ $errors->first('slug') }}</span>
                         @enderror
                     </div>
 
