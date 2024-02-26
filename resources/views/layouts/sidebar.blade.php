@@ -95,6 +95,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link {{ request()->is('cours*') ? 'active' : '' }}" href="{{ route('cours.transmettre') }}" role="button" aria-expanded="false"
+                        aria-controls="sidebarDashboards">
+                        <i class="bx bx-task"></i> <span>
+                            Transférer les TS
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link collapsed" href="#sidebarMultilevel" data-bs-toggle="collapse"
                         role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
                         <i class="ri-stack-line"></i> <span data-key="t-multi-level">Mon département</span>

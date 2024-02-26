@@ -1,9 +1,8 @@
 @extends('layouts.master')
 @section('title')
-    Programmation des cours
+    {{  }}
 @endsection
 @section('css')
-<link href="{{ URL::asset('build/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')                                                    
 
@@ -147,74 +146,5 @@
 @endsection
 
 @section('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-<script src="{{ URL::asset('build/js/pages/select2.min.js') }}"></script>
-
-    <script>
-        $('.select2-ue').select2({
-            tags: true,
-            placeholder: "Sélectionner une UE",
-        });
-        $('.select2-ecue').select2({
-            tags: true,
-            placeholder: "Sélectionner un EC",
-        });
-        $('.select2-enseignant').select2({
-            tags: false,
-            placeholder: "Sélectionner un ensignant",
-        });
-    </script>
-<script src="{{ URL::asset('build/js/pages/jquery.repeater.min.js') }}"></script>
-<script src="{{ URL::asset('build/js/pages/form-repeater.int.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('.repeater').repeater({
-            initEmpty: false,
-            defaultValues: {
-                'text-input': 'foo'
-            },
-            show: function () {
-                $(this).slideDown();
-            },
-            hide: function (deleteElement) {
-                if(confirm('Are you sure you want to delete this element?')) {
-                    $(this).slideUp(deleteElement);
-                }
-            },
-            
-            ready: function (setIndexes) {
-                $dragAndDrop.on('drop', setIndexes);
-            },
-            isFirstItemUndeletable: false
-        })
-    });
-</script>
-
-<script type="text/javascript">
-	$("#repeater-button").click(function(){
-		setTimeout(function(){
-
-			$('.select2-container').remove();
-            $('.select2-ue').select2({
-                placeholder: "Sélectionner une UE",
-                tags: true,
-                allowClear: true
-            });
-            $('.select2-ecue').select2({
-                placeholder: "Sélectionner un EC",
-                tags: true,
-                allowClear: true
-            });
-            $('.select2-enseignant').select2({
-                placeholder: "Sélectionner un enseignant",
-                allowClear: true
-            });
-            $('.select2-container').css('width','100%');
-
-		}, 100);
-	});
-</script>
-<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection

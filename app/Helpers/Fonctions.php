@@ -7,6 +7,7 @@ use App\Models\Cours;
 use App\Models\Ue;
 use App\Models\Ecue;
 use App\Models\Enseignant;
+use App\Models\Programmation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +49,12 @@ function getSemestre($niveau){
 
 function getCoursByClasseBySemestre($classe_id,$semestre){
     $params = ['classe_id' => $classe_id, 'semestre' => $semestre];
-    return Cours::where($params)->get();
+    return Cours::where($params)->get(); 
+}
+
+function getProgrammationByClasseBySemestre($classe_id,$semestre){
+    $params = ['classe_id' => $classe_id, 'semestre' => $semestre,'annee_id'=>getAnnee()];
+    return Programmation::where($params)->get();
 }
 
 function getEnseignantsByUfr($ufr_id){
@@ -85,4 +91,19 @@ function rechercherEcue($val){
 
 function rechercherEnseignant($val){
     return Enseignant::find($val);
+}
+
+function isTransmis($departement_id){
+    $programmations=DB::select("Select programmations.*
+                    FROM programmations
+                    INNER JOIN classes ON programmations.classe_id = classes.id
+                    INNER JOIN filieres ON classes.filiere_id = filieres.id
+                    WHERE programmations.annee_id=".getAnnee()->id."
+                    AND filieres.departement_id=".$departement_id."
+                    ");
+    if(count($programmations)>0){
+        return true;
+    }else{
+        return false;
+    }
 }
