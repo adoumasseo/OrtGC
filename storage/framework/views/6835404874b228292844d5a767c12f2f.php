@@ -5,19 +5,19 @@
         <!-- Dark Logo-->
         <a href="index" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="<?php echo e(URL::asset('assets/images/lsogo-sm.png')); ?>" alt="" height="22">
+                <img src="<?php echo e(URL::asset('images/logo.png')); ?>" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="<?php echo e(URL::asset('images/logoblanc.png')); ?>" alt="" height="50">
+                <img src="<?php echo e(URL::asset('images/logo.png')); ?>" alt="" height="50">
             </span>
         </a>
         <!-- Light Logo-->
         <a href="index" class="logo logo-light">
             <span class="logo-sm">
-                <img src="<?php echo e(URL::asset('assets/images/logo-sm.png')); ?>" alt="" height="22">
+                <img src="<?php echo e(URL::asset('images/logo.png')); ?>" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="<?php echo e(URL::asset('assets/images/logo-light.png')); ?>" alt="" height="17">
+                <img src="<?php echo e(URL::asset('images/logo.png')); ?>" alt="" height="17">
             </span>
         </a>
         <button type="button" class="p-0 btn btn-sm fs-20 header-item float-end btn-vertical-sm-hover"
@@ -43,7 +43,7 @@
                         </span>
                     </a>
                 </li>
-                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')): ?>
+                <?php if(Auth::user()->hasRole('Administrateur')): ?>
                     <li class="nav-item">
                         <a class="nav-link menu-link <?php echo e(request()->is('annees-academique*') ? 'active' : ''); ?>" href="" role="button" aria-expanded="false"
                             aria-controls="sidebarDashboards">
@@ -54,16 +54,27 @@
                     </li>
                 <?php endif; ?>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
-                        aria-controls="sidebarDashboards">
-                        <i class="bx bx-task"></i> <span>
-                            Mon UFR
-                        </span>
-                    </a>
-                </li>
-
-                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')||Auth::user()->hasRole('Personnel')): ?>
+                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Ufr')): ?>
+                    <?php if(Auth::user()->hasRole('Personnel')): ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                                aria-controls="sidebarDashboards">
+                                <i class="bx bx-task"></i> <span>
+                                    Contrats
+                                </span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                    <?php if(Auth::user()->hasRole('Programmation')||Auth::user()->hasRole('Assistant Programmation')): ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?php echo e(route('programmations.index')); ?>" role="button" aria-expanded="false"
+                                aria-controls="sidebarDashboards">
+                                <i class="bx bx-task"></i> <span>
+                                    Programmation
+                                </span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link menu-link <?php echo e(request()->is('admin/enseignants*') ? 'active' : ''); ?>" href="<?php echo e(route('enseignants.index')); ?>" role="button" aria-expanded="false"
                             aria-controls="sidebarDashboards">
@@ -74,38 +85,82 @@
                     </li>
                 <?php endif; ?>
 
+                <?php if(Auth::user()->hasRole('Chef de Département')): ?>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button" aria-expanded="false"
+                    <a class="nav-link menu-link <?php echo e(request()->is('cours*') ? 'active' : ''); ?>" href="<?php echo e(route('cours.index')); ?>" role="button" aria-expanded="false"
                         aria-controls="sidebarDashboards">
                         <i class="bx bx-task"></i> <span>
-                            Contrats
+                            Tables de spécification
                         </span>
                     </a>
                 </li>
-
-
-                <!--
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
-                        <i class="ri-pages-line"></i> <span>
-                            Actualités
+                    <a class="nav-link menu-link <?php echo e(request()->is('cours*') ? 'active' : ''); ?>" href="<?php echo e(route('cours.transmettre')); ?>" role="button" aria-expanded="false"
+                        aria-controls="sidebarDashboards">
+                        <i class="bx bx-task"></i> <span>
+                            Transférer les TS
                         </span>
                     </a>
                 </li>
-
-
-
-
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
-                        <i class="ri-apps-2-line"></i> <span>
-                            Données des communes
-                        </span>
+                    <a class="nav-link menu-link collapsed" href="#sidebarMultilevel" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
+                        <i class="ri-stack-line"></i> <span data-key="t-multi-level">Mon département</span>
                     </a>
-                </li>-->
-                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Concepteur')): ?>
+
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('filieres.index')); ?>" class="nav-link" data-key="t-level-1.1">Filières</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('classes.index')); ?>" class="nav-link" data-key="t-level-1.1">Classes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <?php endif; ?>
+
+
+
+                <?php if(Auth::user()->hasRole('Ufr')): ?>
+                <li class="nav-item">
+                    <a class="nav-link menu-link collapsed" href="#sidebarMultilevel" data-bs-toggle="collapse"
+                        role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
+                        <i class="ri-stack-line"></i> <span data-key="t-multi-level">Mon UFR</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('departements.index')); ?>" class="nav-link" data-key="t-level-1.1">Départements</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('filieres.index')); ?>" class="nav-link" data-key="t-level-1.1">Filières</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?php echo e(route('classes.index')); ?>" class="nav-link" data-key="t-level-1.1">Classes</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <?php endif; ?>
+
+                <?php if(Auth::user()->hasRole('Administrateur')||Auth::user()->hasRole('Manager')): ?>
                     <li class="nav-item">
                         <a class="nav-link menu-link <?php echo e(request()->is('admin/users') ? 'active' : ''); ?>" href="<?php echo e(route('users.index')); ?>" role="button"
                             aria-expanded="false" aria-controls="sidebarDashboards">
@@ -120,18 +175,28 @@
                             role="button" aria-expanded="false" aria-controls="sidebarMultilevel">
                             <i class="ri-stack-line"></i> <span data-key="t-multi-level">Paramètres</span>
                         </a>
+                        <?php if(Auth::user()->hasRole('Administrateur')): ?>
+                            <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('universites.index')); ?>" class="nav-link"
+                                            data-key="t-level-1.1">Universités</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="collapse menu-dropdown" id="sidebarMultilevel">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="<?php echo e(route('ufrs.index')); ?>" class="nav-link" data-key="t-level-1.1">UFR</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="<?php echo e(route('universites.index')); ?>" class="nav-link"
-                                        data-key="t-level-1.1">Universités</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('ufrs.index')); ?>" class="nav-link" data-key="t-level-1.1">UFR</a>
+                                    <a href="<?php echo e(route('departements.index')); ?>" class="nav-link" data-key="t-level-1.1">Départements</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,7 +204,7 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="<?php echo e(route('departements.index')); ?>" class="nav-link" data-key="t-level-1.1">Départements</a>
+                                    <a href="<?php echo e(route('filieres.index')); ?>" class="nav-link" data-key="t-level-1.1">Filières</a>
                                 </li>
                             </ul>
                         </div>
@@ -155,13 +220,6 @@
                         <div class="collapse menu-dropdown" id="sidebarMultilevel">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="<?php echo e(route('enseignants.index')); ?>" class="nav-link" data-key="t-level-1.1">Enseignants</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
                                     <a href="<?php echo e(route('cycles.index')); ?>" class="nav-link" data-key="t-level-1.1">Cycles</a>
                                 </li>
                             </ul>
@@ -174,21 +232,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="collapse menu-dropdown" id="sidebarMultilevel">
-                            <ul class="nav nav-sm flex-column">
-                                <li class="nav-item">
-                                    <a href="<?php echo e(route('filieres.index')); ?>" class="nav-link" data-key="t-level-1.1">Filières</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
                 <?php endif; ?>
-
-                
-
-                
-                
-
             </ul>
         </div>
         <!-- Sidebar -->

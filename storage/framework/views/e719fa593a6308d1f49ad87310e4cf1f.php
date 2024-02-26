@@ -219,7 +219,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                             <div class="dropzone">
                                 <div class="dz-message needsclick">
-                                    <div class="mb-3 align-content-center">
+                                    <div class="mb-3 ">
                                         <img data-dz-thumbnail class="img-fluid rounded d-block" src="<?php echo e(old('avatar', $user->avatar)); ?>"
                                              alt=""/>
                                     </div>
