@@ -43,7 +43,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    {{-- <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom du chef département</label>
                         <select name="chef_departement" class="form-control @error('chef_departement') is-invalid @enderror" name="chef_departement" value="{{ old('chef_departement') }}" id="basiInput">
                             @foreach ($enseignants as $enseignant)
@@ -53,7 +53,7 @@
                         @error('chef_departement')
                             <span class="text-danger"> {{ $errors->first('chef_departement') }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3 col-md-12">
                         <label for="logo" class="form-label">Logo</label>

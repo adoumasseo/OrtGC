@@ -14,7 +14,7 @@
             </h2>
         </div>
         <div class="card-body">
-            <form action="{{ route('find-enseignant-byNpi') }}" method="post">
+            <form action="{{ route('find-by-npi') }}" method="post">
                 @csrf
                 <div class="py-2 row d-flex justify-content-center">
                     <div class="mb-3 col-md-12">
@@ -60,4 +60,5 @@
     <script src="{{ URL::asset('build/js/pages/sweetalerts.init.js') }}"></script>
 
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/pages/customs/rechercheEnsegnantNpi.js') }}"></script>
 @endsection

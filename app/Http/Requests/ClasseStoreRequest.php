@@ -22,8 +22,9 @@ class ClasseStoreRequest extends FormRequest
         return [
             'nom' => ['required', 'max:255', 'string'],
             'effectif' => ['required', 'max:255', 'string'],
-            'filiere_id' => ['exists:filieres,id', 'max:255', 'string'],
-            'cycle_id' => ['exists:cycles,id', 'max:255', 'string'],
+            'niveau' => ['required', 'max:255', 'string'],
+            'filiere_id' => ['required', 'exists:filieres,id', 'max:255', 'string'],
+            'cycle_id' => ['required', 'exists:cycles,id', 'max:255', 'string'],
         ];
     }
 }

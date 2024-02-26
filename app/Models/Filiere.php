@@ -20,7 +20,7 @@ use Wildside\Userstamps\Userstamps;
  * @property string $created_at
  * @property string $updated_at
  * @property string $deleted_at
- * @property Class[] $classes
+ * @property Classe[] $classes
  * @property Departement $departement
  */
 class Filiere extends Model
@@ -36,7 +36,7 @@ class Filiere extends Model
      */
     public function classes()
     {
-        return $this->hasMany('App\Models\Class');
+        return $this->hasMany('App\Models\Classe');
     }
 
     /**

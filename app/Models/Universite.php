@@ -13,7 +13,9 @@ use Wildside\Userstamps\Userstamps;
 /**
  * @property integer $id
  * @property string $code
+ * @property string $code_designation
  * @property string $nom
+ * @property string $nom_designation
  * @property string $adresse
  * @property string $telephone
  * @property string $siteweb
@@ -37,7 +39,7 @@ class Universite extends Model
     /**
      * @var array
      */
-    protected $fillable = ['code', 'nom', 'adresse', 'telephone', 'siteweb', 'email', 'recteur', 'comptable', 'ville', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['code', 'code_designation', 'nom', 'nom_designation', 'adresse', 'telephone', 'siteweb', 'email', 'recteur', 'comptable', 'ville', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

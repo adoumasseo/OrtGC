@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('universites', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('code')->nullable();
+            $table->string('code_designation')->nullable();
             $table->string('nom')->nullable();
+            $table->string('nom_designation')->nullable();
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
             $table->string('siteweb')->nullable();

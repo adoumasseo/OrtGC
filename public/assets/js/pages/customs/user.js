@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         url: route("delete-users"),
                         data: {
-                            cycles_ids: userSelected,
+                            users_ids: userSelected,
                         },
                         success: function (response) {
                             if (response.success) {

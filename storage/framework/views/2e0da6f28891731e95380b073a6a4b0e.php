@@ -293,7 +293,7 @@ unset($__errorArgs, $__bag); ?>
 
     <script src="<?php echo e(URL::asset('assets/js/pages/select2.init.js')); ?>"></script>
 
-    
+        <script src="<?php echo e(URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('build/libs/dropzone/dropzone-min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('build/js/pages/ecommerce-product-create.init.js')); ?>"></script>
 

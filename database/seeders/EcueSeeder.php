@@ -13,23 +13,28 @@ class EcueSeeder extends Seeder
      */
     public function run(): void
     {
+        /* SEMESTRE 1 */
+
         $ecues = [
             [
-                'code' => '1MTH100',
-                'nom' => "Algèbre",
+                'code' => '1MTH1101',
+                'nom' => "Algèbre linéaire",
             ],
             [
-                'code' => '2MTH100',
-                'nom' => "Analyse",
+                'code' => '2MTH1101',
+                'nom' => "Analyse mathématiques",
+            ],
+
+            [
+                'code' => '1ECO1102',
+                'nom' => "Économie générale",
             ],
             [
-                'code' => '1INF101',
-                'nom' => "Théorie des bases de données",
+                'code' => '2ECO1102',
+                'nom' => "Économie d'entreprise",
             ],
-            [
-                'code' => '1INF101',
-                'nom' => "SGBD",
-            ],
+
+
         ];
         foreach ($ecues as $ecue) {
 

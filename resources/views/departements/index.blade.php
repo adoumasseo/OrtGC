@@ -39,7 +39,7 @@
                                 <th>Code du département</th>
                                 <th>Nom du département</th>
                                 <th>Nom de l'ufr</th>
-                                <th>Nom du chef département</th>
+                                {{-- <th>Nom du chef département</th> --}}
                                 <th>Logo</th>
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
@@ -62,7 +62,7 @@
                                     <td>{{ $item->code }}</td>
                                     <td>{{ $item->nom }}</td>
                                     <td>{{ $item->ufr->nom }}</td>
-                                    <td>{{ $item->enseignant->nom }} {{$item->enseignant->prenoms }}</td>
+                                    {{-- <td>{{ $item->enseignant->nom }} {{$item->enseignant->prenoms }}</td> --}}
                                     <td>{{ $item->logo }}</td>
                                     <td>
                                         <div class="d-flex">
