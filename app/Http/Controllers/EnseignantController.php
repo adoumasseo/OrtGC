@@ -29,12 +29,11 @@ class EnseignantController extends Controller
     public function create(Request $request): View
     {
         $banques = Banque::get();
-        return view('enseignants.recherche-enseignant.search');
 
-        // return view(
-        //     'enseignants.create',
-        //     compact('banques')
-        // );
+         return view(
+             'enseignants.create',
+             compact('banques')
+         );
     }
 
     /**
@@ -44,6 +43,7 @@ class EnseignantController extends Controller
     {
         // $this->authorize('create', Enseignant::class);
         // dd($request->input());
+        dd('ok');
         $validated = $request->validated();
 
         $enseignant = Enseignant::create($validated);
@@ -103,5 +103,21 @@ class EnseignantController extends Controller
         notyf()->addSuccess('Enseignant supprimé avec success.');
         return redirect()
             ->route('enseignants.index');
+    }
+
+    public function searchByNpi()
+    {
+        return view('enseignants.recherche-enseignant.search');
+    }
+
+    public function findByNpi(Request $request)
+    {
+        $enseignant = Enseignant::whereNpi($request->npi)->get()->first();
+        if ($enseignant)
+        {
+            return redirect()->route('enseignants.edit', $enseignant);
+        }else{
+            return redirect()->route('enseignants.create');
+        }
     }
 }
