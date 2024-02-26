@@ -15,6 +15,7 @@
 @endsection
 @section('content')
 
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -53,7 +54,7 @@
                             </thead>
                             <tbody>
                             @foreach ($users as $item)
-                                <tr>
+
                                     @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                         <th scope="row">
                                             <div class="form-check">
@@ -67,7 +68,7 @@
                                             $nom_complet = $item->nom . ' ' . $item->prenom;
                                         @endphp
                                         <img class="rounded-circle header-profile-user"
-                                             src="{{$item->avatar ? "storage/$item->avatar" : "https://ui-avatars.com/api/?name={$nom_complet}" }}"
+                                             src="{{$item->avatar ? "storage/$item->avatar" : "https://ui-avatars.com/api/?name={$nom_complet}&background=823f00&color=f0ece9" }}"
                                              alt="Header Avatar">
                                     </td>
                                     <td>{{ $item->nom }}</td>
@@ -77,7 +78,22 @@
 
                                     <td>
                                         @foreach($item->getRoleNames() as $roleName)
-                                            {{ $roleName }}
+                                            @php
+                                                $color = match ($roleName){
+                                                    'Administrateur' => 'danger',
+                                                    'Ufr' => 'primary',
+                                                    'Personel' => 'info',
+                                                    'Chef de Département' => 'success',
+                                                    'Comptabilité' => 'dark',
+                                                    'Programmation' => 'light',
+                                                    'Assistant Programmation' => 'secondary',
+                                                    'Responsable' => 'secondary',
+                                                    'Manager' => 'danger',
+                                                    'Concepteur' => 'light',
+
+                                                }
+                                            @endphp
+                                            <span class="badge bg-{{$color}}">{{ $roleName }}</span>
                                         @endforeach
                                     </td>
                                     <td>

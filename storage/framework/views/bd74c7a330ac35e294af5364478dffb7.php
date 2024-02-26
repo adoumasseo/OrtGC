@@ -14,6 +14,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -52,7 +53,7 @@
                             </thead>
                             <tbody>
                             <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
+
                                     <?php if(Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur')): ?>
                                         <th scope="row">
                                             <div class="form-check">
@@ -66,7 +67,7 @@
                                             $nom_complet = $item->nom . ' ' . $item->prenom;
                                         ?>
                                         <img class="rounded-circle header-profile-user"
-                                             src="<?php echo e($item->avatar ? "storage/$item->avatar" : "https://ui-avatars.com/api/?name={$nom_complet}"); ?>"
+                                             src="<?php echo e($item->avatar ? "storage/$item->avatar" : "https://ui-avatars.com/api/?name={$nom_complet}&background=823f00&color=f0ece9"); ?>"
                                              alt="Header Avatar">
                                     </td>
                                     <td><?php echo e($item->nom); ?></td>
@@ -76,8 +77,22 @@
 
                                     <td>
                                         <?php $__currentLoopData = $item->getRoleNames(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $roleName): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php echo e($roleName); ?>
+                                            <?php
+                                                $color = match ($roleName){
+                                                    'Administrateur' => 'danger',
+                                                    'Ufr' => 'primary',
+                                                    'Personel' => 'info',
+                                                    'Chef de Département' => 'success',
+                                                    'Comptabilité' => 'dark',
+                                                    'Programmation' => 'light',
+                                                    'Assistant Programmation' => 'secondary',
+                                                    'Responsable' => 'secondary',
+                                                    'Manager' => 'danger',
+                                                    'Concepteur' => 'light',
 
+                                                }
+                                            ?>
+                                            <span class="badge bg-<?php echo e($color); ?>"><?php echo e($roleName); ?></span>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </td>
                                     <td>
