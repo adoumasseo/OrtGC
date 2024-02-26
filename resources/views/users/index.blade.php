@@ -65,10 +65,10 @@
                                     @endif
                                     <td>
                                         @php
-                                            $nom_complet = $item->nom . ' ' . $item->prenom;
+                                            $nom_complet = $item->prenom . ' ' . $item->nom;
                                         @endphp
                                         <img class="rounded-circle header-profile-user"
-                                             src="{{$item->avatar ? "storage/$item->avatar" : "https://ui-avatars.com/api/?name={$nom_complet}&background=823f00&color=f0ece9" }}"
+                                             src="{{$item->avatar ? "storage/$item->avatar" : "https://ui-avatars.com/api/?name={$nom_complet}&background=random" }}"
                                              alt="Header Avatar">
                                     </td>
                                     <td>{{ $item->nom }}</td>
