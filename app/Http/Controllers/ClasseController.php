@@ -20,9 +20,9 @@ class ClasseController extends Controller
     {
         $filieres = Filiere::all();
         $cycles = Cycle::all();
-        $classes = Classe::get();
+        $class = Classe::get();
 
-        return view('classes.index', compact('classes', 'filieres', 'cycles'));
+        return view('classes.index', compact('class', 'filieres', 'cycles'));
     }
 
     /**
@@ -32,9 +32,9 @@ class ClasseController extends Controller
     {
         $filieres = Filiere::all();
         $cycles = Cycle::all();
-        $classes = Classe::get();
+        $class = Classe::get();
         return view(
-            'classes.create', compact('classes', 'filieres', 'cycles'));
+            'classes.create', compact('class', 'filieres', 'cycles'));
     }
 
     /**
@@ -43,8 +43,9 @@ class ClasseController extends Controller
     public function store(ClasseStoreRequest $request): RedirectResponse
     {
         $validated = $request->validated();
+        //dd($validated);
+        $class = Classe::create($validated);
 
-        $classe = Classe::create($validated);
         notyf()->addSuccess('Classe créée avec success.');
         return redirect()->route('classes.create');
     }
@@ -52,19 +53,21 @@ class ClasseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request, Classe $classe): View
+    public function show(Classe $class): View
     {
-        return view('classes.show', compact('classe'));
+        return view('classes.show', compact('class'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, Classe $classe): View
+    public function edit(Classe $class): View
     {
+        $filieres = Filiere::all();
+        $cycles = Cycle::all();
         return view(
             'classes.edit',
-            compact('classes')
+            compact('class', 'filieres', 'cycles')
         );
     }
 
@@ -73,13 +76,13 @@ class ClasseController extends Controller
      */
     public function update(
         ClasseUpdateRequest $request,
-        classe $classe
+        Classe $class
     ): RedirectResponse {
         // $this->authorize('update', $classe);
 
         $validated = $request->validated();
 
-        $classe->update($validated);
+        $class->update($validated);
         notyf()->addSuccess('Classe modifié avec success.');
         return redirect()
             ->route('classes.index');
@@ -90,11 +93,11 @@ class ClasseController extends Controller
      */
     public function destroy(
         Request $request,
-        Classe $classe
+        Classe $class
     ): RedirectResponse {
         // $this->authorize('delete', $classe);
 
-        $classe->delete();
+        $class->delete();
         notyf()->addSuccess('Classe supprimée avec success.');
         return redirect()
             ->route('classes.index');

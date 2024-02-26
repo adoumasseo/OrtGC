@@ -19,15 +19,17 @@
         <div class="card">
 
             <div class="card-body">
-
-                <div class="mb-3">
-                    <a href="{{ route('ecues.create') }}">
-                        <button type="button" class="btn btn-success add-btn">
-                            <i class="align-bottom ri-add-line me-1"></i> Ajouter
-                        </button>
-                    </a>
-                    <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
-                </div>
+                @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
+                    <div class="mb-3">
+                        <a href="{{ route('ecues.create') }}">
+                            <button type="button" class="btn btn-success add-btn">
+                                <i class="align-bottom ri-add-line me-1"></i> Ajouter
+                            </button>
+                        </a>
+                        <button class="btn btn-soft-danger" id="delete-record"><i class="ri-delete-bin-2-line"></i></button>
+                    </div>
+                @endif
+                
                 <div class="table-responsive">
                     <table id="ecuesTable" class="table align-middle table-bordered table-striped"
                         style="width:100%">
@@ -38,7 +40,7 @@
                                     @endif
                                 <th>Code</th>
                                 <th>Nom</th>
-                                <th>Ue</th>
+                                {{-- <th>Ue</th> --}}
                                 @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
                                     <th class="" data-sort="action" style="width: 40px;">Actions</th>
                                 @else
@@ -50,16 +52,16 @@
                             @foreach ($ecues as $item)
                                 <tr>
                                     @if (Auth::user()->hasRole('Concepteur') or Auth::user()->hasRole('Administrateur'))
-                                            <th scope="row">
-                                                <div class="form-check">
-                                                    <input class="form-check-input fs-15" type="checkbox" name="check"
-                                                        value="{{ $item->id }}">
-                                                </div>
-                                            </th>
-                                        @endif
+                                        <th scope="row">
+                                            <div class="form-check">
+                                                <input class="form-check-input fs-15" type="checkbox" name="check"
+                                                    value="{{ $item->id }}">
+                                            </div>
+                                        </th>
+                                    @endif
                                     <td>{{ $item->code }}</td>
                                     <td>{{ $item->nom }}</td>
-                                    <td>{{ $item->ue->nom }}</td>
+                                    {{-- <td>{{ $item->ue->nom }}</td> --}}
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('ecues.show', ['ecue' => $item->slug]) }}"

@@ -53,7 +53,7 @@ function getCoursByClasseBySemestre($classe_id,$semestre){
 }
 
 function getProgrammationByClasseBySemestre($classe_id,$semestre){
-    $params = ['classe_id' => $classe_id, 'semestre' => $semestre,'annee_id'=>getAnnee()];
+    $params = ['classe_id' => $classe_id, 'semestre' => $semestre,'annee_id'=>getAnnee()->id];
     return Programmation::where($params)->get();
 }
 

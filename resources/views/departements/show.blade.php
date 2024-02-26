@@ -44,14 +44,14 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 col-md-12">
+                    {{-- <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Nom du chef département</label>
                         <input type="text" class="form-control @error('chef_departement') is-invalid @enderror" name="chef_departement"
                             value="{{ $departement->enseignant->nom }} {{ $departement->enseignant->prenoms }}" id="basiInput" readonly>
                         @error('chef_departement')
                             <span class="text-danger"> {{ $errors->first('chef_departement') }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3 col-md-12">
                         <label for="basiInput" class="form-label">Logo</label>

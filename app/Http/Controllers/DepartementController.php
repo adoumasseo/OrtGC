@@ -19,10 +19,10 @@ class DepartementController extends Controller
     public function index(): View
     {
         $ufrs = Ufr::all();
-        $enseignants = Enseignant::all();
+        //$enseignants = Enseignant::all();
         $departements = Departement::get();
 
-        return view('departements.index', compact('departements', 'ufrs', 'enseignants'));
+        return view('departements.index', compact('departements', 'ufrs'));
     }
 
     /**
@@ -31,10 +31,10 @@ class DepartementController extends Controller
     public function create(): View
     {
         $ufrs = Ufr::all();
-        $enseignants = Enseignant::all();
+        //$enseignants = Enseignant::all();
         $departements = Departement::get();
         return view(
-            'departements.create', compact('departements', 'ufrs', 'enseignants'));
+            'departements.create', compact('departements', 'ufrs'));
     }
 
     /**
@@ -64,11 +64,11 @@ class DepartementController extends Controller
     public function edit(Request $request, Departement $departement): View
     {
         $ufrs = Ufr::all();
-        $enseignants = Enseignant::all();
+        //$enseignants = Enseignant::all();
         $departements = Departement::get();
         return view(
             'departements.edit',
-            compact('departement', 'ufrs', 'enseignants')
+            compact('departement', 'ufrs')
         );
     }
 

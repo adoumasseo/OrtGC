@@ -42,10 +42,12 @@ class ContratController extends Controller
      */
     public function create(Request $request): View
     {
+        $user = Auth::user();
+        $ufr = $user->ufr;
 
-        return view(
-            'contrats.create'
-        );
+        $enseignants=getEnseignantsByUfr($ufr->id);
+
+        return view('contrats.create', compact('enseignants'));
     }
 
     /**

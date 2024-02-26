@@ -11,6 +11,7 @@ use App\Models\Enseignant;
 use App\Models\Cycle;
 use App\Models\Ecue;
 use App\Models\Filiere;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AjaxController extends Controller
@@ -86,6 +87,13 @@ class AjaxController extends Controller
     {
         Departement::whereIn('id', $request->departements_ids)->delete();
         notyf()->addSuccess('Département supprimé avec succès.');
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteUsers(Request $request)
+    {
+        User::whereIn('id', $request->users_ids)->delete();
+        notyf()->addSuccess('Utilisateur supprimée avec succès.');
         return response()->json(['success' => true]);
     }
 }

@@ -15,9 +15,44 @@ class ClasseSeeder extends Seeder
     {
         $classes = [
             [
-                'code' => 'AIP3',
-                'nom' => "AIP3",
+                'code' => 'IG1-A',
+                'nom' => "IG1-A",
                 'filiere_id' => 1,
+                'cycle_id' => 1,
+                'niveau' => 1,
+            ],
+            [
+                'code' => 'IG1-B',
+                'nom' => "IG1-B",
+                'filiere_id' => 1,
+                'cycle_id' => 1,
+                'niveau' => 1,
+            ],
+            [
+                'code' => 'IG2-A',
+                'nom' => "IG2-A",
+                'filiere_id' => 1,
+                'cycle_id' => 1,
+                'niveau' => 2,
+            ],
+            [
+                'code' => 'IG2-B',
+                'nom' => "IG2-B",
+                'filiere_id' => 1,
+                'cycle_id' => 1,
+                'niveau' => 2,
+            ],
+            [
+                'code' => 'IG3-AIP',
+                'nom' => "IG3-AIP",
+                'filiere_id' => 2,
+                'cycle_id' => 1,
+                'niveau' => 3,
+            ],
+            [
+                'code' => 'IG3-ARI',
+                'nom' => "IG3-ARI",
+                'filiere_id' => 3,
                 'cycle_id' => 1,
                 'niveau' => 3,
             ],
