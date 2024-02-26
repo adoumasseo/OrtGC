@@ -29,7 +29,7 @@
                                         <div class="" id="accordionFlushExample">
                 
                                             <div class="accordion custom-accordionwithicon accordion-border-box" id="accordionnesting">
-                                                <?php $__currentLoopData = getCoursByClasseBySemestre($classe->id,$semestre); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cours): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = getProgrammationByClasseBySemestre($classe->id,$semestre); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cours): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="accordion-item">
                                                         <h2 class="accordion-header" id="accordionnestingExample<?php echo e($cours->id); ?>">
                                                             <button class="accordion-button fw-semibold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accor_nestingExamplecollapse<?php echo e($cours->id); ?>" aria-expanded="false" aria-controls="accor_nestingExamplecollapse<?php echo e($cours->id); ?>">
