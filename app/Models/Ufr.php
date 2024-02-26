@@ -14,7 +14,9 @@ use Wildside\Userstamps\Userstamps;
  * @property integer $id
  * @property integer $universite_id
  * @property string $code
+ * @property string $code_designation
  * @property string $nom
+ * @property string $nom_designation
  * @property string $adresse
  * @property string $telephone
  * @property string $siteweb
@@ -41,7 +43,7 @@ class Ufr extends Model
     /**
      * @var array
      */
-    protected $fillable = ['universite_id', 'code', 'nom', 'adresse', 'telephone', 'siteweb', 'email', 'directeur', 'ville', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
+    protected $fillable = ['universite_id', 'code', 'code_designation', 'nom', 'nom_designation', 'adresse', 'telephone', 'siteweb', 'email', 'directeur', 'ville', 'logo', 'slug', 'created_by', 'updated_by', 'deleted_by', 'created_at', 'updated_at', 'deleted_at'];
 
     public function sluggable(): array
     {
