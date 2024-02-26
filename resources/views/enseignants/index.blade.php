@@ -21,7 +21,7 @@
             <div class="card-body">
 
                 <div class="mb-3">
-                    <a href="{{ route('enseignants.create') }}">
+                    <a href="{{ route('enseignants.search') }}">
                         <button type="button" class="btn btn-success add-btn">
                             <i class="align-bottom ri-add-line me-1"></i> Ajouter
                         </button>
